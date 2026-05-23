@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/>
+<meta name="theme-color" content="#07040f"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="ஜோதிடம்"/>
+<meta name="description" content="வேத ஜோதிட பலன் விவரம் - Vedic Astrology App"/>
+<title>🔮 ஜோதிடம் — Vedic Astrology</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#07040f;color:white;font-family:'Noto Sans Tamil',sans-serif;min-height:100vh;
+  background-image:radial-gradient(ellipse at 15% 15%,rgba(120,40,180,.22) 0%,transparent 45%),
+  radial-gradient(ellipse at 85% 85%,rgba(40,10,90,.32) 0%,transparent 45%)}
+button{cursor:pointer;font-family:'Noto Sans Tamil',sans-serif}
+input,select{font-family:'Noto Sans Tamil',sans-serif}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:rgba(255,255,255,.05)}
+::-webkit-scrollbar-thumb{background:rgba(251,191,36,.3);border-radius:2px}
+.app{max-width:440px;margin:0 auto;padding-bottom:60px}
+.inp{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);border-radius:10px;
+  color:white;padding:10px 14px;font-size:14px;width:100%;outline:none}
+.card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:14px;margin-bottom:12px}
+.ir{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05);font-size:13px;gap:8px}
+.ir .l{color:rgba(255,255,255,.5);flex-shrink:0}
+.ir .v{font-weight:600;text-align:right}
+.tabs{display:flex;gap:2px;background:rgba(255,255,255,.04);border-radius:10px;padding:3px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+.tab{flex:0 0 auto;padding:7px 9px;font-size:10px;font-weight:600;border:none;border-radius:7px;
+  background:transparent;color:rgba(255,255,255,.4);border-bottom:2px solid transparent;transition:all .2s}
+.tab.active{background:rgba(251,191,36,.2);color:#fbbf24;border-bottom:2px solid #fbbf24}
+.planet-row{display:grid;grid-template-columns:1.3fr 1fr 1fr .4fr .55fr;padding:9px 10px;
+  align-items:center;border-top:1px solid rgba(255,255,255,.05);font-size:11px}
+.planet-row:nth-child(even){background:rgba(255,255,255,.02)}
+.header-row{display:grid;grid-template-columns:1.3fr 1fr 1fr .4fr .55fr;padding:8px 10px;
+  background:rgba(255,255,255,.08);font-size:9px;color:rgba(255,255,255,.4)}
+.pill{padding:2px 9px;border-radius:12px;font-size:10px;font-weight:600}
+.badge{font-size:8px;padding:1px 5px;border-radius:5px;font-weight:700}
+.section-title{display:flex;align-items:center;gap:8px;margin-bottom:12px;padding-bottom:8px;
+  border-bottom:1px solid rgba(255,255,255,.07);font-size:12px;font-weight:700;color:#fbbf24}
+.ring-wrap{display:flex;flex-direction:column;align-items:center;gap:4px}
+.ring-label{font-size:9px;color:rgba(255,255,255,.5);text-align:center;max-width:55px;line-height:1.2}
+.drop{position:absolute;top:100%;left:0;right:0;z-index:200;background:#1a0f2e;
+  border:1px solid rgba(255,255,255,.15);border-radius:10px;max-height:200px;overflow-y:auto;
+  margin-top:4px;box-shadow:0 8px 32px rgba(0,0,0,.5)}
+.drop-item{padding:10px 14px;cursor:pointer;font-size:13px;border-bottom:1px solid rgba(255,255,255,.05)}
+.drop-item:hover,.drop-item.sel{background:rgba(251,191,36,.1);color:#fbbf24}
+.sticky-hdr{background:rgba(7,4,15,.97);border-bottom:1px solid rgba(251,191,36,.2);
+  padding:12px 16px;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.gold-btn{width:100%;padding:15px;border:none;border-radius:12px;
+  background:linear-gradient(135deg,#78350f,#b45309,#d97706,#fbbf24);
+  color:white;font-size:16px;font-weight:700;box-shadow:0 4px 24px rgba(217,119,6,.4)}
+.dasha-row{display:flex;align-items:center;gap:12px;padding:10px 13px;margin-bottom:4px;
+  border-radius:12px;cursor:pointer;transition:background .2s}
+.antar-row{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;
+  margin-bottom:3px;border-radius:8px;cursor:pointer}
+.prat-row{display:flex;justify-content:space-between;padding:5px 10px;margin-bottom:2px;border-radius:6px}
+.yoga-card{margin-bottom:10px;padding:14px;border-radius:12px}
+.dosha-card{border-radius:14px;padding:14px;margin-bottom:12px}
+.bhava-card{border-radius:12px;padding:12px;margin-bottom:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.timeline-stage{margin-bottom:16px}
+.timeline-header{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;margin-bottom:8px}
+.timeline-item{padding:10px 12px;border-radius:10px;margin-bottom:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)}
+.remedy-card{margin-bottom:14px;padding:14px;border-radius:14px}
+.av-bar{display:flex;gap:3px;margin-top:6px}
+.av-cell{flex:1;text-align:center;padding:4px 2px;border-radius:4px}
+.div-btn{padding:6px 10px;border-radius:8px;border:none;font-size:10px;font-family:'Noto Sans Tamil',sans-serif;white-space:nowrap}
+.nak-card{border-radius:12px;padding:14px;margin-bottom:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)}
+.install-btn{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.4);color:#4ade80;
+  padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;width:100%;margin-bottom:8px}
+.share-btn{background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.4);color:#60a5fa;
+  padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;width:100%;margin-bottom:8px}
+.back-btn{width:100%;padding:12px;border:1px solid rgba(255,255,255,.15);border-radius:12px;
+  background:transparent;color:rgba(255,255,255,.5);font-size:14px;margin-top:20px}
+@media(max-width:380px){.planet-row,.header-row{font-size:9px;padding:7px 8px}}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+
+<!-- ════════════════════════════════════════════ -->
+<!-- INPUT SCREEN                                 -->
+<!-- ════════════════════════════════════════════ -->
+<div id="screen-input">
+  <div style="text-align:center;padding:32px 20px 20px;border-bottom:1px solid rgba(255,255,255,.08)">
+    <div style="font-size:44px;margin-bottom:8px;filter:drop-shadow(0 0 20px rgba(251,191,36,.4))">🔮</div>
+    <h1 style="font-family:'Cinzel',serif;font-weight:900;font-size:30px;letter-spacing:5px;
+      background:linear-gradient(135deg,#fbbf24,#f59e0b,#d97706);-webkit-background-clip:text;-webkit-text-fill-color:transparent">
+      ஜோதிடம்</h1>
+    <p style="margin-top:8px;font-size:12px;color:rgba(255,255,255,.35);letter-spacing:2px">வேத ஜோதிட பலன் விவரம் — Vedic Astrology</p>
+    <div style="display:flex;justify-content:center;gap:6px;margin-top:12px;flex-wrap:wrap">
+      <span class="pill" style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24">லஹிரி அயனாம்சம்</span>
+      <span class="pill" style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24">நவாம்சம் D9</span>
+      <span class="pill" style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24">25+ யோகங்கள்</span>
+      <span class="pill" style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24">ஷட்பலம்</span>
+      <span class="pill" style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24">அஷ்டகவர்க்கம்</span>
+      <span class="pill" style="background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.25);color:#fbbf24">3-நிலை தசை</span>
+    </div>
+  </div>
+
+  <div style="padding:24px 20px">
+    <div style="display:flex;gap:10px;margin-bottom:16px">
+      <div style="flex:1">
+        <label style="font-size:11px;color:rgba(255,255,255,.45);display:block;margin-bottom:5px">பெயர்</label>
+        <input class="inp" id="f-name" placeholder="உங்கள் முழுப் பெயர்"/>
+      </div>
+      <div style="width:108px">
+        <label style="font-size:11px;color:rgba(255,255,255,.45);display:block;margin-bottom:5px">பாலினம்</label>
+        <select class="inp" id="f-gender" style="background:rgba(255,255,255,.07)">
+          <option>ஆண்</option><option>பெண்</option><option>மற்றவை</option>
+        </select>
+      </div>
+    </div>
+
+    <label style="font-size:11px;color:rgba(255,255,255,.45);display:block;margin-bottom:5px">பிறந்த தேதி — நாள் / மாதம் / ஆண்டு</label>
+    <div style="display:flex;gap:8px;margin-bottom:16px">
+      <input class="inp" id="f-day" type="number" placeholder="நாள்" value="23" min="1" max="31"/>
+      <input class="inp" id="f-month" type="number" placeholder="மாதம்" value="10" min="1" max="12"/>
+      <input class="inp" id="f-year" type="number" placeholder="ஆண்டு" value="1984" min="1900" max="2100"/>
+    </div>
+
+    <label style="font-size:11px;color:rgba(255,255,255,.45);display:block;margin-bottom:5px">பிறந்த நேரம் — மணி / நிமிடம் / விநாடி</label>
+    <div style="display:flex;gap:8px;margin-bottom:16px">
+      <input class="inp" id="f-hour" type="number" placeholder="மணி" value="0" min="0" max="23"/>
+      <input class="inp" id="f-minute" type="number" placeholder="நிமிடம்" value="38" min="0" max="59"/>
+      <input class="inp" id="f-second" type="number" placeholder="விநாடி" value="0" min="0" max="59"/>
+    </div>
+
+    <label style="font-size:11px;color:rgba(255,255,255,.45);display:block;margin-bottom:5px">பிறந்த ஊர்</label>
+    <div style="position:relative;margin-bottom:6px">
+      <input class="inp" id="f-city-search" placeholder="ஊர் தேடுக..." autocomplete="off"/>
+      <div class="drop" id="city-drop" style="display:none"></div>
+    </div>
+    <div id="city-coords" style="font-size:10px;color:rgba(255,255,255,.3);margin-bottom:24px;font-family:sans-serif">
+      📍 அந்தியூர் · 11.574°N, 77.592°E · IST +5:30
+    </div>
+
+    <div id="err-msg" style="display:none;padding:10px 14px;border-radius:10px;margin-bottom:16px;
+      background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);font-size:13px;color:#fca5a5"></div>
+
+    <button class="gold-btn" onclick="analyze()">✦ ஜாதகம் கணக்கிடு ✦</button>
+
+    <div style="margin-top:16px;padding:12px 16px;border-radius:12px;background:rgba(251,191,36,.04);border:1px solid rgba(251,191,36,.1)">
+      <p style="font-size:12px;color:rgba(255,255,255,.4);line-height:2;text-align:center;font-style:italic">
+        "நட்சத்திரங்கள் வழிகாட்டும், ஆனால் விதிக்கா ஆட்டுவிக்காது.<br>உன்னை நீயே அறிவாய் — இதுவே ஜோதிடத்தின் சாரம்."
+      </p>
+    </div>
+
+    <!-- Install & Share Section -->
+    <div style="margin-top:20px;padding:14px;border-radius:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)">
+      <div style="font-size:12px;color:#fbbf24;font-weight:700;margin-bottom:10px">📱 பயன்பாடு நிறுவு / பகிர்</div>
+      <button class="install-btn" onclick="installApp()">📲 இந்த கணினியில் / மொபைலில் நிறுவு (Install as App)</button>
+      <button class="share-btn" onclick="shareApp()">🔗 நண்பர்களுக்கு பகிர் (Share App)</button>
+      <button class="share-btn" onclick="downloadHTML()">💾 HTML கோப்பாக சேமி (Save & Share)</button>
+      <p style="font-size:11px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:8px">
+        💡 <strong style="color:rgba(255,255,255,.6)">குறிப்பு:</strong> இந்த HTML கோப்பை WhatsApp / Email மூலம் பகிரலாம். ஏதாவது மொபைலில் திறந்தாலும் வேலை செய்யும். Internet தேவையில்லை!
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ -->
+<!-- RESULT SCREEN                                -->
+<!-- ════════════════════════════════════════════ -->
+<div id="screen-result" style="display:none">
+
+  <!-- Sticky Header -->
+  <div class="sticky-hdr" id="result-header"></div>
+
+  <!-- Score Rings -->
+  <div class="card" style="margin:12px 16px 10px" id="score-rings"></div>
+
+  <!-- Tabs -->
+  <div class="tabs" style="margin:0 16px 10px" id="tab-bar"></div>
+
+  <!-- Tab Content -->
+  <div style="padding:0 16px" id="tab-content"></div>
+
+  <!-- Back Button -->
+  <div style="padding:0 16px">
+    <button class="back-btn" onclick="goBack()">← புதிய ஜாதகம் கணக்கிடு</button>
+  </div>
+</div>
+
+</div><!-- /app -->
+
+<script>
+// ═══════════════════════════════════════════════
+// DATA TABLES
+// ═══════════════════════════════════════════════
+const SE=["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
+const ST={Aries:"மேஷம்",Taurus:"ரிஷபம்",Gemini:"மிதுனம்",Cancer:"கடகம்",Leo:"சிம்மம்",Virgo:"கன்னி",Libra:"துலாம்",Scorpio:"விருச்சிகம்",Sagittarius:"தனுசு",Capricorn:"மகரம்",Aquarius:"கும்பம்",Pisces:"மீனம்"};
+const SS={Aries:"♈",Taurus:"♉",Gemini:"♊",Cancer:"♋",Leo:"♌",Virgo:"♍",Libra:"♎",Scorpio:"♏",Sagittarius:"♐",Capricorn:"♑",Aquarius:"♒",Pisces:"♓"};
+const NE=["Ashwini","Bharani","Krittika","Rohini","Mrigashira","Ardra","Punarvasu","Pushya","Ashlesha","Magha","Purva Phalguni","Uttara Phalguni","Hasta","Chitra","Swati","Vishakha","Anuradha","Jyeshtha","Mula","Purva Ashadha","Uttara Ashadha","Shravana","Dhanishtha","Shatabhisha","Purva Bhadrapada","Uttara Bhadrapada","Revati"];
+const NT=["அஸ்வினி","பரணி","கார்த்திகை","ரோகிணி","மிருகசீரிஷம்","திருவாதிரை","புனர்பூசம்","பூசம்","ஆயில்யம்","மகம்","பூரம்","உத்திரம்","அஸ்தம்","சித்திரை","சுவாதி","விசாகம்","அனுஷம்","கேட்டை","மூலம்","பூராடம்","உத்திராடம்","திருவோணம்","அவிட்டம்","சதயம்","பூரட்டாதி","உத்திரட்டாதி","ரேவதி"];
+const NL_D=["Ketu","Venus","Sun","Moon","Mars","Rahu","Jupiter","Saturn","Mercury","Ketu","Venus","Sun","Moon","Mars","Rahu","Jupiter","Saturn","Mercury","Ketu","Venus","Sun","Moon","Mars","Rahu","Jupiter","Saturn","Mercury"];
+const ND_D=["அஸ்வினி குமாரர்கள்","யமன்","அக்னி","பிரம்மா","சந்திரன்","ருத்ரன்","அதிதி","பிருஹஸ்பதி","சர்ப்பம்","பித்ரு","பகன்","அர்யமன்","சாவித்ரி","விஸ்வகர்மா","வாயு","இந்திர-அக்னி","மித்ரன்","இந்திரன்","நிர்ருதி","ஆப்","விஸ்வேதேவர்","விஷ்ணு","வசுக்கள்","வருணன்","அஜ ஏகபாத்","அஹிர்புத்னியன்","பூஷன்"];
+const NK_C=["வேகம்,துணிவு","கடுமை,வலிமை","அக்னி,ஒளி","செழிப்பு,அழகு","ஆராய்ச்சி,இனிமை","புயல்,உணர்வு","மீட்சி,அமைதி","தூய்மை,ஊட்டம்","ஆழம்,ரகசியம்","பெருமை,நிலை","காதல்,கலை","நுட்பம்,சேவை","திறமை,பயன்","அழகு,கலை","சுதந்திரம்,நீதி","வெற்றி,நம்பிக்கை","அன்பு,பக்தி","ஆற்றல்,ஞானம்","விடுதலை,சிந்தனை","தத்துவம்,தேடல்","வெற்றி,நிலைத்தன்மை","கேட்டல்,பக்தி","செல்வம்,இசை","ஆழமான ஞானம்","விரிவு,ஆன்மீகம்","முக்தி,ஆழம்","ஆன்மீகம்,மோட்சம்"];
+const PT={Sun:"சூரியன்",Moon:"சந்திரன்",Mars:"செவ்வாய்",Mercury:"புதன்",Jupiter:"குரு",Venus:"சுக்கிரன்",Saturn:"சனி",Rahu:"ராகு",Ketu:"கேது"};
+const PI={Sun:"☀️",Moon:"🌙",Mars:"♂",Mercury:"☿",Jupiter:"♃",Venus:"♀",Saturn:"♄",Rahu:"☊",Ketu:"☋"};
+const PC={Sun:"#f97316",Moon:"#a78bfa",Mars:"#ef4444",Mercury:"#22c55e",Jupiter:"#eab308",Venus:"#ec4899",Saturn:"#64748b",Rahu:"#7c3aed",Ketu:"#dc2626"};
+const PS={Sun:"சூ",Moon:"ச",Mars:"செ",Mercury:"பு",Jupiter:"கு",Venus:"சுக்",Saturn:"சனி",Rahu:"ரா",Ketu:"கே"};
+const DY={Sun:6,Moon:10,Mars:7,Rahu:18,Jupiter:16,Saturn:19,Mercury:17,Ketu:7,Venus:20};
+const SL={Aries:"Mars",Taurus:"Venus",Gemini:"Mercury",Cancer:"Moon",Leo:"Sun",Virgo:"Mercury",Libra:"Venus",Scorpio:"Mars",Sagittarius:"Jupiter",Capricorn:"Saturn",Aquarius:"Saturn",Pisces:"Jupiter"};
+const EX={Sun:"Aries",Moon:"Taurus",Mars:"Capricorn",Mercury:"Virgo",Jupiter:"Cancer",Venus:"Pisces",Saturn:"Libra",Rahu:"Gemini",Ketu:"Sagittarius"};
+const DB={Sun:"Libra",Moon:"Scorpio",Mars:"Cancer",Mercury:"Pisces",Jupiter:"Capricorn",Venus:"Virgo",Saturn:"Aries",Rahu:"Sagittarius",Ketu:"Gemini"};
+const PN={Sun:"பாபி",Moon:"சுபன்",Mars:"பாபி",Mercury:"நடுநிலை",Jupiter:"சுபன்",Venus:"சுபன்",Saturn:"பாபி",Rahu:"பாபி",Ketu:"பாபி"};
+const HOUSE_SIG={1:"உடல்,ஆரோக்கியம்,தோற்றம்,குணம்",2:"செல்வம்,குடும்பம்,பேச்சு,கண்கள்",3:"சகோதரர்,துணிவு,யாத்திரை,கைகள்",4:"தாய்,வீடு,வாகனம்,கல்வி,சொத்து",5:"புத்திரர்,கல்வி,காதல்,மந்திரம்,பணம்",6:"எதிரி,நோய்,கடன்,சேவை,நீதிமன்றம்",7:"திருமணம்,துணை,வணிக பங்காளி",8:"ஆயுள்,ரகசியம்,திடீர் நிகழ்வு,மரணம்",9:"தந்தை,குரு,தர்மம்,யாத்திரை,உயர் கல்வி",10:"தொழில்,பதவி,கீர்த்தி,அரசு,அதிகாரம்",11:"லாபம்,நண்பர்,வருமானம்,ஆசைகள்",12:"செலவு,மோட்சம்,வெளிநாடு,ஆன்மீகம்"};
+const LAGNA_INT={
+  Aries:"மேஷ லக்னம் — செவ்வாய் அதிபதி. துணிவு, தலைமை, போட்டி ஆர்வம். குரு, செவ்வாய் யோககாரகன். சனி, புதன் பாதகம்.",
+  Taurus:"ரிஷப லக்னம் — சுக்கிரன் அதிபதி. பொறுமை, அழகு, நடைமுறை திறன். சனி யோககாரகன். குரு கஷ்டகாரன்.",
+  Gemini:"மிதுன லக்னம் — புதன் அதிபதி. அறிவு, தகவல், வணிகம். சுக்கிரன் யோககாரகன். செவ்வாய் கஷ்டகாரன்.",
+  Cancer:"கடக லக்னம் — சந்திரன் அதிபதி. அன்பு, குடும்பம். செவ்வாய், குரு யோககாரகன். சனி கஷ்டகாரன்.",
+  Leo:"சிம்ம லக்னம் — சூரியன் அதிபதி. தலைமை, கீர்த்தி. செவ்வாய், குரு யோககாரகன். சுக்கிரன் கஷ்டகாரன்.",
+  Virgo:"கன்னி லக்னம் — புதன் அதிபதி. நுட்பம், சேவை. சுக்கிரன் யோககாரகன். செவ்வாய் கஷ்டகாரன்.",
+  Libra:"துலா லக்னம் — சுக்கிரன் அதிபதி. நீதி, சமத்துவம். சனி, புதன் யோககாரகன். குரு மாரகன்.",
+  Scorpio:"விருச்சிக லக்னம் — செவ்வாய் அதிபதி. ஆழம், ரகசியம். சூரியன், குரு யோககாரகன். சுக்கிரன் கஷ்டகாரன்.",
+  Sagittarius:"தனுசு லக்னம் — குரு அதிபதி. ஞானம், தர்மம். செவ்வாய், சூரியன் யோககாரகன். சுக்கிரன் கஷ்டகாரன்.",
+  Capricorn:"மகர லக்னம் — சனி அதிபதி. ஒழுக்கம், உழைப்பு. சுக்கிரன், புதன் யோககாரகன். குரு கஷ்டகாரன்.",
+  Aquarius:"கும்ப லக்னம் — சனி அதிபதி. மனித நேயம், அறிவியல். சுக்கிரன் யோககாரகன். குரு கஷ்டகாரன்.",
+  Pisces:"மீன லக்னம் — குரு அதிபதி. ஆன்மீகம், கலை, கனவு. செவ்வாய், சந்திரன் யோககாரகன். சனி கஷ்டகாரன்."
+};
+const PH_INT={
+  Sun:{1:"தலைமை குணம், ஆரோக்கியம் நல்லது, ஆணவம் கவனம்",2:"குடும்ப தலைவர், வருமானம் நல்லது",3:"தைரியம், அரசு ஆதரவு",4:"தாய் உறவில் சிக்கல் சாத்தியம்",5:"புத்திசாலி குழந்தைகள், கல்வி சிறப்பு",6:"எதிரிகளை வெல்லும் ஆற்றல்",7:"ஆணவமான துணை, சுய ஆதிக்கம்",8:"ஆயுள் கவனம், திடீர் நிகழ்வு",9:"தந்தை புகழ், ஆன்மீக ஆர்வம்",10:"தொழிலில் சிறப்பு, கீர்த்தி, அரசு சேவை",11:"நண்பர்கள் நல்லவர்கள், வருமானம் அதிகம்",12:"செலவு அதிகம், வெளிநாடு யோகம்"},
+  Moon:{1:"அன்பு மனம், கவலைப்படும் குணம்",2:"செல்வம் சேரும், குடும்ப பாசம்",3:"கலை திறன், சகோதர நல்ல உறவு",4:"தாய் அன்பு பரிபூரணம், வீட்டு சுகம்",5:"கலை, குழந்தை யோகம்",6:"உடல் நலம் சீரற்றது சாத்தியம்",7:"அன்பான துணை, திருமண சுகம்",8:"மனம் அலைபாயும், ரகசியம் விரும்பி",9:"தர்ம சிந்தனை, ஆன்மீக ஆர்வம்",10:"தொழிலில் ஏற்ற இறக்கம்",11:"நல்ல வருமானம், நண்பர்கள் அதிகம்",12:"ஒதுக்கு வாழ்வு, ஆன்மீகம் விரும்பி"},
+  Mars:{1:"துணிவு, ஆற்றல், சண்டை ஆர்வம்",2:"குடும்பத்தில் கடுமை, வேக செலவு",3:"சகோதர நல்ல உறவு, தைரியம்",4:"வீட்டில் அமைதியின்மை சாத்தியம்",5:"படிப்பில் கஷ்டம் சாத்தியம்",6:"எதிரி வெல்வார், நோய் வெல்வார்",7:"மங்கல தோஷம், கடுமையான துணை",8:"விபத்து கவனம், ரகசிய சக்தி",9:"தந்தை கஷ்டம், தர்ம வழி",10:"தொழிலில் தைரியம், இராணுவம் சாதகம்",11:"லாபம் நல்லது, நண்பர் உதவி",12:"ரகசிய எதிரிகள், செலவு அதிகம்"},
+  Mercury:{1:"புத்திசாலி, வணிக ஆர்வம், இளமை தோற்றம்",2:"வணிக திறன், கல்வியால் செல்வம்",3:"தகவல் திறன் சிறப்பு",4:"கல்வி சிறப்பு, சொத்து யோகம்",5:"மிகவும் புத்திசாலி, சாஸ்திர ஞானம்",6:"நோய் வெல்வார், வழக்கில் வெல்வார்",7:"புத்திசாலி துணை, வணிக பங்காளி",8:"ஆய்வு திறன், ஆயுள் நீடிக்கும்",9:"எழுத்தாளர், ஆசிரியர் சாதகம்",10:"வணிகம், மீடியா, IT சிறப்பு",11:"வருமான சாதனம் புத்திசாலித்தனம்",12:"ரகசிய கல்வி, ஆன்மீக ஆராய்ச்சி"},
+  Jupiter:{1:"அதிர்ஷ்டம், ஞானம், புகழ், தர்மம்",2:"செல்வம் அதிகம், குடும்ப மகிழ்ச்சி",3:"ஆன்மீக பயணம், சகோதரர் நல்லது",4:"வீட்டு சுகம், சொத்து யோகம்",5:"புத்திர யோகம், சிறந்த குழந்தைகள்",6:"நோய் வெல்லும், எதிரி வெல்லும்",7:"நல்ல துணை, திருமண சுகம்",8:"நீண்ட ஆயுள், ரகசிய ஞானம்",9:"தர்மம், ஆன்மீக குரு, வெளிநாடு",10:"தொழிலில் சிறப்பு, அரசு ஆதரவு",11:"லாபம் நிறைந்தது, நண்பர்கள் சிறப்பு",12:"மோட்சம், ஆன்மீக சாதனை"},
+  Venus:{1:"அழகு, கலை, சுக வாழ்வு",2:"செல்வம், குடும்ப மகிழ்ச்சி, நகை",3:"கலை, சகோதரி நல்ல உறவு",4:"வீட்டில் ஆடம்பரம், வாகனம்",5:"காதல் திருமணம், கலை திறன்",6:"காதல் தோல்வி சாத்தியம்",7:"அழகான துணை, திருமண சுகம்",8:"திடீர் செல்வம், ரகசிய காதல்",9:"கலை மூலம் புகழ், வெளிநாடு சாதகம்",10:"கலை, நடிப்பு, இசை மூலம் புகழ்",11:"வருமானம் நல்லது, நண்பர்கள் மூலம் லாபம்",12:"ரகசிய காதல், ஆன்மீக கலை"},
+  Saturn:{1:"தாமதம், ஒழுக்கம், கடின உழைப்பு",2:"குடும்பத்தில் கஷ்டம், சிக்கனம்",3:"சகோதரர் கஷ்டம், யாத்திரை தடை",4:"தாய் கஷ்டம், சொத்தில் தாமதம்",5:"குழந்தை தாமதம், கல்வி கஷ்டம்",6:"நோய் வெல்லும், சேவை சிறப்பு",7:"திருமண தாமதம், இணையர் கடுமை",8:"நீண்ட ஆயுள், கடின வாழ்க்கை",9:"தந்தை கஷ்டம், யாத்திரை தாமதம்",10:"கடின உழைப்பால் வெற்றி, நிர்வாக திறன்",11:"லாபம் தாமதம், வயதான நண்பர்கள்",12:"மோட்சம் நோக்கி, கர்ம தீர்வு"},
+  Rahu:{1:"அசாதாரண தோற்றம், அம்பீஷன்",2:"குடும்பத்தில் இடையூறு, அன்னியர்",3:"தைரியம் அதிகம், திடீர் யாத்திரை",4:"தாய் கஷ்டம், வெளிநாடு வசிப்பு",5:"புத்திரர் கஷ்டம், திடீர் கல்வி மாற்றம்",6:"எதிரிகளை திடீர் வெல்வார்",7:"திடீர் திருமணம், அன்னிய துணை",8:"திடீர் நிகழ்வு, மர்ம வாழ்வு",9:"மத மாற்றம் சாத்தியம், வெளிநாடு",10:"தொழிலில் திடீர் மாற்றம், சர்ச்சை",11:"திடீர் லாபம், வித்தியாசமான நண்பர்கள்",12:"வெளிநாடு வசிப்பு, ரகசிய செலவு"},
+  Ketu:{1:"ஆன்மீக ஆர்வம், வைராக்கியம்",2:"குடும்பத்தில் அந்நியர் உணர்வு",3:"ஆன்மீக யாத்திரை, எழுத்து திறன்",4:"தாய் பிரிவு, ஆன்மீக சூழல்",5:"ஆன்மீக பயிற்சி, சாஸ்திர ஞானம்",6:"நோய் தீரும், ஆன்மீக சேவை",7:"திருமண பிரிவு சாத்தியம்",8:"ஆன்மீக ரகசியம், மர்ம வாழ்வு",9:"ஆன்மீக ஞானம், முக்தி நோக்கி",10:"ஆன்மீகம் மூலம் புகழ்",11:"திடீர் லாபம் தடை, ஆன்மீக நோக்கம்",12:"மோட்சம், வைராக்கியம், கர்ம தீர்வு"}
+};
+const DASHA_DESC={Sun:"அரசு சேவை, தந்தை உறவு, தலைமை — கீர்த்தி உயரும்",Moon:"மனோ சுகம், தாய் உறவு, குடும்ப மகிழ்ச்சி — உணர்வு முக்கியம்",Mars:"தைரியம், சொத்து, சகோதரம் — விபத்து கவனம்",Mercury:"வணிகம், கல்வி, IT — புத்திசாலி முடிவுகள் தேவை",Jupiter:"ஞானம், குழந்தை, ஆன்மீகம் — மிகவும் சாதகமான காலம்",Venus:"திருமணம், கலை, செல்வம் — சுகமான வாழ்வு",Saturn:"கடின உழைப்பு, தாமதம் — பொறுமை வெற்றி தரும்",Rahu:"திடீர் மாற்றம், புதிய வாய்ப்பு — கவனமாக முடிவெடுக்கவும்",Ketu:"ஆன்மீகம், வைராக்கியம் — தியானம் செய்யவும்"};
+
+const CITIES=[
+  {n:"அந்தியூர்",lat:11.574,lng:77.592,tz:5.5},{n:"சென்னை",lat:13.083,lng:80.271,tz:5.5},
+  {n:"கோயம்புத்தூர்",lat:11.017,lng:76.956,tz:5.5},{n:"மதுரை",lat:9.925,lng:78.120,tz:5.5},
+  {n:"திருச்சி",lat:10.791,lng:78.705,tz:5.5},{n:"சேலம்",lat:11.664,lng:78.146,tz:5.5},
+  {n:"ஈரோடு",lat:11.341,lng:77.717,tz:5.5},{n:"திருப்பூர்",lat:11.109,lng:77.341,tz:5.5},
+  {n:"வேலூர்",lat:12.917,lng:79.133,tz:5.5},{n:"தஞ்சாவூர்",lat:10.787,lng:79.138,tz:5.5},
+  {n:"திருநெல்வேலி",lat:8.714,lng:77.757,tz:5.5},{n:"கடலூர்",lat:11.748,lng:79.771,tz:5.5},
+  {n:"கும்பகோணம்",lat:10.960,lng:79.385,tz:5.5},{n:"நாகர்கோவில்",lat:8.178,lng:77.434,tz:5.5},
+  {n:"கரூர்",lat:10.960,lng:78.077,tz:5.5},{n:"நாமக்கல்",lat:11.219,lng:78.167,tz:5.5},
+  {n:"திருவண்ணாமலை",lat:12.225,lng:79.075,tz:5.5},{n:"புதுச்சேரி",lat:11.942,lng:79.808,tz:5.5},
+  {n:"காஞ்சிபுரம்",lat:12.819,lng:79.695,tz:5.5},{n:"டிண்டுக்கல்",lat:10.362,lng:77.970,tz:5.5},
+  {n:"பெங்களூரு",lat:12.972,lng:77.595,tz:5.5},{n:"ஹைதராபாத்",lat:17.385,lng:78.487,tz:5.5},
+  {n:"மும்பை",lat:19.076,lng:72.878,tz:5.5},{n:"டெல்லி",lat:28.704,lng:77.103,tz:5.5},
+  {n:"கொல்கத்தா",lat:22.573,lng:88.364,tz:5.5},{n:"திருவனந்தபுரம்",lat:8.524,lng:76.937,tz:5.5},
+  {n:"கொச்சி",lat:9.931,lng:76.267,tz:5.5},{n:"வாரணாசி",lat:25.318,lng:82.974,tz:5.5},
+  {n:"திருப்பதி",lat:13.629,lng:79.419,tz:5.5},{n:"மைசூரு",lat:12.296,lng:76.639,tz:5.5},
+  {n:"புனே",lat:18.520,lng:73.857,tz:5.5},{n:"ஜெய்ப்பூர்",lat:26.912,lng:75.787,tz:5.5},
+  {n:"அகமதாபாத்",lat:23.023,lng:72.571,tz:5.5},{n:"லக்னோ",lat:26.847,lng:80.946,tz:5.5},
+  {n:"அமிர்தசரஸ்",lat:31.634,lng:74.872,tz:5.5},{n:"நாசிக்",lat:19.997,lng:73.790,tz:5.5},
+  {n:"இந்தோர்",lat:22.720,lng:75.858,tz:5.5},{n:"போபால்",lat:23.260,lng:77.413,tz:5.5},
+  {n:"நாக்பூர்",lat:21.146,lng:79.088,tz:5.5},{n:"விசாகப்பட்டணம்",lat:17.687,lng:83.219,tz:5.5},
+];
+
+// ═══════════════════════════════════════════════
+// ASTRONOMY
+// ═══════════════════════════════════════════════
+const n360=v=>((v%360)+360)%360;
+function toJD(yr,mo,dy,hr,mn,sc,tz){
+  const ut=hr+mn/60+sc/3600-tz,d=dy+ut/24;
+  let y=yr,m=mo;if(m<=2){y--;m+=12;}
+  const A=Math.floor(y/100),B=2-A+Math.floor(A/4);
+  return Math.floor(365.25*(y+4716))+Math.floor(30.6001*(m+1))+d+B-1524.5;
+}
+const ayan=jd=>n360(23.85+(jd-2415020.5)*(50.2564/3600)/365.25);
+function dms(lon){const d=lon%30,dd=Math.floor(d),mf=(d-dd)*60,mm=Math.floor(mf),ss=Math.floor((mf-mm)*60);return `${dd}° ${mm}' ${ss}"`;}
+function nakOf(lon){const i=Math.floor(n360(lon)/(360/27))%27,p=Math.min(4,Math.floor((n360(lon)%(360/27))/(360/27/4))+1);return{i,p};}
+
+function tropLons(T){
+  const Ms=(357.52911+35999.05029*T-0.0001537*T*T)*Math.PI/180;
+  const sEq=(1.914602-0.004817*T)*Math.sin(Ms)+(0.019993-0.000101*T)*Math.sin(2*Ms)+0.000289*Math.sin(3*Ms);
+  const sun=n360(280.46646+36000.76983*T+0.0003032*T*T+sEq);
+  const Mm=(134.9634+477198.8676*T+0.0089970*T*T)*Math.PI/180;
+  const Dm=(297.8502+445267.1115*T-0.0016300*T*T)*Math.PI/180;
+  const Fm=(93.2721+483202.0175*T-0.0034029*T*T)*Math.PI/180;
+  const mEq=6.28875*Math.sin(Mm)+1.27402*Math.sin(2*Dm-Mm)+0.65831*Math.sin(2*Dm)+0.21358*Math.sin(2*Mm)-0.18560*Math.sin(Ms)-0.11440*Math.sin(2*Fm)+0.05880*Math.sin(2*Dm-2*Mm);
+  const moon=n360(218.3165+481267.8813*T+mEq);
+  const maM=n360(19.373+19140.3*T)*Math.PI/180,mars=n360(355.433+19140.2993*T+10.69*Math.sin(maM)+0.623*Math.sin(2*maM));
+  const meM=n360(168.656+149472.515*T)*Math.PI/180,mercury=n360(252.2509+149472.6674*T+23.44*Math.sin(meM)+2.98*Math.sin(2*meM));
+  const jM=n360(20.9+3034.906*T)*Math.PI/180,jupiter=n360(34.3515+3034.9057*T+5.55*Math.sin(jM)+0.168*Math.sin(2*jM));
+  const vM=n360(212.4+58517.803*T)*Math.PI/180,venus=n360(181.9798+58517.8156*T+0.776*Math.sin(vM));
+  const sM=n360(317.9+1222.114*T)*Math.PI/180,saturn=n360(50.0774+1222.1138*T+6.36*Math.sin(sM)+0.220*Math.sin(2*sM));
+  const rahu=n360(125.0445-1934.1362*T+0.0020708*T*T);
+  return{Sun:sun,Moon:moon,Mars:mars,Mercury:mercury,Jupiter:jupiter,Venus:venus,Saturn:saturn,Rahu:rahu,Ketu:n360(rahu+180)};
+}
+function isRetro(pl,T){
+  if(pl==="Rahu"||pl==="Ketu")return true;
+  if(!["Mars","Mercury","Jupiter","Venus","Saturn"].includes(pl))return false;
+  const p1=tropLons(T),p2=tropLons(T+1/36525);
+  let d=n360(p2[pl])-n360(p1[pl]);if(d>180)d-=360;if(d<-180)d+=360;return d<0;
+}
+function calcLagna(jd,lat,lng,ay){
+  const T=(jd-2451545)/36525,GMST=n360(280.46061837+360.98564736629*(jd-2451545)+0.000387933*T*T);
+  const LST=n360(GMST+lng),eps=(23.439291111-0.013004167*T)*Math.PI/180;
+  const lr=lat*Math.PI/180,lstr=LST*Math.PI/180;
+  let a=Math.atan2(-Math.cos(lstr),Math.sin(eps)*Math.tan(lr)+Math.cos(eps)*Math.sin(lstr))*180/Math.PI;
+  if(a<0)a+=360;if(Math.cos(lstr)<0)a+=180;return n360(n360(a)-ay);
+}
+const navLon=lon=>{const si=Math.floor(n360(lon)/30)%12,pos=n360(lon)%30,pt=Math.floor(pos/(30/9));return(([0,9,6,3,0,9,6,3,0,9,6,3][si]+pt)%12)*30+(pos%(30/9))/(30/9)*30;};
+const divLon=(lon,d)=>n360((lon%30)*d+Math.floor(lon/30)*30);
+
+function buildChart(yr,mo,dy,hr,mn,sc,lat,lng,tz){
+  const jd=toJD(yr,mo,dy,hr,mn,sc,tz),T=(jd-2451545)/36525,ay_=ayan(jd);
+  const trop=tropLons(T);const sid={};for(const p of Object.keys(trop))sid[p]=n360(trop[p]-ay_);
+  const lagLon=calcLagna(jd,lat,lng,ay_),lagIdx=Math.floor(lagLon/30)%12;
+  const planets={};
+  for(const[nm,lon] of Object.entries(sid)){
+    const si=Math.floor(lon/30)%12,sign=SE[si],nak=nakOf(lon);
+    const house=((si-lagIdx+12)%12)+1,retro=isRetro(nm,T);
+    const nLon=navLon(lon),nSi=Math.floor(n360(nLon)/30)%12,nSign=SE[nSi];
+    planets[nm]={lon,sign,signTa:ST[sign],dms_:dms(lon),raw:lon%30,
+      nakIdx:nak.i,nakTa:NT[nak.i],pada:nak.p,house,retro,
+      nature:PN[nm],color:PC[nm],nSign,nSignTa:ST[nSign],
+      isVargottama:sign===nSign,isExalted:EX[nm]===sign,isDebilitated:DB[nm]===sign};
+  }
+  const lNak=nakOf(lagLon);
+  const lagna={lon:lagLon,sign:SE[lagIdx],signTa:ST[SE[lagIdx]],dms_:dms(lagLon),
+    nakTa:NT[lNak.i],nakIdx:lNak.i,pada:lNak.p,lord:SL[SE[lagIdx]],idx:lagIdx};
+  return{jd,T,ay:ay_.toFixed(4),planets,lagna};
+}
+
+// ═══════════════════════════════════════════════
+// DASHA — 3 levels
+// ═══════════════════════════════════════════════
+function buildDasha(moonLon,yr,mo,dy){
+  const nak=nakOf(moonLon),pos=n360(moonLon)%(360/27),elapsed=pos/(360/27),rem=1-elapsed;
+  const order=["Ketu","Venus","Sun","Moon","Mars","Rahu","Jupiter","Saturn","Mercury"];
+  const si=order.indexOf(NL_D[nak.i]);
+  const now=new Date().getFullYear()+new Date().getMonth()/12+new Date().getDate()/365;
+  let cur=yr+mo/12+dy/365-DY[NL_D[nak.i]]*elapsed;
+  return order.slice(si).concat(order.slice(0,si)).map((pl,i)=>{
+    const yrs=i===0?DY[pl]*rem:DY[pl],s=cur,e=cur+yrs,isC=now>=s&&now<e;
+    const aSI=order.indexOf(pl);
+    let aC=s;
+    const antar=order.slice(aSI).concat(order.slice(0,aSI)).map(ap=>{
+      const ay2=(DY[pl]*DY[ap])/120,as2=aC,ae2=aC+ay2,isCa=now>=as2&&now<ae2;
+      const pSI=order.indexOf(ap);let pC=as2;
+      const pratyan=order.slice(pSI).concat(order.slice(0,pSI)).map(pp=>{
+        const py=(DY[pl]*DY[ap]*DY[pp])/14400,ps=pC,pe=pC+py,isCp=now>=ps&&now<pe;
+        pC+=py;return{pl:pp,s:Math.round(ps*10)/10,e:Math.round(pe*10)/10,isCurrent:isCp};
+      });
+      aC+=ay2;return{pl:ap,s:Math.round(as2*10)/10,e:Math.round(ae2*10)/10,isCurrent:isCa,pratyan};
+    });
+    cur=e;
+    return{pl,yrs:Math.round(yrs*10)/10,s:Math.round(s*10)/10,e:Math.round(e*10)/10,isCurrent:isC,antar};
+  });
+}
+
+// ═══════════════════════════════════════════════
+// YOGAS — 25+
+// ═══════════════════════════════════════════════
+function buildYogas(planets,lagna){
+  const p=planets,ls=lagna.sign;
+  const kH=[1,4,7,10],trH=[1,5,9],dust=[6,8,12];
+  const Y=[];
+  const add=(ta,desc,present,good=true)=>Y.push({ta,desc,present,good});
+  const jupFrMoon=((p.Jupiter.house-p.Moon.house+12)%12)+1;
+  add("கஜகேசரி யோகம்",`குரு சந்திரனிலிருந்து ${jupFrMoon}வது பாவத்தில். புகழ், செல்வம், நீண்ட ஆயுள்.`,[1,4,7,10].includes(jupFrMoon));
+  add("புத-ஆதித்ய யோகம்","சூரியன்+புதன் சேர்க்கை. அறிவாற்றல், கல்வி, தொழில் சிறப்பு.",p.Sun.sign===p.Mercury.sign);
+  add("சந்திர மங்கல யோகம்","சந்திரன்+செவ்வாய் சேர்க்கை. வணிக திறன், தாய் வழி சொத்து.",p.Moon.sign===p.Mars.sign);
+  const jK=kH.includes(p.Jupiter.house),jS=["Cancer","Sagittarius","Pisces"].includes(p.Jupiter.sign);
+  add("ஹம்ச யோகம் (பஞ்ச மஹாபுருஷ)","குரு கேந்திரத்தில் பலமாக. ஞானம், தலைமை, ஆன்மீக சக்தி.",jK&&jS,true);
+  const vK=kH.includes(p.Venus.house),vS=["Taurus","Libra","Pisces"].includes(p.Venus.sign);
+  add("மாலவ்ய யோகம் (பஞ்ச மஹாபுருஷ)","சுக்கிரன் கேந்திரத்தில் பலமாக. அழகு, செல்வம், திருமண சுகம்.",vK&&vS);
+  const maK=kH.includes(p.Mars.house),maS=["Aries","Scorpio","Capricorn"].includes(p.Mars.sign);
+  add("ருசக யோகம் (பஞ்ச மஹாபுருஷ)","செவ்வாய் கேந்திரத்தில் பலமாக. வீரம், நிர்வாக திறன்.",maK&&maS);
+  const mK=kH.includes(p.Mercury.house),mS=["Gemini","Virgo"].includes(p.Mercury.sign);
+  add("பத்ர யோகம் (பஞ்ச மஹாபுருஷ)","புதன் கேந்திரத்தில் பலமாக. கல்வி, வணிக வெற்றி.",mK&&mS);
+  const sK=kH.includes(p.Saturn.house),sS=["Capricorn","Aquarius","Libra"].includes(p.Saturn.sign);
+  add("சச யோகம் (பஞ்ச மஹாபுருஷ)","சனி கேந்திரத்தில் பலமாக. நீதி, நிர்வாக அதிகாரம்.",sK&&sS);
+  add("தன யோகம்","செல்வம் சேர்க்கும் யோக அமைப்பு. 35 வயதிற்குப் பிறகு நிதி வளம்.",p.Jupiter.house===2||p.Jupiter.house===11||(p.Moon.house===11&&p.Sun.house===5));
+  add("ராஜ யோகம்","கேந்திர-திரிகோண சேர்க்கை. அரசு அனுகூலம், உயர் பதவி.",trH.includes(p.Jupiter.house)&&jK,true);
+  add("விபரீத ராஜ யோகம்","தீய கிரகங்கள் தீய இடங்களில். எதிர்பாராத வெற்றி.",dust.includes(p.Saturn.house)&&dust.includes(p.Mars.house));
+  const s2Moon=p.Moon.house%12+1,s12Moon=((p.Moon.house-2+12)%12)+1;
+  add("சுநாபா யோகம்",`சந்திரனிலிருந்து 2வது பாவத்தில் கிரகம். செல்வம், மனோபலம்.`,["Mars","Mercury","Jupiter","Venus","Saturn"].some(pl=>planets[pl].house===s2Moon));
+  add("அநபா யோகம்","சந்திரனிலிருந்து 12வது பாவத்தில் கிரகம். புகழ், தலைமை.",["Mars","Mercury","Jupiter","Venus","Saturn"].some(pl=>planets[pl].house===s12Moon));
+  add("உபயாசாரி யோகம்","சூரியனுக்கு இரு பக்கமும் கிரகங்கள். அரசு ஆதரவு, கீர்த்தி.",["Mars","Mercury","Jupiter","Venus","Saturn"].some(pl=>planets[pl].house===p.Sun.house%12+1)&&["Mars","Mercury","Jupiter","Venus","Saturn"].some(pl=>planets[pl].house===((p.Sun.house-2+12)%12)+1));
+  add("லட்சுமி யோகம்","சுக்கிரன் திரிகோண/கேந்திரத்தில் பலமாக. லட்சுமி கடாட்சம், செல்வம்.",["Taurus","Libra","Pisces"].includes(p.Venus.sign)&&(trH.includes(p.Venus.house)||kH.includes(p.Venus.house)),true);
+  add("சரஸ்வதி யோகம்","புதன்+குரு+சுக்கிரன் சாதகம். கலை, இலக்கியம், கல்வி சிறப்பு.",["Gemini","Virgo"].includes(p.Mercury.sign)&&["Cancer","Sagittarius","Pisces"].includes(p.Jupiter.sign));
+  add("அமல யோகம்","சுப கிரகம் 10வது பாவத்தில். நேர்மையான தொழில், நல்ல பெயர்.",["Jupiter","Venus","Mercury"].some(pl=>planets[pl].house===10));
+  add("கேமதிரும யோகம்","சந்திரனுக்கு இரு பக்கமும் கிரகங்கள் இல்லை. மன அமைதியின்மை. தியானம் செய்யவும்.",!["Mars","Mercury","Jupiter","Venus","Saturn"].some(pl=>planets[pl].house===s2Moon)&&!["Mars","Mercury","Jupiter","Venus","Saturn"].some(pl=>planets[pl].house===s12Moon),false);
+  add("காஹல யோகம்","லக்னாதிபதி கேந்திரத்தில். தைரியம், எதிரி வெல்லும்.",kH.includes(planets[SL[ls]]?.house));
+  add("வேசி யோகம்","சூரியனிலிருந்து 2வது பாவத்தில் கிரகம். வாக்கு வன்மை, தொழில்.",["Mars","Mercury","Jupiter","Venus","Saturn"].some(pl=>planets[pl].house===p.Sun.house%12+1));
+  add("வோசி யோகம்","சூரியனிலிருந்து 12வது பாவத்தில் கிரகம். ஆன்மீக ஆர்வம், யாத்திரை.",["Mars","Mercury","Jupiter","Venus","Saturn"].some(pl=>planets[pl].house===((p.Sun.house-2+12)%12)+1));
+  add("பர்வத யோகம்","சுப கிரகங்கள் கேந்திரத்தில், தீய இடங்களில் இல்லை. சமூக மேன்மை.",(jK||vK)&&!dust.includes(p.Jupiter.house)&&!dust.includes(p.Venus.house));
+  add("நீச பங்க ராஜ யோகம்","நீசமடைந்த கிரகம் பரிகாரம் பெற்று ராஜ யோகமாக மாறும். கஷ்டத்திற்குப் பிறகு உயர்வு.",Object.keys(DB).some(pl=>DB[pl]===planets[pl]?.sign&&(kH.includes(planets[SL[DB[pl]]]?.house)||kH.includes(planets[SL[planets[pl].sign]]?.house))));
+  return Y;
+}
+
+// ═══════════════════════════════════════════════
+// PANCHANG
+// ═══════════════════════════════════════════════
+function buildPanchang(planets,jd){
+  const sun=planets.Sun.lon,moon=planets.Moon.lon,ang=n360(moon-sun);
+  const tithis=["பிரதமை","துவிதியை","திருதியை","சதுர்த்தி","பஞ்சமி","ஷஷ்டி","சப்தமி","அஷ்டமி","நவமி","தசமி","ஏகாதசி","துவாதசி","திரயோதசி","சதுர்த்தசி","பௌர்ணமி","பிரதமை","துவிதியை","திருதியை","சதுர்த்தி","பஞ்சமி","ஷஷ்டி","சப்தமி","அஷ்டமி","நவமி","தசமி","ஏகாதசி","துவாதசி","திரயோதசி","சதுர்த்தசி","அமாவாசை"];
+  const varaD=Math.floor(jd+1.5)%7;
+  const vara=["ஞாயிறு","திங்கள்","செவ்வாய்","புதன்","வியாழன்","வெள்ளி","சனி"];
+  const yoga=["விஷ்கம்ப","பிரீதி","ஆயுஷ்மான்","சௌபாக்ய","சோபன","அதிகண்ட","சுகர்மன்","திருதி","சூல","கண்ட","விருத்தி","த்ருவ","வியாக","ஹர்ஷண","வஜ்ர","சித்தி","வியதீபாத","வரீயன்","பரிக","சிவ","சித்த","சாத்ய","சுபா","சுக்ல","பிரம்ம","இந்த்ர","வைத்ருதி"];
+  const karan=["பவ","பாலவ","கௌலவ","தைதுல","கரஜ","வணிஜ","விஷ்டி","சகுனி","சதுஷ்பாத","நாக","கிம்ஸ்துக்ன"];
+  const rK=["15:00-16:30","07:30-09:00","15:00-16:30","12:00-13:30","13:30-15:00","10:30-12:00","09:00-10:30"];
+  const yam=["12:00-13:30","10:30-12:00","09:00-10:30","07:30-09:00","06:00-07:30","15:00-16:30","13:30-15:00"];
+  const gul=["06:00-07:30","15:00-16:30","13:30-15:00","12:00-13:30","10:30-12:00","09:00-10:30","07:30-09:00"];
+  const nak=nakOf(moon);
+  return{tithi:tithis[Math.min(Math.floor(ang/12),29)],tithiNum:Math.floor(ang/12)+1,vara:vara[varaD],varaPlanet:["ஞாயிறு","திங்கள்","செவ்வாய்","புதன்","வியாழன்","வெள்ளி","சனி"][varaD],nakshatra:NT[nak.i],nakDiety:ND_D[nak.i],nakChar:NK_C[nak.i],yoga:yoga[Math.floor((sun+moon)/(360/27))%27],karana:karan[Math.floor(ang/6)%11],paksha:ang<=180?"சுக்ல பக்ஷம் (வளர்பிறை)":"கிருஷ்ண பக்ஷம் (தேய்பிறை)",rahuKalam:rK[varaD],yamagandam:yam[varaD],gulikaiKalam:gul[varaD],abhijit:"11:45 – 12:30",moonPhase:ang<=180?`வளர்பிறை ${Math.round(ang/180*100)}%`:`தேய்பிறை ${Math.round((360-ang)/180*100)}%`};
+}
+
+// ═══════════════════════════════════════════════
+// SCORES
+// ═══════════════════════════════════════════════
+function buildScores(planets,lagna){
+  let ca=65,ma=65,we=60,he=68,sp=55,ed=65,ch=65,lo=70;
+  const p=planets;
+  if(["Aries","Leo","Capricorn"].includes(p.Sun.sign))ca+=8;
+  if(p.Mars.house===10)ca+=7;if(p.Jupiter.house===10)ca+=7;
+  if(EX.Sun===p.Sun.sign)ca+=5;if(DB.Sun===p.Sun.sign)ca-=8;
+  if(["Libra","Taurus","Cancer","Pisces"].includes(p.Venus.sign))ma+=8;
+  if(p.Jupiter.house===7)ma+=7;if(p.Venus.house===7)ma+=6;
+  if(EX.Venus===p.Venus.sign)ma+=6;if(DB.Venus===p.Venus.sign)ma-=8;
+  if(p.Mars.house===7)ma-=6;
+  if(p.Jupiter.house===2||p.Jupiter.house===11)we+=9;
+  if(p.Venus.house===2||p.Venus.house===11)we+=6;if(p.Moon.house===11)we+=5;
+  if(["Cancer","Scorpio","Pisces"].includes(p.Moon.sign))he+=5;
+  if(p.Sun.house===1)he+=6;if(p.Saturn.house===1)he-=6;if(p.Mars.house===6)he+=5;
+  if(p.Jupiter.house===9||p.Jupiter.house===12)sp+=12;
+  if(p.Ketu.house===9||p.Ketu.house===12)sp+=10;
+  if(["Gemini","Virgo"].includes(p.Mercury.sign))ed+=9;
+  if(p.Jupiter.house===5||p.Jupiter.house===4)ed+=8;if(p.Mercury.house===5)ed+=6;
+  if(["Cancer","Pisces"].includes(p.Jupiter.sign))ch+=10;if(p.Moon.house===5)ch+=8;
+  if(DB.Jupiter===p.Jupiter.sign)ch-=6;
+  if(p.Saturn.house!==1&&p.Mars.house!==8)lo+=5;
+  if(["Taurus","Leo","Scorpio","Aquarius"].includes(lagna.sign))lo+=5;
+  const cap=v=>Math.min(99,Math.max(30,Math.round(v)));
+  return{career:cap(ca),marriage:cap(ma),wealth:cap(we),health:cap(he),spirituality:cap(sp),education:cap(ed),children:cap(ch),longevity:cap(lo)};
+}
+
+// ═══════════════════════════════════════════════
+// SHADBALA
+// ═══════════════════════════════════════════════
+function buildShadbala(planets,hr){
+  const isDay=hr>=6&&hr<18;
+  const Na={Sun:60,Moon:51.43,Venus:42.86,Jupiter:34.29,Mercury:25.71,Mars:17.14,Saturn:8.57};
+  const dH={Sun:10,Moon:4,Mars:10,Mercury:1,Jupiter:1,Venus:4,Saturn:7};
+  const eD={Sun:10,Moon:3,Mars:28,Mercury:15,Jupiter:5,Venus:27,Saturn:20};
+  return["Sun","Moon","Mars","Mercury","Jupiter","Venus","Saturn"].map(pl=>{
+    const pd=planets[pl],si=SE.indexOf(pd.sign),deg=pd.lon%30;
+    let sth=15;
+    if(EX[pl]===pd.sign){sth=60;sth+=Math.max(0,30-Math.abs(deg-eD[pl]));}
+    else if(DB[pl]===pd.sign)sth=0;
+    else if(SL[pd.sign]===pl)sth=45;
+    if(["Sun","Mars","Jupiter"].includes(pl)&&si%2===0)sth+=15;
+    if(["Moon","Venus"].includes(pl)&&si%2===1)sth+=15;
+    sth+=([1,4,7,10].includes(pd.house)?30:[2,5,8,11].includes(pd.house)?15:7.5);
+    const dig=Math.min(60,Math.max(0,60-Math.abs(pd.house-(dH[pl]||1))*10));
+    let kala=20;
+    if(isDay&&["Sun","Jupiter","Venus"].includes(pl))kala+=20;
+    if(!isDay&&["Moon","Mars","Saturn"].includes(pl))kala+=20;
+    if(pl==="Mercury")kala+=10;if(pl==="Sun")kala+=15;
+    const chesta=pd.retro?60:{Sun:30,Moon:10,Mars:40,Mercury:50,Jupiter:45,Venus:35,Saturn:55}[pl];
+    const nai=Na[pl];
+    const drig=["Moon","Mercury","Jupiter","Venus"].includes(pl)?40:20;
+    const total=Math.round(sth+dig+kala+chesta+nai+drig);
+    const pct=Math.min(99,Math.round(total/360*100));
+    const minStr={Sun:390,Moon:360,Mars:300,Mercury:420,Jupiter:390,Venus:330,Saturn:300};
+    const isStrong=total>=(minStr[pl]||300);
+    const ishta=Math.min(60,Math.round(Math.sqrt((chesta/60)*Math.min(1,sth/90))*60));
+    const kashta=Math.min(60,Math.round(Math.sqrt((1-chesta/60)*Math.max(0,1-sth/90))*60));
+    return{planet:pl,sth:Math.round(sth),dig:Math.round(dig),kala:Math.round(kala),chesta:Math.round(chesta),nai:Math.round(nai),drig:Math.round(drig),total,pct,ishta,kashta,isStrong,verdict:pct>=70?"மிகவும் பலமானது":pct>=50?"பலமானது":pct>=35?"சராசரி":"பலவீனமானது"};
+  });
+}
+
+// ═══════════════════════════════════════════════
+// DOSHAS
+// ═══════════════════════════════════════════════
+function buildDoshas(planets,lagna){
+  const mars=planets.Mars,ls=lagna.sign;
+  const hasMD=[1,2,4,7,8,12].includes(mars.house);
+  const ex=[];
+  if(["Aries","Scorpio"].includes(mars.sign))ex.push("செவ்வாய் சொந்த ராசியில் — தோஷம் நீங்கும்");
+  if(mars.sign==="Capricorn")ex.push("செவ்வாய் உச்சத்தில் — தோஷம் நீங்கும்");
+  if(["Cancer","Sagittarius","Pisces"].includes(planets.Jupiter.sign))ex.push("குரு பார்வையால் தோஷம் குறையும்");
+  if(mars.sign===planets.Moon.sign)ex.push("சந்திர-செவ்வாய் சேர்க்கை தோஷம் தணிக்கும்");
+  if(["Aries","Scorpio","Cancer","Capricorn"].includes(ls))ex.push(`${ST[ls]} லக்னத்தில் தோஷ பலன் குறையும்`);
+  if(mars.sign===planets.Venus.sign)ex.push("சுக்கிரன் சேர்க்கையால் தோஷம் தணியும்");
+  const cancelled=ex.length>=2;
+  const sev=!hasMD?"இல்லை":cancelled?"லேசானது":(mars.house===7||mars.house===8)?"கடுமையானது":(mars.house===1||mars.house===12)?"மிதமானது":"லேசானது";
+  const satDiff=Math.abs(SE.indexOf(planets.Saturn.sign)-SE.indexOf(planets.Moon.sign));
+  const sadeSati=satDiff<=1||satDiff>=11;
+  const allBetween=()=>{
+    const rH=planets.Rahu.house,kH2=planets.Ketu.house,lo=Math.min(rH,kH2),hi=Math.max(rH,kH2);
+    return Object.entries(planets).filter(([n])=>!["Rahu","Ketu"].includes(n)).every(([,pd])=>pd.house>=lo&&pd.house<=hi);
+  };
+  const combust={Moon:12,Mars:17,Mercury:14,Jupiter:11,Venus:10,Saturn:15};
+  const combustion=Object.entries(combust).map(([pl,orb])=>{
+    const diff=Math.abs(planets[pl].lon-planets.Sun.lon),sep=Math.min(diff,360-diff);
+    return{planet:pl,sep:sep.toFixed(1),isCombust:sep<=orb,orb};
+  });
+  return{mangal:{hasDhosa:hasMD,severity:sev,cancelled,exceptions:ex,marsHouse:mars.house},sadeSati:{present:sadeSati,satSign:planets.Saturn.sign,moonSign:planets.Moon.sign},kalaSarpa:{present:allBetween()},combustion,pitra:planets.Sun.house===9||(planets.Rahu.sign===planets.Sun.sign)};
+}
+
+// ═══════════════════════════════════════════════
+// ASHTAKAVARGA
+// ═══════════════════════════════════════════════
+function buildAshtaka(planets,lagIdx){
+  const bpts={Sun:[1,2,4,7,8,9,10,11],Moon:[3,6,10,11],Mars:[1,2,4,7,8,9,10,11],Mercury:[1,2,3,4,5,6,9,10,11],Jupiter:[1,2,3,4,7,8,10,11],Venus:[1,2,3,4,5,8,9,11,12],Saturn:[3,5,6,11],Lagna:[1,2,4,7,8,9,10,11]};
+  const pls=["Sun","Moon","Mars","Mercury","Jupiter","Venus","Saturn"];
+  const sarva=new Array(12).fill(0);
+  const individual=pls.map(p=>{
+    const scores=new Array(12).fill(0);
+    for(let h=1;h<=12;h++){
+      let s=0;
+      for(const src of pls){const rel=((h-planets[src].house+12)%12)+1;if(bpts[src]?.includes(rel))s++;}
+      const relL=((h-lagIdx-1+12)%12)+1;if(bpts.Lagna?.includes(relL))s++;
+      scores[h-1]=Math.min(s,8);sarva[h-1]+=scores[h-1];
+    }
+    return{planet:p,scores,total:scores.reduce((a,b)=>a+b,0)};
+  });
+  return{individual,sarva,sarvaTotal:sarva.reduce((a,b)=>a+b,0)};
+}
+
+// ═══════════════════════════════════════════════
+// DIVISIONALS
+// ═══════════════════════════════════════════════
+function buildDivisionals(planets,lagLon){
+  const divs=[{d:2,n:"ஹோரா (D2)",p:"செல்வம், நிதி"},{d:3,n:"திரேக்காணம் (D3)",p:"சகோதரர், துணிவு"},{d:7,n:"சப்தாம்சம் (D7)",p:"புத்திரர், சந்தானம்"},{d:9,n:"நவாம்சம் (D9)",p:"திருமணம், தர்மம்"},{d:10,n:"தசாம்சம் (D10)",p:"தொழில், வாழ்க்கை நோக்கம்"},{d:12,n:"துவாதசாம்சம் (D12)",p:"பெற்றோர், மூதாதையர்"},{d:16,n:"ஷோதசாம்சம் (D16)",p:"வாகனம், சுகம்"},{d:30,n:"திரிம்சாம்சம் (D30)",p:"கஷ்டம், ரோகம்"}];
+  return divs.map(({d,n,p})=>{
+    const lLon=d===9?navLon(lagLon):divLon(lagLon,d);
+    const lSi=Math.floor(n360(lLon)/30)%12;
+    const ps={};
+    for(const[nm,pd] of Object.entries(planets)){
+      const dlon=d===9?navLon(pd.lon):divLon(pd.lon,d);
+      const si=Math.floor(n360(dlon)/30)%12;
+      ps[nm]={sign:SE[si],signTa:ST[SE[si]],house:((si-lSi+12)%12)+1,isExalted:EX[nm]===SE[si],isDebilitated:DB[nm]===SE[si]};
+    }
+    return{div:d,name:n,purpose:p,lagna:{sign:SE[lSi],signTa:ST[SE[lSi]]},planets:ps};
+  });
+}
+
+// ═══════════════════════════════════════════════
+// DRISHTI
+// ═══════════════════════════════════════════════
+function buildDrishti(planets){
+  const specs={Mars:[4,7,8],Jupiter:[5,7,9],Saturn:[3,7,10],Sun:[7],Moon:[7],Mercury:[7],Venus:[7],Rahu:[5,7,9],Ketu:[5,7,9]};
+  const str={3:0.75,4:0.75,5:1,7:1,8:0.75,9:1,10:0.75};
+  const res=[];
+  for(const[fp,fd] of Object.entries(planets)){
+    for(const ah of (specs[fp]||[7])){
+      const th=((fd.house-1+ah-1)%12)+1;
+      const aspected=Object.entries(planets).filter(([n,pd])=>pd.house===th&&n!==fp).map(([n])=>n);
+      res.push({from:fp,fromTa:PT[fp],toHouse:th,strength:str[ah]||1,isBenefic:["Moon","Mercury","Jupiter","Venus"].includes(fp),aspectedPlanets:aspected,ah,desc:`${PT[fp]} ${th}வது பாவத்தை ${str[ah]===1?"முழு":"முக்கால்"} பார்வையில் பார்க்கிறார்`});
+    }
+  }
+  return res;
+}
+
+// ═══════════════════════════════════════════════
+// LUCKY & REMEDIES
+// ═══════════════════════════════════════════════
+function buildLucky(planets,lagna){
+  const ls=lagna.sign;
+  return{
+    color:{Aries:"சிவப்பு",Taurus:"வெண்மை/பச்சை",Gemini:"மஞ்சள்",Cancer:"வெண்மை",Leo:"தங்க நிறம்",Virgo:"பச்சை",Libra:"நீலம்",Scorpio:"கருப்பு/சிவப்பு",Sagittarius:"மஞ்சள்",Capricorn:"கருப்பு/நீலம்",Aquarius:"ஊதா/நீலம்",Pisces:"மஞ்சள்"}[ls]||"தங்க நிறம்",
+    number:Math.floor(planets.Jupiter.lon%9)+1,
+    day:{Sun:"ஞாயிறு",Moon:"திங்கள்",Mars:"செவ்வாய்",Mercury:"புதன்",Jupiter:"வியாழன்",Venus:"வெள்ளி",Saturn:"சனி"}[SL[ls]]||"வியாழன்",
+    direction:{Aries:"கிழக்கு",Taurus:"தெற்கு",Gemini:"வடக்கு",Cancer:"வடக்கு",Leo:"கிழக்கு",Virgo:"தெற்கு",Libra:"மேற்கு",Scorpio:"வடக்கு",Sagittarius:"வடகிழக்கு",Capricorn:"தெற்கு",Aquarius:"மேற்கு",Pisces:"வடகிழக்கு"}[ls]||"கிழக்கு",
+    metal:{Aries:"செம்பு",Taurus:"வெள்ளி",Gemini:"தங்கம்",Cancer:"வெள்ளி",Leo:"தங்கம்",Virgo:"தங்கம்",Libra:"வெள்ளி",Scorpio:"இரும்பு",Sagittarius:"தங்கம்",Capricorn:"இரும்பு",Aquarius:"இரும்பு",Pisces:"தங்கம்"}[ls]||"தங்கம்",
+    deity:{Aries:"முருகன்",Taurus:"லட்சுமி",Gemini:"விஷ்ணு",Cancer:"சிவன்/பார்வதி",Leo:"சூரிய நாராயணன்",Virgo:"சரஸ்வதி",Libra:"துர்கா",Scorpio:"கால பைரவர்",Sagittarius:"தட்சிணாமூர்த்தி",Capricorn:"சனீஸ்வரன்",Aquarius:"கால பைரவர்",Pisces:"விஷ்ணு/லட்சுமி"}[ls]||"விஷ்ணு",
+    stone:{Aries:"மாணிக்கம்",Taurus:"வைரம்",Gemini:"மரகதம்",Cancer:"முத்து",Leo:"மாணிக்கம்",Virgo:"மரகதம்",Libra:"வைரம்",Scorpio:"பவளம்",Sagittarius:"புஷ்யராகம்",Capricorn:"நீலம்",Aquarius:"நீலம்",Pisces:"புஷ்யராகம்"}[ls]||"புஷ்யராகம்",
+    element:{Aries:"அக்னி",Taurus:"பூமி",Gemini:"வாயு",Cancer:"ஜலம்",Leo:"அக்னி",Virgo:"பூமி",Libra:"வாயு",Scorpio:"ஜலம்",Sagittarius:"அக்னி",Capricorn:"பூமி",Aquarius:"வாயு",Pisces:"ஜலம்"}[ls]||"அக்னி",
+  };
+}
+const REMEDIES=[
+  {pl:"Sun",c:"#f97316",ic:"☀️",day:"ஞாயிற்றுக்கிழமை",gem:"மாணிக்கம்",metal:"தங்கம்",finger:"வலது மோதிர விரல்",japa:108,mantra:"ஓம் ஹ்ராம் ஹ்ரீம் ஹ்ரௌம் ஸஹ சூர்யாய நமஹ",deity:"சூரிய நாராயணன்",dana:"கோதுமை, சர்க்கரை",remedy:"தினமும் காலையில் சூரியனுக்கு அர்க்யம். ஆதித்ய ஹ்ருதயம் பாராயணம். ஞாயிற்றுக்கிழமை சூரிய கோவிலுக்கு செல்லவும்."},
+  {pl:"Moon",c:"#a78bfa",ic:"🌙",day:"திங்கட்கிழமை",gem:"முத்து",metal:"வெள்ளி",finger:"இடது சுண்டு விரல்",japa:108,mantra:"ஓம் ஸ்ராம் ஸ்ரீம் ஸ்ரௌம் ஸஹ சந்த்ராய நமஹ",deity:"சிவன், பார்வதி",dana:"வெண்ணெய், பால்",remedy:"திங்கட்கிழமை விரதம். சிவனுக்கு பால் அபிஷேகம். முத்து அணியவும். நிலவை தர்சனம் செய்யவும்."},
+  {pl:"Mars",c:"#ef4444",ic:"♂",day:"செவ்வாய்க்கிழமை",gem:"பவளம்",metal:"செம்பு",finger:"வலது மோதிர விரல்",japa:108,mantra:"ஓம் க்ராம் க்ரீம் க்ரௌம் ஸஹ பௌமாய நமஹ",deity:"ஹனுமான், முருகன்",dana:"துவரம் பருப்பு, சிவப்பு வஸ்திரம்",remedy:"செவ்வாய்க்கிழமை ஹனுமான் வழிபாடு. பழனி முருகன் கோவிலுக்கு செல்லவும். சிவப்பு பூக்கள் படைக்கவும்."},
+  {pl:"Mercury",c:"#22c55e",ic:"☿",day:"புதன்கிழமை",gem:"மரகதம்",metal:"தங்கம்",finger:"வலது சுண்டு விரல்",japa:108,mantra:"ஓம் ப்ராம் ப்ரீம் ப்ரௌம் ஸஹ புதாய நமஹ",deity:"விஷ்ணு, சரஸ்வதி",dana:"நோட்டு புத்தகம், பச்சை வஸ்திரம்",remedy:"புதன்கிழமை விஷ்ணு வழிபாடு. மரகதம் அணியவும். கல்வி நிலையங்களுக்கு தானம்."},
+  {pl:"Jupiter",c:"#eab308",ic:"♃",day:"வியாழக்கிழமை",gem:"புஷ்யராகம்",metal:"தங்கம்",finger:"வலது ஆள்காட்டி விரல்",japa:108,mantra:"ஓம் க்ராம் க்ரீம் க்ரௌம் ஸஹ குரவே நமஹ",deity:"தட்சிணாமூர்த்தி",dana:"மஞ்சள், மஞ்சள் வஸ்திரம்",remedy:"வியாழக்கிழமை விரதம். தட்சிணாமூர்த்தி வழிபாடு. ஆசிரியர்களுக்கு மரியாதை செய்யவும்."},
+  {pl:"Venus",c:"#ec4899",ic:"♀",day:"வெள்ளிக்கிழமை",gem:"வைரம்",metal:"வெள்ளி",finger:"வலது நடு விரல்",japa:108,mantra:"ஓம் த்ராம் த்ரீம் த்ரௌம் ஸஹ சுக்ராய நமஹ",deity:"லட்சுமி, அன்னபூர்ணி",dana:"வெள்ளை வஸ்திரம், இனிப்பு",remedy:"வெள்ளிக்கிழமை லட்சுமி வழிபாடு. வெள்ளை உடை அணியவும். ஏழைப் பெண்களுக்கு உதவுங்கள்."},
+  {pl:"Saturn",c:"#64748b",ic:"♄",day:"சனிக்கிழமை",gem:"நீலம்",metal:"இரும்பு",finger:"வலது நடு விரல்",japa:108,mantra:"ஓம் ப்ராம் ப்ரீம் ப்ரௌம் ஸஹ சனைஸ்சராய நமஹ",deity:"சனீஸ்வரன், பைரவர்",dana:"கருப்பு எள், நல்லெண்ணெய்",remedy:"சனிக்கிழமை நல்லெண்ணெய் தீபம். சனீஸ்வரர் கோவில். காக்கைகளுக்கு உணவு. ஏழைகளுக்கு தானம்."},
+  {pl:"Rahu",c:"#7c3aed",ic:"☊",day:"சனிக்கிழமை",gem:"கோமேதகம்",metal:"வெள்ளி",finger:"வலது நடு விரல்",japa:108,mantra:"ஓம் ப்ராம் ப்ரீம் ப்ரௌம் ஸஹ ராஹவே நமஹ",deity:"துர்கா, நாகராஜன்",dana:"நீல வஸ்திரம்",remedy:"துர்கா வழிபாடு. நாக கோவிலுக்கு செல்லவும். ராகு காலத்தில் முக்கிய முடிவுகள் தவிர்க்கவும்."},
+  {pl:"Ketu",c:"#dc2626",ic:"☋",day:"செவ்வாய்க்கிழமை",gem:"வைடூரியம்",metal:"வெள்ளி",finger:"வலது மோதிர விரல்",japa:108,mantra:"ஓம் ஸ்ராம் ஸ்ரீம் ஸ்ரௌம் ஸஹ கேதவே நமஹ",deity:"கணபதி, பைரவர்",dana:"வைடூரியம், கருப்பு வஸ்திரம்",remedy:"கணபதி வழிபாடு. வைடூரியம் அணியவும். ஆன்மீக பயிற்சி செய்யவும். பசு, நாய்க்கு உணவு கொடுக்கவும்."},
+];
+
+// ═══════════════════════════════════════════════
+// TIMELINE
+// ═══════════════════════════════════════════════
+function buildTimeline(planets,lagna,dashas,birthYear){
+  const p=planets,sun=p.Sun.sign,moon=p.Moon.sign,jup=p.Jupiter.sign,ls=lagna.sign;
+  const now=new Date().getFullYear(),age=now-birthYear;
+  const dashaAt=a=>{const yr=birthYear+a;const d=dashas.find(d2=>yr>=d2.s&&yr<d2.e);return d?`${PT[d.pl]} தசை`:""};
+  const curD=dashas.find(d=>d.isCurrent),curA=curD?.antar.find(a=>a.isCurrent),curP=curA?.pratyan?.find(p2=>p2.isCurrent);
+  return[
+    {phase:"birth",icon:"👶",color:"#f97316",label:"பிறப்பு & பால் பருவம் (0–3 வயது)",current:age<3,critical:false,
+     items:[
+       {t:"ஜன்ம நட்சத்திர பலன்",d:`${NT[nakOf(p.Moon.lon).i]} நட்சத்திரம். தெய்வம்: ${ND_D[nakOf(p.Moon.lon).i]}. குணங்கள்: ${NK_C[nakOf(p.Moon.lon).i]}. நட்சத்திர அதிபதி: ${PT[NL_D[nakOf(p.Moon.lon).i]]}.`},
+       {t:"லக்ன குணம்",d:`${ST[ls]} லக்னம் — ${LAGNA_INT[ls]||""}`},
+       {t:"முதல் தசை",d:`${dashaAt(0)} காலத்தில் பிறந்தீர்கள். ${p.Moon.house===4?"4வது பாவத்தில் சந்திரன் — தாயின் அன்பு மிகவும் வலுவாக கிட்டும்.":"குடும்ப சூழல் வாழ்க்கையை வடிவமைக்கும்."}`},
+     ]},
+    {phase:"childhood",icon:"🌱",color:"#22c55e",label:"குழந்தைப் பருவம் (3–12 வயது)",current:age>=3&&age<12,critical:false,
+     items:[
+       {t:"குழந்தை பருவ சூழல்",d:(moon==="Cancer"||moon==="Pisces")?"உணர்வு நிறைந்த, கற்பனை மிகுந்த குழந்தைப் பருவம். தாயின் அன்பு மிகவும் முக்கியம். கலை, இசையில் சிறு வயதிலேயே ஆர்வம்.":"கற்றல் மற்றும் பொறுப்புணர்வு நிறைந்த ஒழுங்கான குழந்தைப் பருவம். சிறு வயதிலேயே தலைமை குணம்."},
+       {t:"ஆரம்பக் கல்வி",d:`${dashaAt(7)} காலம். ${["Gemini","Virgo","Sagittarius"].includes(sun)?"அறிவு தேடும் மனம், விரைவாக கற்கும் திறன்.":"உழைப்பு சார்ந்த கற்றல். நடைமுறை திறன்கள் வளரும்."}`},
+       {t:"5வது பாவ பலன்",d:p.Jupiter.house===5?"5வது பாவத்தில் குரு — சிறந்த கல்வி யோகம், மிகவும் புத்திசாலி.":p.Mercury.house===5?"5வது பாவத்தில் புதன் — கல்வியில் சிறப்பான அடித்தளம்.":"கல்வியில் மிதமான முன்னேற்றம். உழைப்பு தேவை."},
+     ]},
+    {phase:"teen",icon:"🔥",color:"#eab308",label:"இளமை & கல்வி (12–22 வயது)",current:age>=12&&age<22,critical:false,
+     items:[
+       {t:"உயர் பள்ளி (12–16)",d:`${dashaAt(14)} காலம். ${["Gemini","Virgo","Sagittarius"].includes(sun)?"அறிவியல்/கணிதத்தில் சிறப்பு. 10th, 12th மதிப்பெண் நன்றாக வரும்.":"உழைப்பு தேவை. நடைமுறை திறன்கள் வளரும்."}`},
+       {t:"தொழில் ஆர்வ திசை",d:`லக்னாதிபதி ${PT[SL[ls]]} இந்த வயதில் வழிகாட்டும். ${{Mars:"விளையாட்டு, NCC, மருத்துவம், இராணுவம்.",Venus:"கலை, இசை, நடிப்பு, Fashion.",Mercury:"கணிதம், IT, வாதம், Engineering.",Moon:"கலை, இலக்கியம், Nursing.",Sun:"தலைமை, அரசு சேவை, IAS.",Jupiter:"தத்துவம், Professor, Lawyer.",Saturn:"நிர்வாகம், Business."}[SL[ls]]||"பல திறன்கள்."}`},
+       {t:"உயர் கல்வி (18–22)",d:`${dashaAt(20)} காலம். ${["Gemini","Virgo","Sagittarius"].includes(sun)?"வெளிநாடு கல்வி வாய்ப்பு உண்டு.":"நடைமுறை கல்வி சிறந்தது."} ${(p.Rahu.house===9||p.Jupiter.house===9||p.Jupiter.house===12)?"வெளிநாடு கல்வி/வேலை வாய்ப்பு சாதகமாக உள்ளது.":""}`},
+     ]},
+    {phase:"career",icon:"⚡",color:"#38bdf8",label:"தொழில் வளர்ச்சி (22–40 வயது)",current:age>=22&&age<40,critical:false,
+     items:[
+       {t:"தொழில் தொடக்கம் (22–26)",d:`${dashaAt(24)} காலம். ${["Aries","Leo","Capricorn"].includes(sun)?"25 வயதிற்குப் பின் வலுவான தொழில் வளர்ச்சி. தலைமை பதவிகள்.":"நிலையான தொழில் வளர்ச்சி. 30 வயதிற்குப் பின் உயர்வு."}`},
+       {t:"10வது பாவ பலன்",d:`${p.Saturn.house===10?"சனி 10வது பாவத்தில் — கடுமையான உழைப்புக்கு பிறகு உயர்வு.":p.Jupiter.house===10?"குரு 10வது பாவத்தில் — மேலதிகாரிகள் ஆதரவு, வேகமான பதவி உயர்வு.":p.Sun.house===10?"சூரியன் 10வது பாவத்தில் — தலைமை பதவி, கீர்த்தி.":"நிலையான தொழில் முன்னேற்றம்."}`},
+       {t:"சொத்து யோகம் (30–35)",d:(p.Jupiter.house===2||p.Jupiter.house===11||p.Venus.house===2)?"30-35 வயதில் சொத்து வாங்கும் யோகம். நிலம், வீடு, வாகனம் கிட்டும்.":"35 வயதிற்குள் சொத்து சேர்க்க முயற்சி செய்யுங்கள்."},
+     ]},
+    {phase:"marriage",icon:"💫",color:"#ec4899",label:"திருமண வாழ்க்கை (24–35 வயது)",current:age>=24&&age<35,critical:false,
+     items:[
+       {t:"திருமண வயது",d:`${["Libra","Taurus","Cancer"].includes(moon)?"24–27":"28–32"} வயதில் திருமணம் அமையும். ${p.Venus.house===7?"7வது பாவத்தில் சுக்கிரன் — அழகான, அன்பான துணை.":p.Jupiter.house===7?"7வது பாவத்தில் குரு — குணமான, ஞானமுள்ள துணை.":p.Saturn.house===7?"திருமண தாமதம் சாத்தியம். 28-30 வயதிற்குப் பிறகு சாதகம்.":"குணமான துணை கிட்டுவார்."}`},
+       {t:"திருமண வாழ்க்கை தரம்",d:["Libra","Pisces"].includes(jup)?"ஆழமான அன்பும் ஆன்மீக நெருக்கமும். துணை உங்கள் வளர்ச்சிக்கு உதவுவார்.":"பரஸ்பர புரிதலும் நிலையான திருமண வாழ்க்கை. குடும்பம் மகிழ்ச்சியாக இருக்கும்."},
+       {t:"மங்கல தோஷ நிலை",d:p.Mars.house===7?"7வது பாவத்தில் செவ்வாய் — மங்கல தோஷம் உள்ளது. இதே தோஷமுள்ள துணை தேர்ந்தெடுங்கள்.":"மங்கல தோஷம் இல்லை. திருமண வாழ்க்கை சாதகம்."},
+     ]},
+    {phase:"children",icon:"🌙",color:"#fbbf24",label:"குழந்தைகள் & குடும்பம் (28–45 வயது)",current:age>=28&&age<45,critical:false,
+     items:[
+       {t:"குழந்தை பாக்கியம்",d:p.Jupiter.house===5?"குரு 5வது பாவத்தில் — புத்திசாலி குழந்தைகள். மிகவும் சாதகம்.":p.Moon.house===5?"சந்திரன் 5வது பாவத்தில் — அன்பான குழந்தைகள். பெரும் மகிழ்ச்சி.":p.Saturn.house===5?"குழந்தை பாக்கியம் தாமதமாக கிட்டலாம்.":"குழந்தைகள் வாழ்க்கையில் ஆதரவாக இருப்பார்கள்."},
+       {t:"40-45 வயது நிலை",d:`${dashaAt(42)} காலம். ${["Jupiter","Venus","Mercury"].includes(dashas.find(d=>{const yr=birthYear+42;return yr>=d.s&&yr<d.e})?.pl)?"சாதகமான தசை காலம்.":"கடினமான தசை — பொறுமையும் பக்தியும் தேவை."}`},
+     ]},
+    {phase:"peak",icon:"🏆",color:"#f97316",label:"தொழில் உச்சம் (40–55 வயது)",current:age>=40&&age<55,critical:false,
+     items:[
+       {t:"தொழில் உச்சம்",d:["Aries","Leo","Capricorn"].includes(sun)?"42-48 வயதில் தொழிலின் உச்சம். கீர்த்தி, மதிப்பு, பொருளாதார வளம் — அனைத்தும் அதிகம்.":"40-50 வயதில் தொழில் சிறப்பான நிலையை அடையும். மூத்த பதவி, நிர்வாக அனுபவம்."},
+       {t:"செல்வ சேர்க்கை",d:(p.Jupiter.house===2||p.Jupiter.house===11)?"45-50 வயதில் பெரிய செல்வம் சேர்க்கும் வாய்ப்பு. முதலீட்டில் சிறந்த லாபம்.":"நிலையான வருமானம். குடும்ப சுகம் அதிகரிக்கும்."},
+       {t:"சமூக அந்தஸ்து",d:(p.Sun.house===10||p.Jupiter.house===10)?"சமூகத்தில் உயர்ந்த மதிப்பு. பதவி, அங்கீகாரம் கிட்டும்.":"குடும்பத்தின் தூணாக மதிக்கப்படுவீர்கள்."},
+     ]},
+    {phase:"spiritual",icon:"🕉",color:"#a78bfa",label:"ஆன்மீக வளர்ச்சி (50–70 வயது)",current:age>=50&&age<70,critical:false,
+     items:[
+       {t:"ஆன்மீக திசை",d:p.Jupiter.house===9||p.Jupiter.house===12?"குரு 9/12வது பாவத்தில் — வலுவான ஆன்மீக ஈர்ப்பு. குரு வழிகாட்டுதல், தீர்த்த யாத்திரை.":p.Ketu.house===9||p.Ketu.house===12?"கேது ஆன்மீக பாவங்களில் — முன்வாழ்க்கை கர்மம் தொடரும்.":"ஆன்மீக ஆர்வம் படிப்படியாக வளரும்."},
+       {t:"தீர்த்த யாத்திரை",d:"50-65 வயதில் காசி, ராமேஸ்வரம், திருப்பதி, மதுரை, திருவண்ணாமலை யாத்திரை மிகவும் சாதகம்."},
+     ]},
+    {phase:"future",icon:"✨",color:"#38bdf8",label:"முதுமை & மோட்சம் (65+ வயது)",current:age>=65,critical:false,
+     items:[
+       {t:"எதிர்கால பலன்",d:["Sagittarius","Pisces","Aquarius"].includes(sun)?"வாழ்க்கையின் பிற்பகுதியில் ஞானம், யாத்திரை, ஆன்மீக வாழ்வு. சமுதாய சேவையில் தீவிரமாக ஈடுபடுவீர்கள்.":"படிப்படியாக செல்வம் சேரும். குடும்பத்தினருக்கு தூணாக விளங்குவீர்கள்."},
+       {t:"ஆயுள் யோகம்",d:(p.Saturn.house!==1&&p.Mars.house!==8)?"நீண்ட ஆயுள் யோகம். 75-80 வயது வரை ஆரோக்கியமாக வாழலாம்.":"ஆயுள் சராசரி. உடல் கவனிப்பு முக்கியம்."},
+       {t:"மோட்சம்",d:(p.Ketu.house===12||p.Jupiter.house===12)?"12வது பாவம் வலுவாக. முக்தி நோக்கிய ஆன்மீக பயணம் உச்சத்தை அடையும்.":"நற்கர்மங்கள் மூலம் உயர்ந்த லோகம் கிட்டும்."},
+     ]},
+    {phase:"current",icon:"🎯",color:"#fbbf24",label:"தற்போதைய காலகட்டம் — மிக முக்கியம்!",current:true,critical:true,
+     items:[
+       {t:`மஹாதசை: ${curD?PT[curD.pl]:""}`,d:curD?`${PT[curD.pl]} மஹாதசை (${Math.floor(curD.s)}–${Math.floor(curD.e)}) · ${curD.yrs} ஆண்டுகள். ${DASHA_DESC[curD.pl]||""}`:"-"},
+       {t:`அந்தர்தசை: ${curA?PT[curA.pl]:""}`,d:curA?`${PT[curA.pl]} அந்தர்தசை (${Math.floor(curA.s)}–${Math.floor(curA.e)}). ${["Jupiter","Venus","Mercury"].includes(curD?.pl)&&["Jupiter","Venus","Mercury"].includes(curA.pl)?"மிகவும் சாதகமான காலகட்டம்!":["Saturn","Rahu","Ketu"].includes(curD?.pl)&&["Saturn","Rahu","Ketu"].includes(curA.pl)?"கடினமான காலகட்டம். பொறுமை அவசியம்.":"கலப்பான பலன்கள்."}`:"-"},
+       curP&&{t:`பிரத்யந்தர்: ${PT[curP.pl]}`,d:`${PT[curP.pl]} பிரத்யந்தர் தசை இப்போது நடைபெறுகிறது. மிகவும் நுட்பமான தாக்கம்.`},
+       {t:"இந்த காலத்தில் செய்ய வேண்டியவை",d:curD?{Sun:"அரசு தொடர்பான விஷயங்கள் கவனிக்கவும். தந்தை உறவை மேம்படுத்துங்கள். தலைமை பொறுப்புகள் எடுங்கள்.",Moon:"குடும்ப உறவுகளை வலுப்படுத்துங்கள். தாயை கவனிக்கவும். தியானம் செய்யவும்.",Mars:"சொத்து விஷயங்கள் கவனமாக. சகோதரர்களுடன் ஒத்துழையுங்கள். விபத்து தவிர்க்கவும்.",Mercury:"வணிக ஒப்பந்தங்கள் கவனமாக. கல்வி, திறன் மேம்படுத்துங்கள்.",Jupiter:"குரு வழிகாட்டுதல் தேடுங்கள். ஆன்மீக பயிற்சி செய்யுங்கள். குழந்தைகள் கல்விக்கு கவனம்.",Venus:"கலை, இசை கற்கவும். திருமண விஷயங்கள் கவனிக்கவும்.",Saturn:"கடுமையான உழைப்பு தொடருங்கள். பொறுமையுடன் இருங்கள். நீதியாக நடங்கள்.",Rahu:"புதிய வாய்ப்புகளை கவனமாக ஆராயுங்கள். அவசர முடிவுகள் தவிர்க்கவும்.",Ketu:"ஆன்மீக சாதனையில் கவனம். உலகாயத ஆசைகளை குறைத்துக்கொள்ளுங்கள்."}[curD.pl]:"-"},
+     ].filter(Boolean)},
+  ];
+}
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+let G={selectedCity:CITIES[0],currentTab:"kundali",expandedDasha:null,expandedAntar:null,divIdx:0,result:null};
+
+// ═══════════════════════════════════════════════
+// CITY SEARCH
+// ═══════════════════════════════════════════════
+const citySearchEl=document.getElementById('f-city-search');
+const cityDrop=document.getElementById('city-drop');
+const cityCoords=document.getElementById('city-coords');
+
+citySearchEl.value=G.selectedCity.n;
+citySearchEl.addEventListener('focus',()=>{citySearchEl.value='';renderCityDrop('');});
+citySearchEl.addEventListener('input',()=>renderCityDrop(citySearchEl.value));
+citySearchEl.addEventListener('blur',()=>setTimeout(()=>{cityDrop.style.display='none';if(!citySearchEl.value)citySearchEl.value=G.selectedCity.n;},200));
+
+function renderCityDrop(q){
+  const filtered=CITIES.filter(c=>c.n.includes(q)||q==='').slice(0,15);
+  cityDrop.innerHTML=filtered.map(c=>`<div class="drop-item${c.n===G.selectedCity.n?' sel':''}" onmousedown="selectCity('${c.n}')">${c.n}<span style="font-size:10px;color:rgba(255,255,255,.35);margin-left:8px;font-family:sans-serif">${c.lat.toFixed(1)}°N ${c.lng.toFixed(1)}°E</span></div>`).join('');
+  cityDrop.style.display=filtered.length?'block':'none';
+}
+function selectCity(name){
+  G.selectedCity=CITIES.find(c=>c.n===name)||CITIES[0];
+  citySearchEl.value=G.selectedCity.n;
+  cityDrop.style.display='none';
+  cityCoords.textContent=`📍 ${G.selectedCity.n} · ${G.selectedCity.lat.toFixed(3)}°N, ${G.selectedCity.lng.toFixed(3)}°E · IST +5:30`;
+}
+
+// ═══════════════════════════════════════════════
+// KUNDALI SVG
+// ═══════════════════════════════════════════════
+function kundaliSVG(planets,lagIdx,size,borderColor){
+  const cell=size/4;
+  const GRID=[[0,0],[0,1],[0,2],[0,3],[1,3],[2,3],[3,3],[3,2],[3,1],[3,0],[2,0],[1,0]];
+  let svg=`<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" style="display:block">
+  <rect width="${size}" height="${size}" fill="rgba(10,6,18,.9)"/>
+  <rect x="0" y="0" width="${size}" height="${size}" fill="none" stroke="${borderColor}55" stroke-width="1.5"/>`;
+  GRID.forEach(([row,col],ci)=>{
+    const sign=SE[ci],x=col*cell,y=row*cell,isL=ci===lagIdx;
+    const here=Object.entries(planets).filter(([,pd])=>pd.sign===sign);
+    svg+=`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" fill="${isL?borderColor+'15':'rgba(255,255,255,.02)'}" stroke="${isL?borderColor+'80':'rgba(255,255,255,.1)'}" stroke-width="0.8"/>`;
+    if(isL)svg+=`<line x1="${x}" y1="${y}" x2="${x+cell*.2}" y2="${y}" stroke="${borderColor}" stroke-width="2"/><line x1="${x}" y1="${y}" x2="${x}" y2="${y+cell*.2}" stroke="${borderColor}" stroke-width="2"/>`;
+    svg+=`<text x="${x+3}" y="${y+cell*.15}" fill="rgba(255,255,255,.2)" font-size="${cell*.09}" font-family="sans-serif">${ci+1}</text>`;
+    svg+=`<text x="${x+cell/2}" y="${y+cell*.19}" text-anchor="middle" fill="${isL?borderColor:'rgba(255,255,255,.3)'}" font-size="${cell*.1}" font-family="'Noto Sans Tamil',sans-serif" font-weight="${isL?'700':'400'}">${ST[sign]}</text>`;
+    if(isL)svg+=`<text x="${x+cell-3}" y="${y+cell*.19}" text-anchor="end" fill="${borderColor}" font-size="${cell*.09}" font-family="'Noto Sans Tamil',sans-serif" font-weight="700">லக்</text>`;
+    here.forEach(([nm,],pi)=>{
+      const px=x+cell*.1+(pi%2)*cell*.45,py=y+cell*.37+Math.floor(pi/2)*(cell*.19);
+      svg+=`<text x="${px}" y="${py}" fill="${PC[nm]}" font-size="${cell*.14}" font-family="'Noto Sans Tamil',sans-serif" font-weight="700">${PS[nm]}${planets[nm].retro?'℞':''}</text>`;
+    });
+  });
+  svg+=`<rect x="${cell}" y="${cell}" width="${cell*2}" height="${cell*2}" fill="${borderColor}08" stroke="${borderColor}25" stroke-width="0.8"/>
+  <line x1="${cell}" y1="${cell}" x2="${cell*3}" y2="${cell*3}" stroke="${borderColor}10" stroke-width="1"/>
+  <line x1="${cell*3}" y1="${cell}" x2="${cell}" y2="${cell*3}" stroke="${borderColor}10" stroke-width="1"/>
+  <text x="${size/2}" y="${size/2}" text-anchor="middle" fill="${borderColor}70" font-size="${cell*.11}" font-family="'Cinzel',serif" font-weight="700">ஜாதக</text>
+  <text x="${size/2}" y="${size/2+14}" text-anchor="middle" fill="${borderColor}50" font-size="${cell*.09}" font-family="'Noto Sans Tamil',sans-serif">சக்கரம்</text>
+  </svg>`;
+  const legend=Object.entries(PS).map(([p,s])=>`<span style="font-size:9px;color:rgba(255,255,255,.5)"><span style="color:${PC[p]};font-weight:700">${s}</span>=${PT[p]}</span>`).join(' ');
+  return `<div style="display:flex;flex-direction:column;align-items:center">${svg}<div style="display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;justify-content:center;max-width:${size}px">${legend}</div></div>`;
+}
+
+function ir(l,v,vc='white',mono=false){return `<div class="ir"><span class="l">${l}</span><span class="v" style="color:${vc};${mono?'font-family:monospace':''}">${v}</span></div>`;}
+function sh(t,ic,c='#fbbf24'){return `<div class="section-title" style="color:${c}"><span>${ic}</span><span>${t}</span></div>`;}
+function card(inner,extra=''){return `<div class="card" ${extra}>${inner}</div>`;}
+
+// ═══════════════════════════════════════════════
+// ANALYZE
+// ═══════════════════════════════════════════════
+function analyze(){
+  const name=document.getElementById('f-name').value;
+  const gender=document.getElementById('f-gender').value;
+  const day=+document.getElementById('f-day').value;
+  const month=+document.getElementById('f-month').value;
+  const year=+document.getElementById('f-year').value;
+  const hour=+document.getElementById('f-hour').value;
+  const minute=+document.getElementById('f-minute').value;
+  const second=+document.getElementById('f-second').value;
+  const errEl=document.getElementById('err-msg');
+  if(day<1||day>31){errEl.textContent='சரியான நாள் (1–31)';errEl.style.display='block';return;}
+  if(month<1||month>12){errEl.textContent='சரியான மாதம் (1–12)';errEl.style.display='block';return;}
+  if(year<1900||year>2100){errEl.textContent='சரியான ஆண்டு (1900–2100)';errEl.style.display='block';return;}
+  if(hour<0||hour>23){errEl.textContent='சரியான மணி (0–23)';errEl.style.display='block';return;}
+  if(minute<0||minute>59){errEl.textContent='சரியான நிமிடம் (0–59)';errEl.style.display='block';return;}
+  errEl.style.display='none';
+
+  const btn=document.querySelector('.gold-btn');
+  btn.textContent='⏳ ஜாதகம் கணக்கிடுகிறோம்...';btn.disabled=true;
+
+  setTimeout(()=>{
+    try{
+      const {jd,T,ay,planets,lagna}=buildChart(year,month,day,hour,minute,second,G.selectedCity.lat,G.selectedCity.lng,G.selectedCity.tz);
+      const dashas=buildDasha(planets.Moon.lon,year,month,day);
+      const yogas=buildYogas(planets,lagna);
+      const shadbala=buildShadbala(planets,hour);
+      const panchang=buildPanchang(planets,jd);
+      const scores=buildScores(planets,lagna);
+      const doshas=buildDoshas(planets,lagna);
+      const timeline=buildTimeline(planets,lagna,dashas,year);
+      const lucky=buildLucky(planets,lagna);
+      const ashtaka=buildAshtaka(planets,lagna.idx);
+      const divisionals=buildDivisionals(planets,lagna.lon);
+      const drishti=buildDrishti(planets);
+      // Navamsa
+      const navPlanets={};
+      for(const[nm,pd] of Object.entries(planets)){
+        const nL=navLon(pd.lon),nSi=Math.floor(n360(nL)/30)%12,nS=SE[nSi];
+        navPlanets[nm]={...pd,nSign:nS,nSignTa:ST[nS],isVargottama:pd.sign===nS,isExalted:EX[nm]===nS,isDebilitated:DB[nm]===nS};
+      }
+      const navLagLon=navLon(lagna.lon),navLagIdx=Math.floor(n360(navLagLon)/30)%12;
+      const degs=["Sun","Moon","Mars","Mercury","Jupiter","Venus","Saturn"].map(p=>({p,d:planets[p].lon%30})).sort((a,b)=>b.d-a.d);
+      const atmakaraka=degs[0].p,amatyakaraka=degs[1].p;
+      const akNavSign=SE[Math.floor(n360(navLon(planets[atmakaraka].lon))/30)%12];
+      const combatants=["Mars","Mercury","Jupiter","Venus","Saturn"];
+      const yuddha=[];
+      for(let i=0;i<combatants.length;i++)for(let j=i+1;j<combatants.length;j++){
+        const d=Math.abs(planets[combatants[i]].lon-planets[combatants[j]].lon);
+        if(Math.min(d,360-d)<=1)yuddha.push({p1:combatants[i],p2:combatants[j],sep:Math.min(d,360-d).toFixed(2)});
+      }
+      G.result={name,gender,city:G.selectedCity,date:`${day}/${month}/${year}`,time:`${String(hour).padStart(2,'0')}:${String(minute).padStart(2,'0')}`,planets,lagna,navPlanets,navLagIdx,atmakaraka,amatyakaraka,akNavSign,dashas,yogas,shadbala,panchang,scores,doshas,timeline,lucky,ashtaka,divisionals,drishti,yuddha,ay,jd:jd.toFixed(2)};
+      showResult();
+    }catch(ex){console.error(ex);document.getElementById('err-msg').textContent='கணக்கீட்டில் பிழை. மீண்டும் முயற்சிக்கவும்.';document.getElementById('err-msg').style.display='block';}
+    btn.textContent='✦ ஜாதகம் கணக்கிடு ✦';btn.disabled=false;
+  },400);
+}
+
+// ═══════════════════════════════════════════════
+// SHOW RESULT
+// ═══════════════════════════════════════════════
+function showResult(){
+  document.getElementById('screen-input').style.display='none';
+  document.getElementById('screen-result').style.display='block';
+  window.scrollTo(0,0);
+  G.currentTab='kundali';
+  renderHeader();renderScores();renderTabs();renderTab();
+}
+
+function renderHeader(){
+  const r=G.result,p=r.planets,curD=r.dashas.find(d=>d.isCurrent),curA=curD?.antar.find(a=>a.isCurrent);
+  const pills=[[`☀️ ${p.Sun.signTa}`,"#f97316"],[`🌙 ${p.Moon.signTa}`,"#a78bfa"],[`✦ ${p.Moon.nakTa} ${p.Moon.pada}`,"#fbbf24"],curD?[`${PT[curD.pl]} தசை`,"#22c55e"]:null].filter(Boolean);
+  document.getElementById('result-header').innerHTML=`
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div><div style="font-size:14px;font-weight:700;color:#fbbf24;font-family:'Cinzel',serif">🔮 ${r.name||'நேட்டிவ்'}</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:1px">${r.date} · ${r.time} · ${r.city.n}</div></div>
+      <div style="text-align:right"><div style="font-size:11px;color:#fbbf24;font-weight:700">${r.lagna.signTa} லக்னம்</div>
+        <div style="font-size:9px;color:rgba(255,255,255,.4)">அயன: ${r.ay}°</div></div>
+    </div>
+    <div style="display:flex;gap:5px;margin-top:6px;flex-wrap:wrap">
+      ${pills.map(([t,c])=>`<span class="pill" style="background:${c}18;border:1px solid ${c}30;color:${c}">${t}</span>`).join('')}
+    </div>`;
+}
+
+function renderScores(){
+  const s=G.result.scores;
+  const rings=[["தொழில்",s.career,"#f97316"],["திருமணம்",s.marriage,"#ec4899"],["செல்வம்",s.wealth,"#22c55e"],["உடல்நலம்",s.health,"#38bdf8"],["கல்வி",s.education,"#a78bfa"],["ஆன்மீகம்",s.spirituality,"#fbbf24"],["சந்தானம்",s.children,"#f472b6"],["ஆயுள்",s.longevity,"#4ade80"]];
+  document.getElementById('score-rings').innerHTML=`
+    <div style="font-size:10px;color:rgba(255,255,255,.35);margin-bottom:10px;font-weight:700;text-align:center;letter-spacing:1px">வாழ்க்கை பலன் அட்டவணை</div>
+    <div style="display:flex;justify-content:space-around;flex-wrap:wrap;gap:6px">
+      ${rings.map(([l,v,c])=>ring(l,v,c)).join('')}
+    </div>`;
+}
+
+function ring(label,value,color){
+  const r=24,circ=2*Math.PI*r,off=circ-(value/100)*circ;
+  return `<div class="ring-wrap">
+    <svg width="62" height="62" viewBox="0 0 62 62">
+      <circle cx="31" cy="31" r="${r}" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="5"/>
+      <circle cx="31" cy="31" r="${r}" fill="none" stroke="${color}" stroke-width="5" stroke-dasharray="${circ}" stroke-dashoffset="${off}" stroke-linecap="round" transform="rotate(-90 31 31)"/>
+      <text x="31" y="35" text-anchor="middle" fill="white" font-size="11" font-weight="700" font-family="sans-serif">${value}%</text>
+    </svg>
+    <span class="ring-label">${label}</span>
+  </div>`;
+}
+
+// ═══════════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════════
+const TABS_DEF=[
+  {id:'kundali',l:'ஜாதகம்'},{id:'navamsa',l:'நவாம்சம்'},{id:'planets',l:'கிரகம்'},
+  {id:'bhava',l:'பாவம்'},{id:'shadbala',l:'ஷட்பலம்'},{id:'dasha',l:'தசை'},
+  {id:'panchang',l:'பஞ்சாங்கம்'},{id:'yogas',l:'யோகங்கள்'},{id:'dosha',l:'தோஷம்'},
+  {id:'drishti',l:'திருஷ்டி'},{id:'ashtaka',l:'அஷ்டகம்'},{id:'divisional',l:'வர்க்கம்'},
+  {id:'nakshatra',l:'நட்சத்திரம்'},{id:'timeline',l:'வாழ்க்கை'},{id:'remedies',l:'பரிகாரம்'},
+];
+function renderTabs(){
+  document.getElementById('tab-bar').innerHTML=TABS_DEF.map(t=>`<button class="tab${G.currentTab===t.id?' active':''}" onclick="switchTab('${t.id}')">${t.l}</button>`).join('');
+}
+function switchTab(id){G.currentTab=id;renderTabs();renderTab();document.getElementById('tab-content').scrollTop=0;}
+
+// ═══════════════════════════════════════════════
+// TAB CONTENT RENDERERS
+// ═══════════════════════════════════════════════
+function renderTab(){
+  const el=document.getElementById('tab-content');
+  const r=G.result;
+  switch(G.currentTab){
+    case 'kundali':   el.innerHTML=tabKundali(r);break;
+    case 'navamsa':   el.innerHTML=tabNavamsa(r);break;
+    case 'planets':   el.innerHTML=tabPlanets(r);break;
+    case 'bhava':     el.innerHTML=tabBhava(r);break;
+    case 'shadbala':  el.innerHTML=tabShadbala(r);break;
+    case 'dasha':     el.innerHTML=tabDasha(r);renderDashaEvents();break;
+    case 'panchang':  el.innerHTML=tabPanchang(r);break;
+    case 'yogas':     el.innerHTML=tabYogas(r);break;
+    case 'dosha':     el.innerHTML=tabDosha(r);break;
+    case 'drishti':   el.innerHTML=tabDrishti(r);break;
+    case 'ashtaka':   el.innerHTML=tabAshtaka(r);break;
+    case 'divisional':el.innerHTML=tabDivisional(r);break;
+    case 'nakshatra': el.innerHTML=tabNakshatra(r);break;
+    case 'timeline':  el.innerHTML=tabTimeline(r);break;
+    case 'remedies':  el.innerHTML=tabRemedies(r);break;
+  }
+}
+
+// KUNDALI TAB
+function tabKundali(r){
+  const atmaDesc={Sun:"அரசு, தலைமை, தந்தை",Moon:"மன அமைதி, தாய், சேவை",Mars:"தைரியம், சகோதரம், சொத்து",Mercury:"அறிவு, வணிகம், கல்வி",Jupiter:"ஞானம், குரு, ஆன்மீகம்",Venus:"காதல், கலை, செல்வம்",Saturn:"ஒழுக்கம், உழைப்பு, கர்மம்"};
+  const curD=r.dashas.find(d=>d.isCurrent),curA=curD?.antar.find(a=>a.isCurrent),curP=curA?.pratyan?.find(p=>p.isCurrent);
+  return `
+    ${kundaliSVG(r.planets,r.lagna.idx,340,'#fbbf24')}
+    <br>
+    ${card(`${sh('ஜாதக அடிப்படை விவரங்கள்','📋')}
+      ${ir('லக்னம்',`${r.lagna.signTa} — ${r.lagna.dms_}`)}
+      ${ir('லக்ன நட்சத்திரம்',`${r.lagna.nakTa} பாதம் ${r.lagna.pada}`)}
+      ${ir('லக்னாதிபதி',PT[SL[r.lagna.sign]],'#fbbf24')}
+      ${ir('லக்ன குணம்',r.lucky.lagnaChar||r.lagna.signTa,'#fbbf24')}
+      ${ir('சூரிய ராசி',r.planets.Sun.signTa)}
+      ${ir('சந்திர ராசி',r.planets.Moon.signTa)}
+      ${ir('ஜன்ம நட்சத்திரம்',`${r.planets.Moon.nakTa} பாதம் ${r.planets.Moon.pada}`,'#a78bfa')}
+      ${ir('நட்சத்திர தெய்வம்',ND_D[nakOf(r.planets.Moon.lon).i],'#fbbf24')}
+      ${ir('நட்சத்திர குணங்கள்',NK_C[nakOf(r.planets.Moon.lon).i],'rgba(255,255,255,.6)')}
+      ${ir('ஆத்மகாரகன்',PT[r.atmakaraka],'#a78bfa')}
+      ${ir('அமாத்யகாரகன்',PT[r.amatyakaraka],'#a78bfa')}
+      ${ir('காரகாம்சம்',ST[r.akNavSign],'#fbbf24')}
+      ${ir('ஆத்மகாரக நோக்கம்',atmaDesc[r.atmakaraka]||'','rgba(255,255,255,.6)')}
+      ${ir('நடப்பு தசை',curD?`${PT[curD.pl]} (${Math.floor(curD.s)}–${Math.floor(curD.e)})`:'—','#22c55e')}
+      ${ir('நடப்பு அந்தர்தசை',curA?`${PT[curA.pl]} (${Math.floor(curA.s)}–${Math.floor(curA.e)})`:'—','#22c55e')}
+      ${curP?ir('நடப்பு பிரத்யந்தர்',PT[curP.pl],'#22c55e'):''}
+      ${ir('லஹிரி அயனாம்சம்',`${r.ay}°`,'#4ade80',true)}
+      ${ir('ஜூலியன் நாள்',r.jd,'rgba(255,255,255,.4)',true)}`)}
+    ${card(`${sh('லக்ன ஜோதிட விளக்கம்','🔭','#a78bfa')}
+      <p style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.9">${LAGNA_INT[r.lagna.sign]||''}</p>`,'style="background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.2)"')}
+    ${card(`${sh('அதிர்ஷ்ட விவரங்கள்','🍀','#4ade80')}
+      ${ir('நிறம்',r.lucky.color,'#4ade80')}
+      ${ir('எண்',String(r.lucky.number),'#4ade80')}
+      ${ir('நாள்',r.lucky.day,'#4ade80')}
+      ${ir('திசை',r.lucky.direction,'#4ade80')}
+      ${ir('உலோகம்',r.lucky.metal,'#4ade80')}
+      ${ir('கல்',r.lucky.stone,'#4ade80')}
+      ${ir('தத்துவம்',r.lucky.element,'#4ade80')}
+      ${ir('ஆராதனை தெய்வம்',r.lucky.deity,'#fbbf24')}`,'style="background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2)"')}`;
+}
+
+// NAVAMSA TAB
+function tabNavamsa(r){
+  const varg=Object.entries(r.navPlanets).filter(([,p])=>p.isVargottama);
+  return `
+    ${kundaliSVG(r.navPlanets,r.navLagIdx,320,'#a78bfa')}
+    <div style="font-size:11px;color:rgba(255,255,255,.4);text-align:center;margin-top:4px;margin-bottom:12px">நவாம்சம் (D9) — திருமண மற்றும் தர்ம சக்கரம்</div>
+    ${card(`${sh('நவாம்ச விவரங்கள்','🌟','#a78bfa')}
+      ${ir('நவாம்ச லக்னம்',ST[SE[r.navLagIdx]],'#a78bfa')}
+      ${ir('ஆத்மகாரகன்',PT[r.atmakaraka],'#a78bfa')}
+      ${ir('அமாத்யகாரகன்',PT[r.amatyakaraka],'#a78bfa')}
+      ${ir('காரகாம்சம்',ST[r.akNavSign],'#fbbf24')}`,'style="background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.2)"')}
+    ${card(`${sh('வர்கோத்தம கிரகங்கள் ★','⭐')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:10px;line-height:1.7">D1 மற்றும் D9 ஒரே ராசியில் — மிகவும் பலமான நிலை. வாழ்க்கையில் அந்த கிரக பலன் அதிகமாக இருக்கும்.</p>
+      ${varg.length?varg.map(([nm,p])=>`<div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;margin-bottom:6px;background:${PC[nm]}12;border:1px solid ${PC[nm]}30"><span style="font-size:18px">${PI[nm]}</span><div><div style="font-size:13px;color:${PC[nm]};font-weight:700">${PT[nm]} — வர்கோத்தம ★</div><div style="font-size:11px;color:rgba(255,255,255,.45)">D1: ${r.planets[nm]?.signTa} = D9: ${p.nSignTa}</div></div></div>`).join(''):'<p style="font-size:12px;color:rgba(255,255,255,.4)">வர்கோத்தம கிரகங்கள் இல்லை.</p>'}`)}
+    <div style="border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
+      <div style="display:grid;grid-template-columns:1fr 1fr .9fr .7fr;background:rgba(255,255,255,.08);padding:8px 10px;font-size:9px;color:rgba(255,255,255,.4)"><span>கிரகம்</span><span>D9 ராசி</span><span>நிலை</span><span>பாவம்</span></div>
+      ${Object.entries(r.navPlanets).map(([nm,p],i)=>`<div style="display:grid;grid-template-columns:1fr 1fr .9fr .7fr;padding:8px 10px;align-items:center;background:${i%2===0?'rgba(255,255,255,.02)':'transparent'};border-top:1px solid rgba(255,255,255,.05)">
+        <div style="display:flex;align-items:center;gap:5px"><span>${PI[nm]}</span><span style="font-size:11px;color:${PC[nm]};font-weight:700">${PT[nm]}</span></div>
+        <span style="font-size:11px">${p.nSignTa}</span>
+        <span style="font-size:10px">${p.isVargottama?`<span style="color:#fbbf24">★ வர்கோத்தம</span>`:p.isExalted?`<span style="color:#4ade80">↑ உச்சம்</span>`:p.isDebilitated?`<span style="color:#f87171">↓ நீசம்</span>`:`<span style="color:rgba(255,255,255,.35)">சாதா</span>`}</span>
+        <span style="font-size:11px;color:rgba(255,255,255,.45)">${((SE.indexOf(p.nSign)-r.navLagIdx+12)%12)+1}வது</span>
+      </div>`).join('')}
+    </div>`;
+}
+
+// PLANETS TAB
+function tabPlanets(r){
+  const combustHtml=r.doshas.combustion.map(c=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,.05)"><span style="font-size:12px;color:${c.isCombust?'#f87171':'rgba(255,255,255,.6)'}">${PI[c.planet]} ${PT[c.planet]}</span><span style="font-size:11px;color:${c.isCombust?'#f87171':'#4ade80'}">${c.isCombust?'🔥 மௌத்யமி':'✓ நல்லது'} <span style="font-size:9px;font-family:monospace">${c.sep}°/${c.orb}°</span></span></div>`).join('');
+  const yuddhaHtml=r.yuddha.length?card(`${sh('கிரக யுத்தம்','⚔️','#f87171')}${r.yuddha.map(y=>`<p style="font-size:12px;color:rgba(255,255,255,.7);margin-bottom:6px;line-height:1.7">${PI[y.p1]} ${PT[y.p1]} vs ${PI[y.p2]} ${PT[y.p2]} — ${y.sep}° மட்டுமே. ${PT[r.planets[y.p1].lon<r.planets[y.p2].lon?y.p1:y.p2]} வெற்றி.</p>`).join('')}`,'style="background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.2)"'):'';
+  return `
+    <div style="border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);margin-bottom:12px">
+      <div class="header-row"><span>கிரகம்</span><span>ராசி + கலை</span><span>நட்சத்திரம்</span><span>பா</span><span>தன்மை</span></div>
+      ${Object.entries(r.planets).map(([nm,p],i)=>`<div class="planet-row" style="background:${i%2===0?'rgba(255,255,255,.02)':'transparent'}">
+        <div style="display:flex;align-items:center;gap:4px"><span style="font-size:13px">${PI[nm]}</span><div>
+          <div style="font-size:11px;color:${PC[nm]};font-weight:700">${PT[nm]}</div>
+          <div style="font-size:8px;color:rgba(255,255,255,.25);font-family:monospace">${p.lon.toFixed(2)}°</div></div></div>
+        <div><div style="font-size:11px">${p.signTa} ${SS[p.sign]}</div><div style="font-size:8px;color:rgba(255,255,255,.3);font-family:monospace">${p.dms_}</div></div>
+        <div><div style="font-size:10px;color:rgba(255,255,255,.7)">${p.nakTa}</div><div style="font-size:8px;color:rgba(255,255,255,.3)">பாதம் ${p.pada}</div></div>
+        <span style="font-size:11px;color:rgba(255,255,255,.5);text-align:center">${p.house}</span>
+        <div style="display:flex;flex-direction:column;gap:2px">
+          <span style="font-size:8px;padding:1px 4px;border-radius:6px;text-align:center;background:${p.nature==='சுபன்'?'rgba(34,197,94,.15)':p.nature==='பாபி'?'rgba(239,68,68,.15)':'rgba(255,255,255,.1)'};color:${p.nature==='சுபன்'?'#4ade80':p.nature==='பாபி'?'#f87171':'#94a3b8'}">${p.nature}</span>
+          ${p.retro?'<span style="font-size:8px;color:#f59e0b;text-align:center">℞ வக்கி</span>':''}
+          ${EX[nm]===p.sign?'<span style="font-size:8px;color:#4ade80;text-align:center">உச்சம்</span>':''}
+          ${DB[nm]===p.sign?'<span style="font-size:8px;color:#f87171;text-align:center">நீசம்</span>':''}
+        </div>
+      </div>`).join('')}
+    </div>
+    ${card(`${sh('மௌத்யமி — சூரிய சேர்க்கை','🔥')}
+      <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:10px">சூரியனிடம் மிக நெருங்கிய கிரகங்கள் பலவீனமடைகின்றன.</p>
+      ${combustHtml}`)}
+    ${yuddhaHtml}`;
+}
+
+// BHAVA TAB
+function tabBhava(r){
+  return Array.from({length:12},(_,i)=>i+1).map(h=>{
+    const signIdx=(r.lagna.idx+h-1)%12,sign=SE[signIdx],lord=SL[sign];
+    const here=Object.entries(r.planets).filter(([,pd])=>pd.house===h);
+    return `<div class="bhava-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div><span style="font-size:14px;font-weight:700;color:#fbbf24">${h}வது பாவம்</span><span style="font-size:11px;color:rgba(255,255,255,.5);margin-left:8px">${ST[sign]} ${SS[sign]}</span></div>
+        <span style="font-size:11px;color:${PC[lord]};font-weight:600">அதிபதி: ${PT[lord]}</span>
+      </div>
+      <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:8px;line-height:1.6">📌 ${HOUSE_SIG[h]}</div>
+      ${here.length?here.map(([nm,])=>`<div style="padding:8px 10px;border-radius:8px;margin-bottom:6px;background:${PC[nm]}10;border:1px solid ${PC[nm]}25">
+        <div style="font-size:12px;color:${PC[nm]};font-weight:700;margin-bottom:4px">${PI[nm]} ${PT[nm]}${r.planets[nm].retro?' (வக்கிரம்)':''}${EX[nm]===r.planets[nm].sign?' (உச்சம்)':''}${DB[nm]===r.planets[nm].sign?' (நீசம்)':''}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.7);line-height:1.7">${PH_INT[nm]?.[h]||''}</div>
+      </div>`).join(''):`<div style="font-size:12px;color:rgba(255,255,255,.35);font-style:italic">கிரகங்கள் இல்லாத பாவம் — அதிபதி ${PT[lord]} நிலையை கவனிக்கவும்.</div>`}
+    </div>`;
+  }).join('');
+}
+
+// SHADBALA TAB
+function tabShadbala(r){
+  return `
+    ${card(`${sh('ஷட்பலம் — ஆறுவகை கிரக பலம்','💪')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.8">ஸ்தான · திக் · கால · சேஷ்ட · நைசர்கிக · திருக் — ஆறு பலங்களின் கூட்டுத்தொகை ஒரு கிரகத்தின் வலிமையை காட்டும்.</p>`,'style="background:rgba(251,191,36,.05);border:1px solid rgba(251,191,36,.2)"')}
+    ${r.shadbala.map(s=>`<div class="card" style="border:${s.isStrong?`1px solid ${PC[s.planet]}40`:'1px solid rgba(255,255,255,.08)'}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:20px">${PI[s.planet]}</span>
+          <div><div style="font-size:14px;color:${PC[s.planet]};font-weight:700">${PT[s.planet]}</div>
+            <div style="font-size:10px;color:rgba(255,255,255,.4)">${s.total} ரூபா மொத்தம்</div></div></div>
+        <span style="font-size:12px;padding:3px 10px;border-radius:10px;font-weight:700;background:${s.isStrong?PC[s.planet]+'20':'rgba(255,255,255,.07)'};color:${s.isStrong?PC[s.planet]:'rgba(255,255,255,.4)'}">${s.verdict}</span>
+      </div>
+      <div style="background:rgba(255,255,255,.07);border-radius:6px;height:8px;margin-bottom:6px;overflow:hidden">
+        <div style="height:8px;border-radius:6px;width:${s.pct}%;background:linear-gradient(90deg,${PC[s.planet]}88,${PC[s.planet]})"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.35);margin-bottom:8px">
+        <span>மொத்தம்: ${s.total}/360 ரூபா</span><span>${s.pct}%</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:10px">
+        ${[['ஸ்தான',s.sth],['திக்',s.dig],['கால',s.kala],['சேஷ்ட',s.chesta],['நைசர்',s.nai],['திருக்',s.drig]].map(([l,v])=>`<div style="padding:5px 6px;border-radius:8px;text-align:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07)"><div style="font-size:9px;color:rgba(255,255,255,.4);margin-bottom:2px">${l}</div><div style="font-size:13px;font-weight:700;color:${PC[s.planet]}">${v}</div></div>`).join('')}
+      </div>
+      <div style="display:flex;gap:8px">
+        <div style="flex:1;padding:8px;border-radius:8px;text-align:center;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2)">
+          <div style="font-size:9px;color:#4ade80;margin-bottom:2px">இஷ்ட பலம்</div>
+          <div style="font-size:16px;font-weight:700;color:#4ade80">${s.ishta}</div>
+          <div style="font-size:8px;color:rgba(34,197,94,.6)">சுப தாக்கம்</div>
+        </div>
+        <div style="flex:1;padding:8px;border-radius:8px;text-align:center;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)">
+          <div style="font-size:9px;color:#f87171;margin-bottom:2px">கஷ்ட பலம்</div>
+          <div style="font-size:16px;font-weight:700;color:#f87171">${s.kashta}</div>
+          <div style="font-size:8px;color:rgba(239,68,68,.6)">பாப தாக்கம்</div>
+        </div>
+      </div>
+    </div>`).join('')}`;
+}
+
+// DASHA TAB
+function tabDasha(r){
+  const curD=r.dashas.find(d=>d.isCurrent),curA=curD?.antar.find(a=>a.isCurrent);
+  return `
+    ${card(`${sh('விம்சோத்தரி தசா (120 ஆண்டு சுழற்சி) — 3 நிலை விவரம்','⏳')}
+      <div style="font-size:11px;color:rgba(255,255,255,.5)">ஜன்ம நட்சத்திரம்: <strong style="color:white">${r.planets.Moon.nakTa}</strong> பாதம் ${r.planets.Moon.pada}${curD?` · <strong style="color:#fbbf24">${PT[curD.pl]}${curA?'/'+PT[curA.pl]:''} தசை</strong>`:''}</div>`,'style="background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.2)"')}
+    <div id="dasha-list">
+      ${r.dashas.map(d=>`
+        <div class="dasha-row ${d.isCurrent?'sel':''}" style="background:${d.isCurrent?'rgba(251,191,36,.1)':'rgba(255,255,255,.03)'};border:${d.isCurrent?'1px solid rgba(251,191,36,.4)':'1px solid rgba(255,255,255,.07)'}" onclick="toggleDasha('${d.pl+d.s}')">
+          <div style="width:34px;height:34px;border-radius:50%;background:${PC[d.pl]}20;border:2px solid ${PC[d.pl]};display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">${PI[d.pl]}</div>
+          <div style="flex:1">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:13px;font-weight:600;color:${d.isCurrent?'#fbbf24':'white'}">${PT[d.pl]} மஹாதசை</span>
+              <div style="display:flex;gap:5px;align-items:center">
+                ${d.isCurrent?'<span class="badge" style="background:#fbbf24;color:#0a0612">இப்போது</span>':''}
+                <span style="font-size:10px;color:rgba(255,255,255,.3)" id="arrow-${d.pl+d.s}">▼</span>
+              </div>
+            </div>
+            <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">${Math.floor(d.s)} – ${Math.floor(d.e)} · ${d.yrs} ஆண்டுகள் · ${DASHA_DESC[d.pl]||''}</div>
+          </div>
+        </div>
+        <div id="antar-${d.pl+d.s}" style="display:none;margin-left:14px;margin-bottom:6px">
+          ${d.antar.map(a=>`
+            <div class="antar-row" style="background:${a.isCurrent?'rgba(251,191,36,.08)':'rgba(255,255,255,.025)'};border:${a.isCurrent?'1px solid rgba(251,191,36,.3)':'1px solid rgba(255,255,255,.05)'}" onclick="toggleAntar('${a.pl+a.s}');event.stopPropagation()">
+              <div style="display:flex;align-items:center;gap:6px">
+                <span style="font-size:12px">${PI[a.pl]}</span>
+                <span style="font-size:11px;color:${a.isCurrent?'#fbbf24':'rgba(255,255,255,.7)'}">${PT[a.pl]} அந்தர்தசை</span>
+                ${a.isCurrent?'<span class="badge" style="background:#fbbf24;color:#0a0612">நடப்பு</span>':''}
+              </div>
+              <span style="font-size:9px;color:rgba(255,255,255,.3);font-family:sans-serif">${Math.floor(a.s)}–${Math.floor(a.e)} <span id="arr2-${a.pl+a.s}">▼</span></span>
+            </div>
+            <div id="prat-${a.pl+a.s}" style="display:none;margin-left:12px;margin-bottom:4px">
+              ${a.pratyan.slice(0,9).map(pp=>`<div class="prat-row" style="background:${pp.isCurrent?'rgba(251,191,36,.06)':'rgba(255,255,255,.02)'};border:${pp.isCurrent?'1px solid rgba(251,191,36,.2)':'1px solid rgba(255,255,255,.04)'}">
+                <span style="font-size:10px;color:${pp.isCurrent?'#fbbf24':'rgba(255,255,255,.5)'}">${PI[pp.pl]} ${PT[pp.pl]} பிரத்யந்தர்</span>
+                ${pp.isCurrent?'<span style="font-size:8px;color:#fbbf24">▶ நடப்பு</span>':''}
+              </div>`).join('')}
+            </div>`).join('')}
+        </div>`).join('')}
+    </div>
+    ${card(`<div style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.8">💡 <strong style="color:#fbbf24">குறிப்பு:</strong> மஹாதசையை கிளிக் செய்து அந்தர்தசை காணலாம். அந்தர்தசையை கிளிக் செய்து பிரத்யந்தர் தசை காணலாம். 3 நிலை தசை விவரம் கிடைக்கும்.</div>`)}`;
+}
+
+function renderDashaEvents(){
+  // Auto-expand current dasha
+  const r=G.result;
+  const curD=r.dashas.find(d=>d.isCurrent);
+  if(curD){
+    const key=curD.pl+curD.s;
+    const el=document.getElementById('antar-'+key);
+    if(el){el.style.display='block';document.getElementById('arrow-'+key).textContent='▲';}
+    const curA=curD.antar.find(a=>a.isCurrent);
+    if(curA){
+      const el2=document.getElementById('prat-'+curA.pl+curA.s);
+      if(el2){el2.style.display='block';const a2=document.getElementById('arr2-'+curA.pl+curA.s);if(a2)a2.textContent='▲';}
+    }
+  }
+}
+
+function toggleDasha(key){
+  const el=document.getElementById('antar-'+key);
+  const arr=document.getElementById('arrow-'+key);
+  if(!el)return;
+  const open=el.style.display==='block';
+  el.style.display=open?'none':'block';
+  if(arr)arr.textContent=open?'▼':'▲';
+}
+function toggleAntar(key){
+  const el=document.getElementById('prat-'+key);
+  const arr=document.getElementById('arr2-'+key);
+  if(!el)return;
+  const open=el.style.display==='block';
+  el.style.display=open?'none':'block';
+  if(arr)arr.textContent=open?'▼':'▲';
+}
+
+// PANCHANG TAB
+function tabPanchang(r){
+  const p=r.panchang;
+  return `
+    ${card(`${sh('பஞ்சாங்க விவரங்கள்','📅')}
+      ${ir('திதி',p.tithi)}
+      ${ir('திதி எண்',`${p.tithiNum}வது திதி`)}
+      ${ir('வாரம்',p.vara)}
+      ${ir('வார அதிபதி கிரகம்',p.varaPlanet,'#fbbf24')}
+      ${ir('நட்சத்திரம்',p.nakshatra)}
+      ${ir('நட்சத்திர தெய்வம்',p.nakDiety,'#a78bfa')}
+      ${ir('நட்சத்திர குணம்',p.nakChar,'rgba(255,255,255,.6)')}
+      ${ir('யோகம்',p.yoga)}
+      ${ir('கரணம்',p.karana)}
+      ${ir('பக்ஷம்',p.paksha,'#a78bfa')}
+      ${ir('சந்திர நிலை',p.moonPhase,'#a78bfa')}
+      ${ir('ஹோரா அதிபதி',p.horaLord,'#fbbf24')}`)}
+    ${card(`${sh('சுப நேரங்கள்','✨','#4ade80')}
+      ${ir('அபிஜித் முஹூர்த்தம்',p.abhijit,'#4ade80')}
+      ${ir('சூரியோதயம் (தோராயம்)','06:00 – 06:15','#f97316')}
+      ${ir('சூரியாஸ்தமனம்','18:00 – 18:30','#f97316')}
+      <p style="font-size:11px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:10px">✨ அபிஜித் முஹூர்த்தம் மிகவும் சக்திவாய்ந்தது. முக்கிய காரியங்கள் இந்த நேரத்தில் தொடங்கலாம்.</p>`,'style="background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.15)"')}
+    ${card(`${sh('தவிர்க்க வேண்டிய நேரங்கள்','⚠️','#f87171')}
+      ${ir('ராகுகாலம்',p.rahuKalam,'#f87171')}
+      ${ir('யமகண்டம்',p.yamagandam,'#f87171')}
+      ${ir('குளிகை காலம்',p.gulikaiKalam,'#f87171')}
+      <p style="font-size:11px;color:rgba(255,255,255,.35);line-height:1.7;margin-top:10px">⚠️ இந்த நேரங்களில் புதிய காரியம், கடன், கல்யாணம், பயணம் தொடங்க வேண்டாம்.</p>`,'style="background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15)"')}`;
+}
+
+// YOGAS TAB
+function tabYogas(r){
+  const present=r.yogas.filter(y=>y.present);
+  const absent=r.yogas.filter(y=>!y.present);
+  return `
+    <div style="display:flex;gap:10px;margin-bottom:12px">
+      <div style="flex:1;padding:10px 12px;border-radius:10px;text-align:center;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2)"><div style="font-size:18px;font-weight:700;color:#4ade80">${present.filter(y=>y.good).length}</div><div style="font-size:10px;color:#4ade80">சாதக யோகங்கள்</div></div>
+      <div style="flex:1;padding:10px 12px;border-radius:10px;text-align:center;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2)"><div style="font-size:18px;font-weight:700;color:#f87171">${present.filter(y=>!y.good).length}</div><div style="font-size:10px;color:#f87171">கவன யோகங்கள்</div></div>
+      <div style="flex:1;padding:10px 12px;border-radius:10px;text-align:center;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)"><div style="font-size:18px;font-weight:700;color:rgba(255,255,255,.5)">${r.yogas.length}</div><div style="font-size:10px;color:rgba(255,255,255,.4)">மொத்தம்</div></div>
+    </div>
+    ${present.map(y=>`<div class="yoga-card" style="background:${y.good?'rgba(34,197,94,.06)':'rgba(239,68,68,.06)'};border:1px solid ${y.good?'rgba(34,197,94,.22)':'rgba(239,68,68,.22)'}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+        <span style="font-size:13px;font-weight:700;color:${y.good?'#4ade80':'#f87171'}">${y.good?'✦':'⚠'} ${y.ta}</span>
+        <span class="badge" style="background:${y.good?'rgba(34,197,94,.2)':'rgba(239,68,68,.2)'};color:${y.good?'#4ade80':'#f87171'}">உள்ளது</span>
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,.68);line-height:1.8">${y.desc}</div>
+    </div>`).join('')}
+    ${absent.length?`${card(`<div style="font-size:11px;color:rgba(255,255,255,.4);margin-bottom:8px;font-weight:600">இல்லாத யோகங்கள்:</div><div style="display:flex;flex-wrap:wrap;gap:6px">${absent.map(y=>`<span style="font-size:10px;padding:3px 9px;border-radius:12px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.4);border:1px solid rgba(255,255,255,.08)">${y.ta}</span>`).join('')}</div>`,'style="opacity:.6"')}`:''}`;}
+
+// DOSHA TAB
+function tabDosha(r){
+  const md=r.doshas.mangal,ss=r.doshas.sadeSati,ks=r.doshas.kalaSarpa;
+  const satIdx=SE.indexOf(r.planets.Saturn.sign),moonIdx=SE.indexOf(r.planets.Moon.sign);
+  return `
+    ${card(`${sh('செவ்வாய் தோஷம் (மங்கல தோஷம்)','♂',md.hasDhosa&&!md.cancelled?'#f87171':'#4ade80')}
+      <div style="display:flex;justify-content:space-between;margin-bottom:12px">
+        <span style="font-size:15px;font-weight:700;color:${!md.hasDhosa?'#4ade80':md.cancelled?'#fbbf24':'#f87171'}">${!md.hasDhosa?'✓ தோஷம் இல்லை':md.cancelled?'⚡ தோஷம் நீங்கியது':'⚠ '+md.severity+' தோஷம்'}</span>
+        ${md.hasDhosa?`<span style="font-size:12px;padding:3px 10px;border-radius:10px;font-weight:700;background:${md.cancelled?'rgba(251,191,36,.2)':'rgba(239,68,68,.2)'};color:${md.cancelled?'#fbbf24':'#f87171'}">${md.severity}</span>`:''}
+      </div>
+      <p style="font-size:13px;color:rgba(255,255,255,.78);line-height:1.8;margin-bottom:12px">${md.hasDhosa?`செவ்வாய் ${md.marsHouse}வது பாவத்தில். ${md.cancelled?'பரிகாரங்களால் தோஷம் தணிந்துள்ளது.':md.severity+' தோஷம் உள்ளது.`:'தோஷம் இல்லை.'}</p>
+      ${md.exceptions.length?`<div style="font-size:11px;color:#fbbf24;font-weight:700;margin-bottom:8px">பரிகார காரணங்கள் (${md.exceptions.length}):</div>${md.exceptions.map(ex=>`<div style="font-size:12px;color:rgba(255,255,255,.65);margin-bottom:5px;padding-left:10px;line-height:1.7;border-left:2px solid rgba(251,191,36,.4)">✓ ${ex}</div>`).join('')}`:''}`,'style="'+(md.hasDhosa&&!md.cancelled?'background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.3)':'background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.25)')+'"')}
+    ${card(`${sh('சாடே சாதி (சனி தாக்கம்)','♄',ss.present?'#94a3b8':'#4ade80')}
+      <div style="font-size:14px;font-weight:700;color:${ss.present?'#94a3b8':'#4ade80'};margin-bottom:10px">${ss.present?'⚠ சாடே சாதி நடைபெறுகிறது':'✓ சாடே சாதி இல்லை'}</div>
+      <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.8">${ss.present?`சனி ${ST[ss.satSign]}த்தில், சந்திரன் ${ST[ss.moonSign]}த்தில். சனி தாக்கம் இப்போது அதிகமாக உள்ளது. பொறுமை, ஒழுக்கம் மிக முக்கியம். சனி பரிகாரம் தொடர்ந்து செய்யவும்.`:`சனி ${ST[ss.satSign]}த்தில், சந்திரனிலிருந்து பாதுகாப்பான தூரத்தில் உள்ளார்.`}</p>`,'style="'+(ss.present?'background:rgba(100,116,139,.1);border:1px solid rgba(100,116,139,.4)':'background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2)')+'"')}
+    ${card(`${sh('கால சர்ப தோஷம்','🐍',ks.present?'#a78bfa':'#4ade80')}
+      <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.8">${ks.present?'அனைத்து கிரகங்களும் ராகு-கேதுவிற்கு இடையில் உள்ளன. கால சர்ப தோஷம் உள்ளது. ஸ்ரீகாளஹஸ்தி அல்லது திருச்சி உச்சிப்பிள்ளையார் கோவிலில் நாக பிரதிஷ்டை செய்யுங்கள்.':'கிரகங்கள் ராகு-கேதுவிற்கு இரு பக்கமும் உள்ளன. கால சர்ப தோஷம் இல்லை.'}</p>`,'style="'+(ks.present?'background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.4)':'background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2)')+'"')}
+    ${card(`${sh('பித்ரு தோஷம்','👴',r.doshas.pitra?'#fbbf24':'#4ade80')}
+      <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.8">${r.doshas.pitra?'9வது பாவத்தில் சூரியன் அல்லது ராகு-சூரியன் சேர்க்கை. பித்ரு தோஷம் சாத்தியம். ராமேஸ்வரத்தில் தர்ப்பணம் செய்யுங்கள். ஆண்டுதோறும் மூதாதையர் கிரியை செய்யுங்கள்.':'பித்ரு தோஷம் இல்லை. முன்னோர்கள் அருளுடன் இருக்கின்றனர்.'}</p>`,'style="'+(r.doshas.pitra?'background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.25)':'background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.15)')+'"')}
+    ${md.hasDhosa?card(`${sh('செவ்வாய் தோஷ பரிகாரம்','🙏')}
+      ${['செவ்வாய்க்கிழமை சுவாமிமலை / பழனி முருகன் கோவிலுக்கு செல்லவும்.','மந்திரம்: ஓம் க்ராம் க்ரீம் க்ரௌம் ஸஹ பௌமாய நமஹ — 108 தடவை ஜபிக்கவும்.','செம்பு பாத்திரத்தில் சிவப்பு பூக்கள் வைத்து வழிபடவும்.','செவ்வாய்க்கிழமை துவரம் பருப்பு, சிவப்பு வஸ்திரம் தானம் செய்யவும்.','நவகிரக அர்ச்சனை தொடர்ச்சியாக செய்யவும்.'].map(r=>`<div style="display:flex;gap:8px;margin-bottom:8px"><span style="color:#ef4444;flex-shrink:0">♂</span><span style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.7">${r}</span></div>`).join('')}`):''}`;
+}
+
+// DRISHTI TAB
+function tabDrishti(r){
+  const fullAspects=r.drishti.filter(d=>d.strength>=0.75);
+  return `
+    ${card(`${sh('கிரக திருஷ்டி (பார்வை)','👁')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.8">அனைத்து கிரகங்களும் 7வது பாவத்தை முழு பார்வையில் பார்க்கும். செவ்வாய் (4,8), குரு (5,9), சனி (3,10) சிறப்பு பார்வை.</p>`,'style="background:rgba(251,191,36,.05);border:1px solid rgba(251,191,36,.15)"')}
+    ${fullAspects.map((d,i)=>`<div style="padding:10px 12px;margin-bottom:8px;border-radius:10px;background:${d.isBenefic?'rgba(34,197,94,.06)':'rgba(239,68,68,.06)'};border:1px solid ${d.isBenefic?'rgba(34,197,94,.2)':'rgba(239,68,68,.2)'}">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="font-size:13px;font-weight:600;color:${d.isBenefic?'#4ade80':'#f87171'}">${PI[d.from]} ${d.fromTa} → ${d.toHouse}வது பாவம்</span>
+        <span style="font-size:10px;padding:2px 8px;border-radius:8px;background:${d.strength===1?'rgba(251,191,36,.2)':'rgba(255,255,255,.1)'};color:${d.strength===1?'#fbbf24':'rgba(255,255,255,.5)'}">${d.strength===1?'முழு':'முக்கால்'} பார்வை</span>
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,.6);line-height:1.6">${d.desc}${d.aspectedPlanets.length?` — <span style="color:#fbbf24">${d.aspectedPlanets.map(ap=>PT[ap]).join(', ')} கிரகத்தை பார்க்கிறார்</span>`:''}</div>
+    </div>`).join('')}`;
+}
+
+// ASHTAKA TAB
+function tabAshtaka(r){
+  return `
+    ${card(`${sh('அஷ்டகவர்க்கம்','🔢')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.7">ஒவ்வொரு கிரகத்திற்கும் 12 பாவங்களில் சுப புள்ளிகள் (0–8). 4+ சாதகமானது. சர்வாஷ்டகவர்க்கம் மொத்தம் 337 வரும்.</p>`,'style="background:rgba(251,191,36,.05);border:1px solid rgba(251,191,36,.2)"')}
+    ${r.ashtaka.individual.map(av=>`<div class="card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:8px">
+        <span style="font-size:13px;color:${PC[av.planet]};font-weight:700">${PI[av.planet]} ${PT[av.planet]}</span>
+        <span style="font-size:11px;color:rgba(255,255,255,.4)">மொத்தம்: <strong style="color:#fbbf24">${av.total}</strong>/48</span>
+      </div>
+      <div class="av-bar">
+        ${av.scores.map((s,hi)=>`<div class="av-cell" style="background:${s>=5?'rgba(34,197,94,.25)':s>=4?'rgba(251,191,36,.15)':'rgba(239,68,68,.12)'};border:1px solid ${s>=5?'rgba(34,197,94,.4)':s>=4?'rgba(251,191,36,.3)':'rgba(239,68,68,.2)'}">
+          <div style="font-size:7px;color:rgba(255,255,255,.35);font-family:sans-serif">${hi+1}</div>
+          <div style="font-size:11px;font-weight:700;color:${s>=5?'#4ade80':s>=4?'#fbbf24':'#f87171'}">${s}</div>
+        </div>`).join('')}
+      </div>
+    </div>`).join('')}
+    ${card(`${sh('சர்வாஷ்டகவர்க்கம் (மொத்த புள்ளிகள்)','📊')}
+      <div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:10px">மொத்தம்: <strong style="color:#fbbf24">${r.ashtaka.sarvaTotal}</strong>/336</div>
+      <div class="av-bar">
+        ${r.ashtaka.sarva.map((s,hi)=>`<div class="av-cell" style="background:${s>=30?'rgba(34,197,94,.2)':s>=25?'rgba(251,191,36,.12)':'rgba(239,68,68,.1)'}">
+          <div style="font-size:7px;color:rgba(255,255,255,.35);font-family:sans-serif">${hi+1}</div>
+          <div style="font-size:11px;font-weight:700;color:${s>=30?'#4ade80':s>=25?'#fbbf24':'#f87171'}">${s}</div>
+        </div>`).join('')}
+      </div>
+      <p style="font-size:11px;color:rgba(255,255,255,.4);line-height:1.7;margin-top:12px">💡 30+ புள்ளிகள் உள்ள பாவங்கள் மிகவும் சாதகம். 25க்கும் குறைவு கவனம் தேவை.</p>`)}`;
+}
+
+// DIVISIONAL TAB
+function tabDivisional(r){
+  const dc=r.divisionals[G.divIdx];
+  return `
+    <div style="display:flex;gap:4px;margin-bottom:12px;overflow-x:auto">
+      ${r.divisionals.map((d,i)=>`<button class="div-btn" style="background:${G.divIdx===i?'rgba(251,191,36,.2)':'rgba(255,255,255,.06)'};color:${G.divIdx===i?'#fbbf24':'rgba(255,255,255,.5)'};border-bottom:${G.divIdx===i?'2px solid #fbbf24':'2px solid transparent'}" onclick="G.divIdx=${i};renderTab()">D${d.div}</button>`).join('')}
+    </div>
+    ${dc?`
+      ${card(`<div style="font-size:14px;font-weight:700;color:#fbbf24;margin-bottom:4px">${dc.name}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.6);margin-bottom:4px">நோக்கம்: ${dc.purpose}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5)">லக்னம்: <strong style="color:white">${dc.lagna.signTa}</strong></div>`,'style="background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2)"')}
+      <div style="border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
+        <div style="display:grid;grid-template-columns:1fr 1fr .7fr .7fr;background:rgba(255,255,255,.08);padding:8px 10px;font-size:10px;color:rgba(255,255,255,.4)"><span>கிரகம்</span><span>ராசி</span><span>பாவம்</span><span>நிலை</span></div>
+        ${Object.entries(dc.planets).map(([nm,p],i)=>`<div style="display:grid;grid-template-columns:1fr 1fr .7fr .7fr;padding:8px 10px;align-items:center;background:${i%2===0?'rgba(255,255,255,.02)':'transparent'};border-top:1px solid rgba(255,255,255,.05)">
+          <div style="display:flex;align-items:center;gap:5px"><span>${PI[nm]}</span><span style="font-size:11px;color:${PC[nm]};font-weight:700">${PT[nm]}</span></div>
+          <span style="font-size:11px">${p.signTa}</span>
+          <span style="font-size:11px;color:rgba(255,255,255,.5)">${p.house}வது</span>
+          <span style="font-size:10px">${p.isExalted?'<span style="color:#4ade80">↑ உச்சம்</span>':p.isDebilitated?'<span style="color:#f87171">↓ நீசம்</span>':'<span style="color:rgba(255,255,255,.35)">சாதா</span>'}</span>
+        </div>`).join('')}
+      </div>`:''}`;
+}
+
+// NAKSHATRA TAB
+function tabNakshatra(r){
+  const moonNak=nakOf(r.planets.Moon.lon),lagNak=nakOf(r.lagna.lon);
+  return `
+    ${card(`${sh('ஜன்ம நட்சத்திர விவரம்','⭐')}
+      ${ir('நட்சத்திரம்',NT[moonNak.i],'#fbbf24')}
+      ${ir('பாதம்',String(moonNak.p))}
+      ${ir('நட்சத்திர தெய்வம்',ND_D[moonNak.i],'#a78bfa')}
+      ${ir('நட்சத்திர அதிபதி',PT[NL_D[moonNak.i]],'#fbbf24')}
+      ${ir('நட்சத்திர குணங்கள்',NK_C[moonNak.i],'rgba(255,255,255,.7)')}
+      ${ir('நட்சத்திர இடம் (27ல்)',String(moonNak.i+1))}
+      ${ir('இந்திய பெயர்',NE[moonNak.i],'rgba(255,255,255,.5)')}`,'style="background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2)"')}
+    ${card(`${sh('லக்ன நட்சத்திரம்','🌟','#a78bfa')}
+      ${ir('நட்சத்திரம்',NT[lagNak.i],'#a78bfa')}
+      ${ir('பாதம்',String(lagNak.p))}
+      ${ir('நட்சத்திர தெய்வம்',ND_D[lagNak.i],'#a78bfa')}
+      ${ir('நட்சத்திர அதிபதி',PT[NL_D[lagNak.i]],'#fbbf24')}`,'style="background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.2)"')}
+    <div style="font-size:12px;color:#fbbf24;font-weight:700;margin-bottom:10px;padding-left:4px">அனைத்து கிரகங்களின் நட்சத்திர நிலை:</div>
+    ${Object.entries(r.planets).map(([nm,p])=>`<div class="nak-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+        <span style="font-size:22px">${PI[nm]}</span>
+        <div><div style="font-size:14px;color:${PC[nm]};font-weight:700">${PT[nm]}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.5)">${p.signTa} ${SS[p.sign]} — ${p.dms_}</div></div>
+      </div>
+      ${ir('நட்சத்திரம்',p.nakTa,'#fbbf24')}
+      ${ir('பாதம்',String(p.pada))}
+      ${ir('நட்சத்திர தெய்வம்',ND_D[p.nakIdx],'#a78bfa')}
+      ${ir('நட்சத்திர அதிபதி',PT[NL_D[p.nakIdx]],'#f97316')}
+      ${ir('நட்சத்திர குணங்கள்',NK_C[p.nakIdx],'rgba(255,255,255,.6)')}
+    </div>`).join('')}`;
+}
+
+// TIMELINE TAB
+function tabTimeline(r){
+  return r.timeline.map(stage=>`
+    <div class="timeline-stage">
+      <div class="timeline-header" style="background:${stage.critical?'rgba(251,191,36,.1)':stage.current?stage.color+'12':'rgba(255,255,255,.03)'};border:${stage.critical?'2px solid rgba(251,191,36,.4)':stage.current?`1px solid ${stage.color}40`:'1px solid rgba(255,255,255,.07)'}">
+        <span style="font-size:22px">${stage.icon}</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:${stage.critical?'#fbbf24':stage.color}">${stage.label}</div>
+          ${stage.current?`<span class="badge" style="background:${stage.critical?'#fbbf24':stage.color};color:#0a0612;margin-top:3px;display:inline-block">${stage.critical?'▶ தற்போது':'▶ இந்த கட்டத்தில்'}</span>`:''}
+        </div>
+      </div>
+      <div style="margin-left:20px;padding-left:14px;border-left:2px solid ${stage.color}40">
+        ${stage.items.filter(Boolean).map(item=>`<div class="timeline-item">
+          <div style="font-size:11px;color:${stage.color};font-weight:700;margin-bottom:5px">◆ ${item.t}</div>
+          <div style="font-size:13px;color:rgba(255,255,255,.75);line-height:1.85">${item.d}</div>
+        </div>`).join('')}
+      </div>
+    </div>`).join('');
+}
+
+// REMEDIES TAB
+function tabRemedies(r){
+  return `
+    ${card(`${sh('ஒன்பது கிரக பரிகாரங்கள்','🙏')}
+      <p style="font-size:11px;color:rgba(255,255,255,.45);line-height:1.7">ஒவ்வொரு கிரகத்திற்கும் மந்திரம், ரத்தினக்கல், விரல், உபவாசம், தெய்வ வழிபாடு, தானம் — முழு விவரம்.</p>`,'style="background:rgba(251,191,36,.04);border:1px solid rgba(251,191,36,.15)"')}
+    ${REMEDIES.map(rem=>`<div class="remedy-card" style="background:${rem.c}0a;border:1px solid ${rem.c}28">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <span style="font-size:22px">${rem.ic}</span>
+        <div style="flex:1">
+          <div style="font-size:14px;font-weight:700;color:${rem.c}">${PT[rem.pl]} பரிகாரம்</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">${rem.day} · ${rem.gem} · ${rem.metal} · ${rem.finger}</div>
+        </div>
+      </div>
+      <div style="padding:8px 12px;background:rgba(251,191,36,.06);border-radius:8px;margin-bottom:10px;border:1px solid rgba(251,191,36,.15)">
+        <div style="font-size:9px;color:rgba(251,191,36,.7);margin-bottom:3px;letter-spacing:.5px">🕉 மந்திரம் (${rem.japa} தடவை)</div>
+        <div style="font-size:12px;color:#fbbf24;font-weight:600;letter-spacing:.5px">${rem.mantra}</div>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <div style="padding:5px 10px;border-radius:8px;background:rgba(168,85,247,.1);border:1px solid rgba(168,85,247,.25)">
+          <div style="font-size:9px;color:rgba(168,85,247,.8)">தெய்வம்</div>
+          <div style="font-size:11px;color:#a78bfa;font-weight:600">${rem.deity}</div>
+        </div>
+        <div style="padding:5px 10px;border-radius:8px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25)">
+          <div style="font-size:9px;color:rgba(34,197,94,.8)">தானம்</div>
+          <div style="font-size:11px;color:#4ade80;font-weight:600">${rem.dana}</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:rgba(255,255,255,.72);line-height:1.85">${rem.remedy}</div>
+    </div>`).join('')}
+    ${card(`${sh('நவகிரக ரத்தினக் கற்கள்','💎')}
+      <div style="display:flex;flex-wrap:wrap;gap:7px">
+        ${REMEDIES.map(rem=>`<div style="padding:6px 12px;border-radius:10px;background:${rem.c}12;border:1px solid ${rem.c}30;text-align:center">
+          <div style="font-size:10px;color:${rem.c};font-weight:600">${PT[rem.pl]}</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.7)">${rem.gem}</div>
+        </div>`).join('')}
+      </div>`)}
+    ${card(`${sh('அதிர்ஷ்ட விவரங்கள்','🍀','#4ade80')}
+      ${ir('நிறம்',r.lucky.color,'#4ade80')}
+      ${ir('எண்',String(r.lucky.number),'#4ade80')}
+      ${ir('நாள்',r.lucky.day,'#4ade80')}
+      ${ir('திசை',r.lucky.direction,'#4ade80')}
+      ${ir('உலோகம்',r.lucky.metal,'#4ade80')}
+      ${ir('கல்',r.lucky.stone,'#4ade80')}
+      ${ir('தத்துவம்',r.lucky.element,'#4ade80')}
+      ${ir('ஆராதனை தெய்வம்',r.lucky.deity,'#fbbf24')}`,'style="background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2)"')}`;
+}
+
+// ═══════════════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════════════
+function goBack(){
+  document.getElementById('screen-result').style.display='none';
+  document.getElementById('screen-input').style.display='block';
+  window.scrollTo(0,0);
+}
+
+// ═══════════════════════════════════════════════
+// INSTALL / SHARE / DOWNLOAD
+// ═══════════════════════════════════════════════
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;});
+
+function installApp(){
+  if(deferredPrompt){
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(()=>{deferredPrompt=null;});
+  } else {
+    alert('📱 நிறுவுவதற்கு:\n\n🍎 iPhone/iPad (Safari):\n"Share" → "Add to Home Screen" தேர்வு செய்யவும்\n\n🤖 Android (Chrome):\nMenu (⋮) → "Add to Home Screen" தேர்வு செய்யவும்\n\n💻 Chrome Desktop:\nAddress bar ல் Install icon கிளிக் செய்யவும்');
+  }
+}
+
+function shareApp(){
+  if(navigator.share){
+    navigator.share({title:'🔮 ஜோதிடம் — Vedic Astrology',text:'வேத ஜோதிட பலன் விவரம் — இந்த app ஐ பயன்படுத்துங்கள்!',url:window.location.href});
+  } else {
+    navigator.clipboard.writeText(window.location.href).then(()=>alert('🔗 Link copied! WhatsApp அல்லது Email மூலம் பகிரவும்.')).catch(()=>alert('இந்த URL பகிரவும்: '+window.location.href));
+  }
+}
+
+function downloadHTML(){
+  const html=document.documentElement.outerHTML;
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='jothidam_app.html';a.click();
+  URL.revokeObjectURL(url);
+  setTimeout(()=>alert('✅ jothidam_app.html சேமிக்கப்பட்டது!\n\n📤 இந்த கோப்பை WhatsApp / Email மூலம் பகிரலாம்.\n📱 யாரும் திறந்தால் app வேலை செய்யும்!\n🔄 புதிய மொபைலில் இதே கோப்பை திறக்கவும்.'),500);
+}
+
+
+// ═══════════════════════════════════════════════════════════════
+// UPGRADE PATCH v2.0
+// Gochara | Varshaphal | Compatibility | Muhurta | Save/Load | Print
+// Improved Accuracy | Vimshopaka Bala | Sarvashtakavarga
+// ═══════════════════════════════════════════════════════════════
+
+// ── Improved planet positions (additional perturbation terms) ──
+function tropLonsV2(T){
+  // Sun — add more terms
+  const Ms=(357.52911+35999.05029*T-0.0001537*T*T)*Math.PI/180;
+  const sEq=(1.914602-0.004817*T-0.000014*T*T)*Math.sin(Ms)
+           +(0.019993-0.000101*T)*Math.sin(2*Ms)
+           +0.000289*Math.sin(3*Ms);
+  const sun=n360(280.46646+36000.76983*T+0.0003032*T*T+sEq);
+
+  // Moon — more perturbation terms for accuracy
+  const Mm=(134.9634+477198.8676*T+0.0089970*T*T+0.0000140*T*T*T)*Math.PI/180;
+  const Dm=(297.8502+445267.1115*T-0.0016300*T*T+0.0000017*T*T*T)*Math.PI/180;
+  const Fm=(93.2721+483202.0175*T-0.0034029*T*T-0.0000003*T*T*T)*Math.PI/180;
+  const mEq=6.28875*Math.sin(Mm)
+           +1.27402*Math.sin(2*Dm-Mm)
+           +0.65831*Math.sin(2*Dm)
+           +0.21358*Math.sin(2*Mm)
+           -0.18560*Math.sin(Ms)
+           -0.11440*Math.sin(2*Fm)
+           +0.05880*Math.sin(2*Dm-2*Mm)
+           +0.05720*Math.sin(2*Dm-Ms-Mm)
+           +0.05330*Math.sin(2*Dm+Mm)
+           +0.04590*Math.sin(2*Dm-Ms)
+           +0.04510*Math.sin(Mm-Ms)
+           +0.04040*Math.sin(Ms+Mm)
+           +0.02080*Math.sin(2*Fm-Mm)
+           -0.01750*Math.sin(2*Fm)
+           +0.01680*Math.sin(Mm-2*Dm);
+  const moon=n360(218.3165+481267.8813*T+mEq);
+
+  // Mars — improved
+  const maM=(19.373+19140.296*T)*Math.PI/180;
+  const maM2=(48.950+38280.436*T)*Math.PI/180;
+  const mars=n360(355.433+19140.2993*T
+    +10.691*Math.sin(maM)+0.623*Math.sin(2*maM)
+    +0.050*Math.sin(maM2)+0.071*Math.sin(maM-maM2));
+
+  // Mercury — improved
+  const meM=(168.6562+149472.515*T)*Math.PI/180;
+  const mercury=n360(252.2509+149472.6674*T
+    +23.440*Math.sin(meM)+2.982*Math.sin(2*meM)
+    +0.180*Math.sin(3*meM));
+
+  // Jupiter — improved
+  const jM=(20.9+3034.906*T)*Math.PI/180;
+  const jM2=(14.3+1222.114*T)*Math.PI/180;
+  const jupiter=n360(34.3515+3034.9057*T
+    +5.555*Math.sin(jM)+0.168*Math.sin(2*jM)
+    -0.515*Math.sin(jM-jM2));
+
+  // Venus — improved
+  const vM=(212.4+58517.803*T)*Math.PI/180;
+  const venus=n360(181.9798+58517.8156*T
+    +0.7758*Math.sin(vM)+0.0033*Math.sin(2*vM));
+
+  // Saturn — improved
+  const sM=(317.9+1222.114*T)*Math.PI/180;
+  const jMs=(20.9+3034.906*T)*Math.PI/180;
+  const saturn=n360(50.0774+1222.1138*T
+    +6.3585*Math.sin(sM)+0.2204*Math.sin(2*sM)
+    -0.7757*Math.sin(jMs)  // Jupiter perturbation on Saturn
+    +0.0460*Math.sin(3*sM));
+
+  // Rahu — True node (more accurate than mean node)
+  const Om=(125.0445-1934.1362*T+0.0020708*T*T+0.0000022*T*T*T);
+  const rahu=n360(Om
+    +0.0040*Math.sin((93.272+483202.017*T)*Math.PI/180)
+    +0.0020*Math.sin((125.045-1934.136*T)*Math.PI/180));
+
+  return{Sun:sun,Moon:moon,Mars:mars,Mercury:mercury,Jupiter:jupiter,Venus:venus,Saturn:saturn,Rahu:n360(rahu),Ketu:n360(rahu+180)};
+}
+
+// Override old function with improved version
+const _origBuildChart=buildChart;
+function buildChart(yr,mo,dy,hr,mn,sc,lat,lng,tz){
+  const jd=toJD(yr,mo,dy,hr,mn,sc,tz),T=(jd-2451545)/36525,ay_=ayan(jd);
+  const trop=tropLonsV2(T);
+  const sid={};for(const p of Object.keys(trop))sid[p]=n360(trop[p]-ay_);
+  const lagLon=calcLagna(jd,lat,lng,ay_),lagIdx=Math.floor(lagLon/30)%12;
+  const planets={};
+  for(const[nm,lon] of Object.entries(sid)){
+    const si=Math.floor(lon/30)%12,sign=SE[si],nak=nakOf(lon);
+    const house=((si-lagIdx+12)%12)+1,retro=isRetro(nm,T);
+    const nLon=navLon(lon),nSi=Math.floor(n360(nLon)/30)%12,nSign=SE[nSi];
+    planets[nm]={lon,sign,signTa:ST[sign],dms_:dms(lon),raw:lon%30,
+      nakIdx:nak.i,nakTa:NT[nak.i],pada:nak.p,house,retro,
+      nature:PN[nm],color:PC[nm],nSign,nSignTa:ST[nSign],
+      isVargottama:sign===nSign,isExalted:EX[nm]===sign,isDebilitated:DB[nm]===sign};
+  }
+  const lNak=nakOf(lagLon);
+  const lagna={lon:lagLon,sign:SE[lagIdx],signTa:ST[SE[lagIdx]],dms_:dms(lagLon),
+    nakTa:NT[lNak.i],nakIdx:lNak.i,pada:lNak.p,lord:SL[SE[lagIdx]],idx:lagIdx};
+  return{jd,T,ay:ay_.toFixed(4),planets,lagna};
+}
+
+// ═══════════════════════════════════════════════
+// GOCHARA — Current Transit Analysis
+// ═══════════════════════════════════════════════
+function buildGochara(birthPlanets,birthLagna){
+  const now=new Date();
+  const yr=now.getFullYear(),mo=now.getMonth()+1,dy=now.getDate();
+  const hr=now.getHours(),mn=now.getMinutes();
+  // Use Chennai coords as default for current transit (IST)
+  const {planets:transitPlanets}=buildChart(yr,mo,dy,hr,mn,0,13.083,80.271,5.5);
+
+  const moonSign=birthPlanets.Moon.sign;
+  const moonIdx=SE.indexOf(moonSign);
+
+  // Gochara effects from Moon sign
+  const gocharaEffects={
+    Sun:{"1":"ஆரோக்கியம் பாதிப்பு, அலைச்சல்","2":"பண நஷ்டம் சாத்தியம்","3":"தைரியம், வெற்றி","4":"கஷ்டம், வீட்டில் அமைதியின்மை","5":"புத்திர கஷ்டம்","6":"எதிரி வெல்வீர்","7":"யாத்திரை","8":"கடுமையான கஷ்டம்","9":"அதிர்ஷ்டம், யாத்திரை","10":"தொழில் சிறப்பு","11":"லாபம், வெற்றி","12":"செலவு, தோல்வி"},
+    Moon:{"1":"மன அமைதியின்மை","2":"செல்வம்","3":"வெற்றி, சுகம்","4":"கஷ்டம்","5":"புத்திர கஷ்டம்","6":"நோய் வரலாம்","7":"சுகம்","8":"கஷ்டம்","9":"சுகம், லாபம்","10":"கீர்த்தி","11":"லாபம்","12":"செலவு"},
+    Mars:{"1":"தேக பீடை","2":"பண நஷ்டம்","3":"தைரியம்,வெற்றி","4":"கஷ்டம்","5":"சந்தான கஷ்டம்","6":"எதிரி வெல்வீர்","7":"கலவரம்","8":"கடுமையான கஷ்டம்","9":"தோல்வி","10":"தொழில் வெற்றி","11":"லாபம்","12":"செலவு,தோல்வி"},
+    Mercury:{"2":"கல்வி சிறப்பு","4":"சுகம்","6":"வெற்றி","8":"கஷ்டம்","10":"தொழில் சிறப்பு","11":"லாபம்"},
+    Jupiter:{"2":"செல்வம்","5":"புத்திர சுகம்","7":"திருமண சுகம்","9":"தர்மம், சுகம்","11":"லாபம், வெற்றி"},
+    Venus:{"1":"சுகம்","2":"செல்வம்","3":"கலவரம்","4":"சுகம்","5":"திருமண சுகம்","8":"செல்வம்","9":"சுகம்","11":"லாபம்","12":"ஆடம்பரம்"},
+    Saturn:{"3":"வெற்றி","6":"எதிரி வெல்வீர்","11":"லாபம்"},
+  };
+
+  const transits=Object.entries(transitPlanets).filter(([n])=>!["Rahu","Ketu"].includes(n)).map(([name,tp])=>{
+    const transitSignIdx=SE.indexOf(tp.sign);
+    const houseFromMoon=((transitSignIdx-moonIdx+12)%12)+1;
+    const effect=gocharaEffects[name]?.[String(houseFromMoon)]||"சாதாரண நிலை";
+    const isFav=["Sun","Mars","Jupiter","Saturn"].some(p=>p===name)
+      ?[3,6,10,11].includes(houseFromMoon)
+      :["Moon","Mercury","Venus"].some(p=>p===name)
+      ?[1,2,3,4,5,7,9,10,11].includes(houseFromMoon):false;
+
+    // Vedha (obstruction) check — simplified
+    const vedhaHouses={1:5,2:12,3:11,4:10,5:1,6:8,7:2,8:6,9:12,10:4,11:3,12:9};
+    return{
+      name,nameTa:PT[name],
+      transitSign:tp.sign,transitSignTa:tp.signTa,
+      transitNak:tp.nakTa,
+      houseFromMoon,
+      effect,
+      isFavorable:isFav,
+      retro:tp.retro,
+      birthSign:birthPlanets[name].sign,birthSignTa:birthPlanets[name].signTa,
+      sameAsBirth:tp.sign===birthPlanets[name].sign,
+    };
+  });
+
+  // Special transits to note
+  const specialNotes=[];
+  const satH=((SE.indexOf(transitPlanets.Saturn.sign)-moonIdx+12)%12)+1;
+  if([12,1,2].includes(satH))specialNotes.push({icon:"⚠️",text:"சனி சாடே சாதி காலம்! சந்திர ராசியின் 12, 1, 2வது இடங்களில் சனி உள்ளார். பொறுமை மிக முக்கியம். சனி பரிகாரம் செய்யவும்.",color:"#94a3b8"});
+  if([4,8].includes(satH))specialNotes.push({icon:"⚠️",text:`சனி ${satH}வது இடத்தில் — கனக கண்டகம் நடைபெறுகிறது. தாமதம், தடைகள் வரலாம். பொறுமையாக இருங்கள்.`,color:"#94a3b8"});
+  const jupH=((SE.indexOf(transitPlanets.Jupiter.sign)-moonIdx+12)%12)+1;
+  if([1,5,7,9,11].includes(jupH))specialNotes.push({icon:"✅",text:`குரு ${jupH}வது இடத்தில் — மிகவும் சாதகமான காலம். ஆன்மீகம், கல்வி, திருமண சாதகம்.`,color:"#4ade80"});
+
+  const currentDate=`${dy.toString().padStart(2,'0')}/${mo.toString().padStart(2,'0')}/${yr} ${hr.toString().padStart(2,'0')}:${mn.toString().padStart(2,'0')}`;
+  return{transits,specialNotes,currentDate,moonSign,moonSignTa:ST[moonSign]};
+}
+
+// ═══════════════════════════════════════════════
+// VARSHAPHAL — Solar Return (Yearly Chart)
+// ═══════════════════════════════════════════════
+function buildVarshaphal(birthYear,birthMonth,birthDay,birthHour,birthMinute,birthSecond,lat,lng,tz,targetYear){
+  // Find exact moment when Sun returns to natal Sun longitude
+  const {planets:birthPlanets}=buildChart(birthYear,birthMonth,birthDay,birthHour,birthMinute,birthSecond,lat,lng,tz);
+  const natalSunLon=birthPlanets.Sun.lon;
+
+  // Find solar return for target year
+  // Start search from birthday of target year
+  let jdSearch=toJD(targetYear,birthMonth,birthDay,12,0,0,tz);
+  let closestJD=jdSearch;
+  let minDiff=360;
+
+  for(let i=-2;i<=2;i+=0.01){
+    const jd2=jdSearch+i;
+    const T2=(jd2-2451545)/36525;
+    const ay2=ayan(jd2);
+    const trop2=tropLonsV2(T2);
+    const sidSun=n360(trop2.Sun-ay2);
+    const diff=Math.abs(sidSun-natalSunLon);
+    const diff2=Math.min(diff,360-diff);
+    if(diff2<minDiff){minDiff=diff2;closestJD=jd2;}
+  }
+
+  // Build chart at solar return moment
+  const returnDate=new Date((closestJD-2440587.5)*86400000);
+  const ry=returnDate.getUTCFullYear(),rm=returnDate.getUTCMonth()+1,rd=returnDate.getUTCDate();
+  const rh=returnDate.getUTCHours()+tz,rmn=returnDate.getUTCMinutes();
+
+  const varshaChart=buildChart(ry,rm,rd,rh,rmn,0,lat,lng,tz);
+  const varshaDasha=buildDasha(varshaChart.planets.Moon.lon,ry,rm,rd);
+
+  // Muntha calculation (moves 1 sign per year)
+  const munthaIdx=(SE.indexOf(varshaChart.lagna.sign)+(targetYear-birthYear))%12;
+
+  // Varsha lord (lord of the year) — planet ruling the weekday of solar return
+  const dowLords=["Sun","Moon","Mars","Mercury","Jupiter","Venus","Saturn"];
+  const dow=Math.floor(closestJD+1.5)%7;
+  const varshaLord=dowLords[dow];
+
+  return{
+    chart:varshaChart,
+    dashas:varshaDasha,
+    targetYear,
+    returnDate:`${rd.toString().padStart(2,'0')}/${rm.toString().padStart(2,'0')}/${ry}`,
+    munthaSign:SE[munthaIdx],munthaSignTa:ST[SE[munthaIdx]],
+    varshaLord,varshaLordTa:PT[varshaLord],
+    yearAge:targetYear-birthYear,
+  };
+}
+
+// ═══════════════════════════════════════════════
+// COMPATIBILITY — 10 Porutham (திருமண பொருத்தம்)
+// ═══════════════════════════════════════════════
+const PORUTHAM_NAMES=["திணம்","கணம்","மகேந்திரம்","ஸ்திரீதீர்க்கம்","யோனி","ராசி","ராசியாதிபதி","வஸ்யம்","ரஜ்ஜு","வேதை"];
+const PORUTHAM_MAX=[1,1,1,1,1,1,1,1,1,1];
+
+function calcCompatibility(gNakIdx,gNakPada,bNakIdx,bNakPada,gSign,bSign,gLagna,bLagna){
+  const results=[];
+  const total=10;
+
+  // 1. TINAM (தினம்) — Nakshatra compatibility based on lunar day
+  const dinaDiff=Math.abs(gNakIdx-bNakIdx);
+  const dinam=dinaDiff%9===0||dinaDiff%9===2||dinaDiff%9===4||dinaDiff%9===6||dinaDiff%9===8;
+  results.push({name:"திணம் (தின பொருத்தம்)",present:dinam,points:dinam?1:0,max:1,desc:dinam?"நட்சத்திர இணக்கம் நல்லது. ஆயுள், ஆரோக்கியம் சாதகம்.":"நட்சத்திர இணக்கம் சரியில்லை. பரிகாரம் நல்லது."});
+
+  // 2. KANAM (கணம்) — Gana: Deva/Manushya/Rakshasa
+  const deva=[1,5,7,8,13,14,15,22,27],manu=[2,4,6,11,12,20,21,25,26],raks=[3,9,10,16,17,18,19,23,24];
+  const gGana=deva.includes(gNakIdx+1)?'deva':manu.includes(gNakIdx+1)?'manu':'raks';
+  const bGana=deva.includes(bNakIdx+1)?'deva':manu.includes(bNakIdx+1)?'manu':'raks';
+  const ganam=gGana===bGana||(gGana==='deva'&&bGana==='manu')||(gGana==='manu'&&bGana==='deva');
+  const ganaNames={deva:"தேவ கணம்",manu:"மனுஷ்ய கணம்",raks:"ராக்ஷஸ கணம்"};
+  results.push({name:"கணம் (கண பொருத்தம்)",present:ganam,points:ganam?1:0,max:1,desc:`பெண்: ${ganaNames[gGana]}, ஆண்: ${ganaNames[bGana]}. ${ganam?'இணக்கமான கண சேர்க்கை.':'கண வேற்றுமை. பரிகாரம் செய்யவும்.'}`});
+
+  // 3. MAHENDRA (மகேந்திரம்) — Count from girl's nak to boy's nak
+  const mahendra=(bNakIdx-gNakIdx+27)%27;
+  const mahOk=[4,7,10,13,16,19,22,25].includes(mahendra+1);
+  results.push({name:"மகேந்திரம்",present:mahOk,points:mahOk?1:0,max:1,desc:mahOk?"மகேந்திர பொருத்தம் உள்ளது. நீண்ட ஆயுள், செல்வம் சாதகம்.":"மகேந்திர பொருத்தம் இல்லை."});
+
+  // 4. STREE DEERGA (ஸ்திரீதீர்க்கம்) — Girl's nak to boy's nak > 7
+  const stree=(bNakIdx-gNakIdx+27)%27;
+  const streeOk=stree>=7;
+  results.push({name:"ஸ்திரீதீர்க்கம்",present:streeOk,points:streeOk?1:0,max:1,desc:streeOk?`பெண்ணிலிருந்து ஆண் நட்சத்திரம் ${stree+1}வது — சாதகம். திருமண ஆயுள் நீடிக்கும்.`:`பெண்ணிலிருந்து ஆண் நட்சத்திரம் ${stree+1}வது — சரியில்லை.`});
+
+  // 5. YONI (யோனி) — Animal compatibility
+  const yoniAnimal=["குதிரை","யானை","ஆடு","பாம்பு","நாய்","பூனை","எலி","பசு","எருது","புலி","முயல்","நரி","குரங்கு","நெவுலா","சிங்கம்","வலியன்","குரங்கு","புலி","மான்","குரங்கு","குதிரை","யானை","ஆடு","சிங்கம்","பாம்பு","நாய்","யானை"];
+  const yoniConflict=[["பாம்பு","நெவுலா"],["குதிரை","எருது"],["நாய்","முயல்"],["பூனை","எலி"],["சிங்கம்","யானை"]];
+  const gYoni=yoniAnimal[gNakIdx],bYoni=yoniAnimal[bNakIdx];
+  const yoniConf=yoniConflict.some(pair=>(pair[0]===gYoni&&pair[1]===bYoni)||(pair[1]===gYoni&&pair[0]===bYoni));
+  const yoniOk=gYoni===bYoni||!yoniConf;
+  results.push({name:"யோனி பொருத்தம்",present:yoniOk,points:yoniOk?1:0,max:1,desc:`பெண்: ${gYoni}, ஆண்: ${bYoni}. ${yoniOk?'யோனி இணக்கம் சாதகம்.':'யோனி வேற்றுமை — பரிகாரம் செய்யவும்.'}`});
+
+  // 6. RASI (ராசி) — Sign compatibility
+  const gSignIdx=SE.indexOf(gSign),bSignIdx=SE.indexOf(bSign);
+  const rasiDiff=Math.abs(gSignIdx-bSignIdx);
+  const rasiOk=![6].includes(rasiDiff)&&![2,12].includes(rasiDiff+1);
+  results.push({name:"ராசி பொருத்தம்",present:rasiOk,points:rasiOk?1:0,max:1,desc:`பெண்: ${ST[gSign]}, ஆண்: ${ST[bSign]}. ${rasiOk?'ராசி இணக்கம் சாதகம்.':'ஷஷ்டாஷ்டம் தோஷம் — பரிகாரம் நல்லது.'}`});
+
+  // 7. RASIYATHIPATI (ராசியாதிபதி) — Lord compatibility
+  const gLord=SL[gSign],bLord=SL[bSign];
+  const friendPairs=[["Sun","Moon"],["Mars","Jupiter"],["Mercury","Venus"],["Saturn","Mercury"],["Venus","Saturn"]];
+  const lords1=gLord===bLord;
+  const lords2=friendPairs.some(p=>(p[0]===gLord&&p[1]===bLord)||(p[1]===gLord&&p[0]===bLord));
+  const lordOk=lords1||lords2;
+  results.push({name:"ராசியாதிபதி பொருத்தம்",present:lordOk,points:lordOk?1:0,max:1,desc:`பெண் அதிபதி: ${PT[gLord]}, ஆண் அதிபதி: ${PT[bLord]}. ${lordOk?'அதிபதி நட்பு சாதகம்.':'அதிபதி பகை — பரிகாரம் செய்யவும்.'}`});
+
+  // 8. VASYA (வஸ்யம்) — Dominance relationship
+  const vasyaMap={Aries:["Leo","Scorpio"],Taurus:["Cancer","Libra"],Gemini:["Virgo"],Cancer:["Scorpio","Sagittarius"],Leo:["Libra"],Virgo:["Gemini","Pisces"],Libra:["Capricorn","Virgo"],Scorpio:["Cancer"],Sagittarius:["Pisces"],Capricorn:["Aries","Aquarius"],Aquarius:["Aries"],Pisces:["Capricorn"]};
+  const vasyaOk=(vasyaMap[gSign]||[]).includes(bSign)||(vasyaMap[bSign]||[]).includes(gSign);
+  results.push({name:"வஸ்யம் பொருத்தம்",present:vasyaOk,points:vasyaOk?1:0,max:1,desc:vasyaOk?"வஸ்ய பொருத்தம் உள்ளது. குடும்பத்தில் ஒத்துழைப்பு நல்லது.":"வஸ்ய பொருத்தம் இல்லை."});
+
+  // 9. RAJJU (ரஜ்ஜு) — Most important, death dosha
+  const rajjuGroup=[
+    [1,10,19],[2,11,20],[3,12,21],[4,13,22],[5,14,23],
+    [6,15,24],[7,16,25],[8,17,26],[9,18,27]
+  ];
+  const gRajju=rajjuGroup.findIndex(g=>g.includes(gNakIdx+1));
+  const bRajju=rajjuGroup.findIndex(g=>g.includes(bNakIdx+1));
+  const rajjuOk=gRajju!==bRajju;
+  results.push({name:"ரஜ்ஜு (மிக முக்கியம்)",present:rajjuOk,points:rajjuOk?1:0,max:1,desc:rajjuOk?"ரஜ்ஜு தோஷம் இல்லை. திருமண வாழ்க்கை நீடிக்கும்.":"⚠️ ரஜ்ஜு தோஷம் உள்ளது! மிகவும் முக்கியமான தோஷம். கட்டாயம் பரிகாரம் செய்யவும்."});
+
+  // 10. VETHAI (வேதை) — Opposing nakshatras
+  const vethaiPairs=[[1,23],[2,22],[3,21],[4,20],[5,19],[6,18],[7,17],[8,16],[9,15],[10,14],[11,13],[12,27],[24,26]];
+  const gN=gNakIdx+1,bN=bNakIdx+1;
+  const vethaiConf=vethaiPairs.some(p=>(p[0]===gN&&p[1]===bN)||(p[1]===gN&&p[0]===bN));
+  const vethaiOk=!vethaiConf;
+  results.push({name:"வேதை பொருத்தம்",present:vethaiOk,points:vethaiOk?1:0,max:1,desc:vethaiOk?"வேதை தோஷம் இல்லை. நல்ல பொருத்தம்.":"⚠️ வேதை தோஷம் உள்ளது. இந்த இரு நட்சத்திரங்களுக்கு திருமணம் தடுக்கப்படுகிறது."});
+
+  const totalPoints=results.reduce((a,b)=>a+b.points,0);
+  const percentage=Math.round(totalPoints/total*100);
+
+  let verdict,verdictColor;
+  if(totalPoints>=8){verdict="மிகவும் நல்ல பொருத்தம் — திருமணம் சாதகம்!";verdictColor="#4ade80";}
+  else if(totalPoints>=6){verdict="நல்ல பொருத்தம் — திருமணம் செய்யலாம்.";verdictColor="#4ade80";}
+  else if(totalPoints>=5){verdict="சராசரி பொருத்தம் — பரிகாரத்துடன் பரிசீலிக்கவும்.";verdictColor="#fbbf24";}
+  else{verdict="பொருத்தம் குறைவு — நிபுணர் ஆலோசனை தேவை.";verdictColor="#f87171";}
+
+  // Check critical doshas
+  const rajjuFailed=!results[8].present;
+  const vethaiiFailed=!results[9].present;
+  if(rajjuFailed||vethaiiFailed){verdict="⚠️ கட்டாயமாக பரிகாரம் செய்யாமல் திருமணம் வேண்டாம்!";verdictColor="#f87171";}
+
+  return{results,totalPoints,total,percentage,verdict,verdictColor};
+}
+
+// ═══════════════════════════════════════════════
+// MUHURTA CALCULATOR
+// ═══════════════════════════════════════════════
+const MUHURTA_TYPES={
+  marriage:{ta:"திருமணம்",good:["ரோகிணி","மிருகசீரிஷம்","மகம்","உத்திரம்","அஸ்தம்","சுவாதி","அனுஷம்","மூலம்","உத்திராடம்","ரேவதி"],bad:["பரணி","கார்த்திகை","ஆயில்யம்","கேட்டை"],goodMonths:[1,2,3,5,6,7,11,12],goodDays:["திங்கள்","புதன்","வியாழன்","வெள்ளி"]},
+  travel:{ta:"பயணம்",good:["அஸ்வினி","மிருகசீரிஷம்","புனர்பூசம்","அஸ்தம்","சித்திரை","சுவாதி","ஜ்யேஷ்ட","உத்திராடம்","திருவோணம்","ரேவதி"],goodDays:["திங்கள்","புதன்","வியாழன்","வெள்ளி"]},
+  business:{ta:"வணிகம் / நிறுவனம்",good:["ரோகிணி","மிருகசீரிஷம்","புனர்பூசம்","உத்திரம்","அஸ்தம்","சித்திரை","அனுஷம்","உத்திராடம்","திருவோணம்","ரேவதி"],goodDays:["திங்கள்","புதன்","வியாழன்","வெள்ளி"]},
+  education:{ta:"கல்வி தொடக்கம்",good:["அஸ்வினி","ரோகிணி","மிருகசீரிஷம்","புனர்பூசம்","பூசம்","அஸ்தம்","சித்திரை","சுவாதி","அனுஷம்","திருவோணம்","ரேவதி"],goodDays:["புதன்","வியாழன்"]},
+  griha:{ta:"இல்ல பிரவேசம்",good:["ரோகிணி","மிருகசீரிஷம்","உத்திரம்","உத்திராடம்","திருவோணம்","ரேவதி","அஸ்வினி","புஷ்யம்"],goodDays:["திங்கள்","புதன்","வியாழன்","வெள்ளி"]},
+  medical:{ta:"அறுவை சிகிச்சை",good:["அஸ்வினி","அஸ்தம்","திருவோணம்","ரேவதி"],bad:["ஆயில்யம்","கேட்டை","மூலம்"],goodDays:["திங்கள்","புதன்","வியாழன்"]},
+};
+
+function calcMuhurta(yr,mo,dy,type){
+  const jd=toJD(yr,mo,dy,12,0,0,5.5),T=(jd-2451545)/36525;
+  const ay_=ayan(jd);
+  const trop=tropLonsV2(T);
+  const moonLon=n360(trop.Moon-ay_);
+  const sunLon=n360(trop.Sun-ay_);
+  const nak=nakOf(moonLon);
+  const currentNak=NT[nak.i];
+  const dow=Math.floor(jd+1.5)%7;
+  const vara=["ஞாயிறு","திங்கள்","செவ்வாய்","புதன்","வியாழன்","வெள்ளி","சனி"][dow];
+  const ang=n360(moonLon-sunLon);
+  const tithiNum=Math.floor(ang/12)+1;
+  const badTithi=[4,8,9,14];
+  const muhType=MUHURTA_TYPES[type]||MUHURTA_TYPES.marriage;
+
+  const isNakGood=muhType.good?.includes(currentNak);
+  const isNakBad=muhType.bad?.includes(currentNak);
+  const isDayGood=muhType.goodDays?.includes(vara);
+  const isTithiBad=badTithi.includes(tithiNum%15||15);
+  const isMonthGood=!muhType.goodMonths||muhType.goodMonths.includes(mo);
+
+  let score=0;
+  if(isNakGood)score+=3;
+  if(isNakBad)score-=3;
+  if(isDayGood)score+=2;
+  if(!isTithiBad)score+=1;
+  if(isMonthGood)score+=1;
+
+  const rahuKalamBad=["15:00-16:30","07:30-09:00","15:00-16:30","12:00-13:30","13:30-15:00","10:30-12:00","09:00-10:30"][dow];
+
+  let verdict,color;
+  if(score>=5){verdict="மிகவும் சாதகமான முஹூர்த்தம்!";color="#4ade80";}
+  else if(score>=3){verdict="சாதகமான முஹூர்த்தம்.";color="#4ade80";}
+  else if(score>=1){verdict="சாதாரண முஹூர்த்தம் — பரிசீலிக்கவும்.";color="#fbbf24";}
+  else{verdict="சாதகமற்ற முஹூர்த்தம் — வேறு தேதி தேர்வு செய்யவும்.";color="#f87171";}
+
+  return{nakshatra:currentNak,vara,tithiNum,isNakGood,isNakBad,isDayGood,isTithiBad,isMonthGood,rahuKalamBad,verdict,verdictColor:color,score,type:muhType.ta};
+}
+
+// ═══════════════════════════════════════════════
+// SAVE / LOAD CHARTS (localStorage)
+// ═══════════════════════════════════════════════
+function getSavedCharts(){
+  try{return JSON.parse(localStorage.getItem('jothidam_charts')||'[]');}catch{return[];}
+}
+function saveCurrentChart(){
+  if(!G.result)return;
+  const charts=getSavedCharts();
+  const entry={
+    id:Date.now(),
+    name:G.result.name||'நேட்டிவ்',
+    gender:G.result.gender||'',
+    date:G.result.date,time:G.result.time,
+    city:G.result.city.n,
+    lagna:G.result.lagna.signTa,
+    moonSign:G.result.planets.Moon.signTa,
+    nakshatra:G.result.planets.Moon.nakTa,
+    formData:{
+      name:document.getElementById('f-name').value,
+      gender:document.getElementById('f-gender').value,
+      day:document.getElementById('f-day').value,
+      month:document.getElementById('f-month').value,
+      year:document.getElementById('f-year').value,
+      hour:document.getElementById('f-hour').value,
+      minute:document.getElementById('f-minute').value,
+      second:document.getElementById('f-second').value,
+      cityName:G.selectedCity.n,
+    },
+    savedAt:new Date().toLocaleDateString('ta-IN')
+  };
+  charts.unshift(entry);
+  if(charts.length>10)charts.splice(10);
+  localStorage.setItem('jothidam_charts',JSON.stringify(charts));
+  alert(`✅ "${entry.name}" ஜாதகம் சேமிக்கப்பட்டது!\n\nமொத்தம் ${charts.length} ஜாதகம் சேமிக்கப்பட்டுள்ளது.`);
+}
+function loadChart(id){
+  const charts=getSavedCharts();
+  const entry=charts.find(c=>c.id===id);
+  if(!entry)return;
+  const f=entry.formData;
+  document.getElementById('f-name').value=f.name;
+  document.getElementById('f-gender').value=f.gender;
+  document.getElementById('f-day').value=f.day;
+  document.getElementById('f-month').value=f.month;
+  document.getElementById('f-year').value=f.year;
+  document.getElementById('f-hour').value=f.hour;
+  document.getElementById('f-minute').value=f.minute;
+  document.getElementById('f-second').value=f.second;
+  selectCity(f.cityName);
+  document.getElementById('screen-result').style.display='none';
+  document.getElementById('screen-input').style.display='block';
+  setTimeout(()=>analyze(),200);
+}
+function deleteChart(id){
+  const charts=getSavedCharts().filter(c=>c.id!==id);
+  localStorage.setItem('jothidam_charts',JSON.stringify(charts));
+  renderTab();
+}
+
+// ═══════════════════════════════════════════════
+// PRINT / SHARE REPORT
+// ═══════════════════════════════════════════════
+function printReport(){
+  const r=G.result;
+  if(!r)return;
+  const w=window.open('','_blank');
+  const scores=r.scores;
+  const p=r.planets;
+  const curD=r.dashas.find(d=>d.isCurrent);
+  const curA=curD?.antar.find(a=>a.isCurrent);
+  w.document.write(`<!DOCTYPE html>
+<html><head><meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  body{font-family:'Noto Sans Tamil',sans-serif;max-width:800px;margin:0 auto;padding:20px;background:white;color:#111}
+  h1{color:#92400e;text-align:center;font-size:24px;margin-bottom:4px}
+  h2{color:#b45309;font-size:16px;border-bottom:2px solid #fbbf24;padding-bottom:4px;margin-top:20px}
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+  .info-row{display:flex;justify-content:space-between;padding:5px 8px;background:#fef3c7;border-radius:4px;font-size:13px}
+  .info-row .l{color:#666}.info-row .v{font-weight:700;color:#92400e}
+  .planet-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px}
+  .planet-table th{background:#92400e;color:white;padding:6px;text-align:left}
+  .planet-table td{padding:5px 6px;border-bottom:1px solid #e5e7eb}
+  .planet-table tr:nth-child(even){background:#fef3c7}
+  .score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+  .score-box{text-align:center;padding:10px;background:#fef3c7;border-radius:8px}
+  .score-val{font-size:22px;font-weight:700;color:#92400e}
+  .score-lbl{font-size:11px;color:#666}
+  .dasha-box{background:#fffbeb;border:1px solid #fbbf24;padding:10px;border-radius:8px;margin:8px 0}
+  .yoga-list{columns:2;gap:16px;margin:8px 0;font-size:12px}
+  .yoga-item{break-inside:avoid;padding:3px 0}
+  .remedy-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .remedy-box{background:#fef3c7;padding:8px;border-radius:6px;font-size:12px}
+  @media print{body{padding:10px}.no-print{display:none}}
+  .print-btn{background:#92400e;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-size:14px;margin:0 5px}
+</style>
+</head><body>
+<div class="no-print" style="text-align:center;margin-bottom:20px">
+  <button class="print-btn" onclick="window.print()">🖨️ Print / Save PDF</button>
+  <button class="print-btn" onclick="window.close()" style="background:#666">✕ Close</button>
+</div>
+<h1>🔮 ஜோதிட ஜாதக அறிக்கை</h1>
+<div style="text-align:center;color:#666;margin-bottom:16px;font-size:13px">Vedic Astrology Report — Generated by ஜோதிடம் App</div>
+
+<h2>📋 அடிப்படை விவரங்கள்</h2>
+<div class="info-grid">
+  <div class="info-row"><span class="l">பெயர்</span><span class="v">${r.name||'—'} (${r.gender||''})</span></div>
+  <div class="info-row"><span class="l">பிறந்த தேதி</span><span class="v">${r.date}</span></div>
+  <div class="info-row"><span class="l">பிறந்த நேரம்</span><span class="v">${r.time}</span></div>
+  <div class="info-row"><span class="l">பிறந்த ஊர்</span><span class="v">${r.city.n}</span></div>
+  <div class="info-row"><span class="l">லக்னம்</span><span class="v">${r.lagna.signTa} — ${r.lagna.dms_}</span></div>
+  <div class="info-row"><span class="l">சூரிய ராசி</span><span class="v">${p.Sun.signTa}</span></div>
+  <div class="info-row"><span class="l">சந்திர ராசி</span><span class="v">${p.Moon.signTa}</span></div>
+  <div class="info-row"><span class="l">ஜன்ம நட்சத்திரம்</span><span class="v">${p.Moon.nakTa} பாதம் ${p.Moon.pada}</span></div>
+  <div class="info-row"><span class="l">ஆத்மகாரகன்</span><span class="v">${PT[r.atmakaraka]}</span></div>
+  <div class="info-row"><span class="l">காரகாம்சம்</span><span class="v">${ST[r.akNavSign]}</span></div>
+  <div class="info-row"><span class="l">லஹிரி அயனாம்சம்</span><span class="v">${r.ay}°</span></div>
+  <div class="info-row"><span class="l">நடப்பு தசை</span><span class="v">${curD?PT[curD.pl]+' / '+PT[curA?.pl||curD.pl]:'—'}</span></div>
+</div>
+
+<h2>⭕ வாழ்க்கை பலன் அட்டவணை</h2>
+<div class="score-grid">
+  ${[["தொழில்",scores.career],["திருமணம்",scores.marriage],["செல்வம்",scores.wealth],["உடல்நலம்",scores.health],["கல்வி",scores.education],["ஆன்மீகம்",scores.spirituality],["சந்தானம்",scores.children],["ஆயுள்",scores.longevity]].map(([l,v])=>`<div class="score-box"><div class="score-val">${v}%</div><div class="score-lbl">${l}</div></div>`).join('')}
+</div>
+
+<h2>🪐 கிரக நிலை விவரம்</h2>
+<table class="planet-table">
+  <tr><th>கிரகம்</th><th>ராசி</th><th>கலை</th><th>நட்சத்திரம்</th><th>பாதம்</th><th>பாவம்</th><th>தன்மை</th></tr>
+  ${Object.entries(p).map(([nm,pl])=>`<tr>
+    <td>${PI[nm]} ${PT[nm]}</td>
+    <td>${pl.signTa} ${SS[pl.sign]}</td>
+    <td style="font-family:monospace;font-size:11px">${pl.dms_}</td>
+    <td>${pl.nakTa}</td>
+    <td>${pl.pada}</td>
+    <td>${pl.house}</td>
+    <td>${pl.retro?'℞ வக்கிரம்':EX[nm]===pl.sign?'உச்சம்':DB[nm]===pl.sign?'நீசம்':pl.nature}</td>
+  </tr>`).join('')}
+</table>
+
+<h2>⏳ தசை விவரம்</h2>
+<div class="dasha-box">
+  ${curD?`<strong>நடப்பு மஹாதசை:</strong> ${PT[curD.pl]} (${Math.floor(curD.s)} – ${Math.floor(curD.e)})<br>
+  <strong>நடப்பு அந்தர்தசை:</strong> ${curA?PT[curA.pl]+' ('+Math.floor(curA.s)+' – '+Math.floor(curA.e)+')':'—'}`:''}
+</div>
+<table class="planet-table">
+  <tr><th>தசை</th><th>ஆரம்பம்</th><th>முடிவு</th><th>ஆண்டுகள்</th></tr>
+  ${r.dashas.map(d=>`<tr style="${d.isCurrent?'background:#fef08a;font-weight:700':''}">
+    <td>${PI[d.pl]} ${PT[d.pl]} மஹாதசை${d.isCurrent?' ← இப்போது':''}</td>
+    <td>${Math.floor(d.s)}</td><td>${Math.floor(d.e)}</td><td>${d.yrs}</td>
+  </tr>`).join('')}
+</table>
+
+<h2>✦ யோக அமைப்புகள்</h2>
+<div class="yoga-list">
+  ${r.yogas.filter(y=>y.present).map(y=>`<div class="yoga-item">${y.good?'✦':'⚠'} <strong>${y.ta}</strong></div>`).join('')}
+</div>
+
+<h2>⚠️ தோஷ நிலை</h2>
+<div style="font-size:13px;line-height:1.8">
+  <p>செவ்வாய் தோஷம்: <strong>${r.doshas.mangal.hasDhosa?(r.doshas.mangal.cancelled?'உண்டு (பரிகாரமாகியுள்ளது)':'உண்டு — '+r.doshas.mangal.severity):'இல்லை'}</strong></p>
+  <p>சாடே சாதி: <strong>${r.doshas.sadeSati.present?'நடைபெறுகிறது':'இல்லை'}</strong></p>
+  <p>கால சர்ப தோஷம்: <strong>${r.doshas.kalaSarpa.present?'உள்ளது':'இல்லை'}</strong></p>
+</div>
+
+<h2>🙏 பரிகாரங்கள்</h2>
+<div class="remedy-grid">
+  ${REMEDIES.slice(0,6).map(rem=>`<div class="remedy-box">
+    <div style="font-weight:700;color:#92400e">${rem.ic} ${PT[rem.pl]}</div>
+    <div>நாள்: ${rem.day}</div>
+    <div>கல்: ${rem.gem}</div>
+    <div style="font-size:11px;color:#444;margin-top:4px">${rem.mantra}</div>
+  </div>`).join('')}
+</div>
+
+<div style="text-align:center;margin-top:30px;color:#999;font-size:11px">
+  Generated by ஜோதிடம் App — ${new Date().toLocaleDateString('ta-IN')} | This is a computerized reading. Consult a qualified astrologer for important decisions.
+</div>
+</body></html>`);
+  w.document.close();
+}
+
+// ═══════════════════════════════════════════════
+// VIMSHOPAKA BALA (Divisional chart strength)
+// ═══════════════════════════════════════════════
+function calcVimshopaka(planets,lagLon){
+  const divWeights=[{d:1,w:3.0},{d:2,w:1.5},{d:3,w:1.5},{d:7,w:2.5},{d:9,w:3.0},{d:10,w:2.5},{d:12,w:2.0},{d:16,w:2.0},{d:30,w:1.5}];
+  return["Sun","Moon","Mars","Mercury","Jupiter","Venus","Saturn"].map(pl=>{
+    let score=0;
+    for(const{d,w} of divWeights){
+      const dlon=d===9?navLon(planets[pl].lon):divLon(planets[pl].lon,d);
+      const sign=SE[Math.floor(n360(dlon)/30)%12];
+      let dignity=0.5;
+      if(EX[pl]===sign)dignity=1.0;
+      else if(SL[sign]===pl)dignity=0.75;
+      else if(DB[pl]===sign)dignity=0.0;
+      score+=w*dignity;
+    }
+    const pct=Math.round(score/20*100);
+    return{planet:pl,score:Math.round(score*10)/10,pct,verdict:pct>=70?'மிகவும் பலமானது':pct>=50?'பலமானது':pct>=30?'சராசரி':'பலவீனமானது'};
+  });
+}
+
+// ═══════════════════════════════════════════════
+// ADD NEW TABS TO EXISTING APP
+// ═══════════════════════════════════════════════
+// Extend TABS_DEF with new tabs
+const NEW_TABS=[
+  {id:'gochara',l:'கோசாரம்'},
+  {id:'varsha',l:'வர்ஷபலம்'},
+  {id:'compat',l:'பொருத்தம்'},
+  {id:'muhurta',l:'முஹூர்த்தம்'},
+  {id:'saved',l:'சேமிப்பு'},
+  {id:'vimshopaka',l:'விம்சோபகம்'},
+];
+TABS_DEF.push(...NEW_TABS);
+
+// Override renderTab to handle new tabs
+const _origRenderTab=renderTab;
+function renderTab(){
+  const el=document.getElementById('tab-content');
+  const r=G.result;
+  switch(G.currentTab){
+    case 'gochara':    el.innerHTML=r?tabGochara(r):''; break;
+    case 'varsha':     el.innerHTML=r?tabVarsha(r):''; G.varshYear=G.varshYear||new Date().getFullYear(); break;
+    case 'compat':     el.innerHTML=tabCompat(); break;
+    case 'muhurta':    el.innerHTML=tabMuhurta(); break;
+    case 'saved':      el.innerHTML=tabSaved(); break;
+    case 'vimshopaka': el.innerHTML=r?tabVimshopaka(r):''; break;
+    default: _origRenderTab();
+  }
+}
+
+// ── TAB RENDERERS ─────────────────────────────
+
+function tabGochara(r){
+  const goData=buildGochara(r.planets,r.lagna);
+  return `
+    ${card(`${sh('கோசாரம் — நடப்பு கிரக நிலை (இப்போது)','🌍','#38bdf8')}
+      <div style="font-size:11px;color:rgba(255,255,255,.5);margin-bottom:8px">தேதி: ${goData.currentDate} · உங்கள் சந்திர ராசி: <strong style="color:#a78bfa">${goData.moonSignTa}</strong></div>
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.7">தற்போது கிரகங்கள் எந்த நிலையில் உள்ளன, உங்கள் சந்திர ராசியிலிருந்து எத்தனாவது பாவத்தில் உள்ளன என்று காட்டுகிறது.</p>`,'style="background:rgba(56,189,248,.05);border:1px solid rgba(56,189,248,.2)"')}
+    ${goData.specialNotes.map(note=>`<div style="padding:12px 14px;border-radius:10px;margin-bottom:10px;background:rgba(255,255,255,.04);border:1px solid ${note.color}40">
+      <div style="font-size:13px;color:${note.color};font-weight:700;margin-bottom:4px">${note.icon}</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.75);line-height:1.8">${note.text}</div>
+    </div>`).join('')}
+    <div style="border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.08);margin-bottom:12px">
+      <div style="display:grid;grid-template-columns:1fr .8fr .6fr .6fr 1fr;background:rgba(255,255,255,.08);padding:8px 10px;font-size:9px;color:rgba(255,255,255,.4)">
+        <span>கிரகம்</span><span>நடப்பு ராசி</span><span>சந்திரனிலிருந்து</span><span>பலன்</span><span>தாக்கம்</span>
+      </div>
+      ${goData.transits.map((t,i)=>`<div style="display:grid;grid-template-columns:1fr .8fr .6fr .6fr 1fr;padding:9px 10px;align-items:center;background:${i%2===0?'rgba(255,255,255,.02)':'transparent'};border-top:1px solid rgba(255,255,255,.05)">
+        <div style="display:flex;align-items:center;gap:5px">
+          <span style="font-size:13px">${PI[t.name]}</span>
+          <div>
+            <div style="font-size:11px;color:${PC[t.name]};font-weight:700">${t.nameTa}${t.retro?' ℞':''}</div>
+            <div style="font-size:8px;color:rgba(255,255,255,.35)">ஜன்மம்: ${t.birthSignTa}</div>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px">${t.transitSignTa}</div>
+          <div style="font-size:8px;color:rgba(255,255,255,.35)">${t.transitNak}</div>
+        </div>
+        <div style="font-size:12px;font-weight:700;color:${t.isFavorable?'#4ade80':'#f87171'};text-align:center">${t.houseFromMoon}வது</div>
+        <div style="font-size:10px;text-align:center">
+          <span style="padding:2px 6px;border-radius:6px;background:${t.isFavorable?'rgba(34,197,94,.15)':'rgba(239,68,68,.15)'};color:${t.isFavorable?'#4ade80':'#f87171'}">${t.isFavorable?'சாதகம்':'கவனம்'}</span>
+          ${t.sameAsBirth?'<div style="font-size:8px;color:#fbbf24;margin-top:2px">ஜன்ம ராசி</div>':''}
+        </div>
+        <div style="font-size:11px;color:rgba(255,255,255,.65);line-height:1.5">${t.effect}</div>
+      </div>`).join('')}
+    </div>
+    ${card(`${sh('கோசாரம் விளக்கம்','💡','#38bdf8')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.8">கோசாரம் என்பது நடப்பு கிரக நிலையை உங்கள் ஜன்ம சந்திர ராசியிலிருந்து கணக்கிட்டு பலன் கூறும் முறை. இது தினசரி வாழ்க்கையில் என்ன எதிர்பார்க்கலாம் என்று காட்டுகிறது. முக்கியமான முடிவுகளுக்கு மஹாதசை + கோசாரம் இரண்டையும் சேர்த்து பார்க்கவும்.</p>`,'style="background:rgba(56,189,248,.05);border:1px solid rgba(56,189,248,.2)"')}`;
+}
+
+function tabVarsha(r){
+  const currentYear=new Date().getFullYear();
+  if(!G.varshYear)G.varshYear=currentYear;
+  const birthYear=parseInt(r.date.split('/')[2]);
+  const birthMonth=parseInt(r.date.split('/')[1]);
+  const birthDay=parseInt(r.date.split('/')[0]);
+  const timeParts=r.time.split(':');
+  const birthHour=parseInt(timeParts[0]),birthMin=parseInt(timeParts[1]);
+
+  let varsha=null;
+  try{varsha=buildVarshaphal(birthYear,birthMonth,birthDay,birthHour,birthMin,0,r.city.lat,r.city.lng,r.city.tz,G.varshYear);}
+  catch(e){console.error(e);}
+
+  return `
+    ${card(`${sh('வர்ஷபலம் — வருட ஜாதகம் (Solar Return)','📅','#22c55e')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.7">சூரியன் பிறந்த நாள் அதே நட்சத்திர நிலைக்கு திரும்பும் நேரம் — வருட ஆரம்பமாக கொண்டு கட்டப்படும் ஜாதகம். அந்த ஆண்டு என்ன நடக்கும் என்று காட்டுகிறது.</p>`,'style="background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2)"')}
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+      <button style="padding:8px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:white;border-radius:8px;font-size:16px" onclick="G.varshYear--;renderTab()">◀</button>
+      <div style="flex:1;text-align:center">
+        <div style="font-size:20px;font-weight:700;color:#fbbf24">${G.varshYear}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4)">வயது ${G.varshYear-birthYear}</div>
+      </div>
+      <button style="padding:8px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:white;border-radius:8px;font-size:16px" onclick="G.varshYear++;renderTab()">▶</button>
+    </div>
+    ${varsha?`
+      ${card(`${sh('வர்ஷபலம் விவரங்கள்','📋')}
+        ${ir('சூரிய சங்கிரமண தேதி',varsha.returnDate,'#fbbf24')}
+        ${ir('வர்ஷ லக்னம்',varsha.chart.lagna.signTa,'#fbbf24')}
+        ${ir('மும்தா (Muntha)',varsha.munthaSignTa,'#a78bfa')}
+        ${ir('வர்ஷேஷ (வருட அதிபதி)',varsha.varshaLordTa,'#f97316')}
+        ${ir('வர்ஷ சந்திர ராசி',varsha.chart.planets.Moon.signTa)}
+        ${ir('வர்ஷ நட்சத்திரம்',varsha.chart.planets.Moon.nakTa)}`)}
+      ${kundaliSVG(varsha.chart.planets,varsha.chart.lagna.idx,300,'#22c55e')}
+      <div style="font-size:11px;color:rgba(255,255,255,.4);text-align:center;margin:6px 0 12px">${G.varshYear} வர்ஷ சக்கரம்</div>
+      ${card(`${sh('வர்ஷ கிரக நிலை','🪐')}
+        <div style="border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.08)">
+          <div style="display:grid;grid-template-columns:1fr 1fr .5fr;background:rgba(255,255,255,.08);padding:7px 10px;font-size:9px;color:rgba(255,255,255,.4)">
+            <span>கிரகம்</span><span>ராசி</span><span>பாவம்</span>
+          </div>
+          ${Object.entries(varsha.chart.planets).map(([nm,p],i)=>`<div style="display:grid;grid-template-columns:1fr 1fr .5fr;padding:7px 10px;background:${i%2===0?'rgba(255,255,255,.02)':'transparent'};border-top:1px solid rgba(255,255,255,.05)">
+            <div style="display:flex;align-items:center;gap:5px"><span>${PI[nm]}</span><span style="font-size:11px;color:${PC[nm]};font-weight:700">${PT[nm]}</span></div>
+            <span style="font-size:11px">${p.signTa}</span>
+            <span style="font-size:11px;color:rgba(255,255,255,.5)">${p.house}வது</span>
+          </div>`).join('')}
+        </div>`)}
+    `:'<div style="text-align:center;padding:20px;color:rgba(255,255,255,.4)">கணக்கிடுகிறோம்...</div>'}`;
+}
+
+function tabCompat(){
+  if(!G.compatState){
+    G.compatState={
+      gName:'',gDay:'',gMonth:'',gYear:'',gHour:'12',gMinute:'0',gCity:CITIES[0].n,
+      bName:'',bDay:'',bMonth:'',bYear:'',bHour:'12',bMinute:'0',bCity:CITIES[0].n,
+      result:null
+    };
+  }
+  const cs=G.compatState;
+  const resultHtml=cs.result?renderCompatResult(cs.result):'';
+  return `
+    ${card(`${sh('திருமண பொருத்தம் (10 பொருத்தம்)','💑','#ec4899')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.7">பெண் மற்றும் ஆண் இருவரின் பிறந்த விவரங்களை உள்ளிட்டு 10 வகை திருமண பொருத்தங்கள் அறியலாம்.</p>`,'style="background:rgba(236,72,153,.05);border:1px solid rgba(236,72,153,.2)"')}
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div>
+        <div style="font-size:12px;color:#ec4899;font-weight:700;margin-bottom:8px;padding:6px 10px;background:rgba(236,72,153,.1);border-radius:8px">👰 பெண்</div>
+        <input class="inp" id="c-g-name" placeholder="பெயர்" value="${cs.gName}" oninput="G.compatState.gName=this.value" style="margin-bottom:6px"/>
+        <div style="display:flex;gap:5px;margin-bottom:6px">
+          <input class="inp" id="c-g-day" type="number" placeholder="நாள்" value="${cs.gDay}" oninput="G.compatState.gDay=this.value" min="1" max="31"/>
+          <input class="inp" id="c-g-month" type="number" placeholder="மாதம்" value="${cs.gMonth}" oninput="G.compatState.gMonth=this.value" min="1" max="12"/>
+        </div>
+        <input class="inp" id="c-g-year" type="number" placeholder="ஆண்டு" value="${cs.gYear}" oninput="G.compatState.gYear=this.value" style="margin-bottom:6px"/>
+        <div style="display:flex;gap:5px;margin-bottom:6px">
+          <input class="inp" id="c-g-hour" type="number" placeholder="மணி" value="${cs.gHour}" oninput="G.compatState.gHour=this.value" min="0" max="23"/>
+          <input class="inp" id="c-g-min" type="number" placeholder="நிமி" value="${cs.gMinute}" oninput="G.compatState.gMinute=this.value" min="0" max="59"/>
+        </div>
+        <select class="inp" id="c-g-city" oninput="G.compatState.gCity=this.value" style="background:rgba(255,255,255,.07)">
+          ${CITIES.map(c=>`<option value="${c.n}" ${c.n===cs.gCity?'selected':''}>${c.n}</option>`).join('')}
+        </select>
+      </div>
+      <div>
+        <div style="font-size:12px;color:#38bdf8;font-weight:700;margin-bottom:8px;padding:6px 10px;background:rgba(56,189,248,.1);border-radius:8px">🤵 ஆண்</div>
+        <input class="inp" id="c-b-name" placeholder="பெயர்" value="${cs.bName}" oninput="G.compatState.bName=this.value" style="margin-bottom:6px"/>
+        <div style="display:flex;gap:5px;margin-bottom:6px">
+          <input class="inp" id="c-b-day" type="number" placeholder="நாள்" value="${cs.bDay}" oninput="G.compatState.bDay=this.value" min="1" max="31"/>
+          <input class="inp" id="c-b-month" type="number" placeholder="மாதம்" value="${cs.bMonth}" oninput="G.compatState.bMonth=this.value" min="1" max="12"/>
+        </div>
+        <input class="inp" id="c-b-year" type="number" placeholder="ஆண்டு" value="${cs.bYear}" oninput="G.compatState.bYear=this.value" style="margin-bottom:6px"/>
+        <div style="display:flex;gap:5px;margin-bottom:6px">
+          <input class="inp" id="c-b-hour" type="number" placeholder="மணி" value="${cs.bHour}" oninput="G.compatState.bHour=this.value" min="0" max="23"/>
+          <input class="inp" id="c-b-min" type="number" placeholder="நிமி" value="${cs.bMinute}" oninput="G.compatState.bMinute=this.value" min="0" max="59"/>
+        </div>
+        <select class="inp" id="c-b-city" oninput="G.compatState.bCity=this.value" style="background:rgba(255,255,255,.07)">
+          ${CITIES.map(c=>`<option value="${c.n}" ${c.n===cs.bCity?'selected':''}>${c.n}</option>`).join('')}
+        </select>
+      </div>
+    </div>
+    <button onclick="runCompat()" style="width:100%;padding:14px;border:none;border-radius:12px;background:linear-gradient(135deg,#9d174d,#ec4899);color:white;font-size:15px;font-weight:700;font-family:'Noto Sans Tamil',sans-serif;cursor:pointer;margin-bottom:14px">💑 பொருத்தம் கணக்கிடு</button>
+    ${resultHtml}`;
+}
+
+function runCompat(){
+  const cs=G.compatState;
+  try{
+    const gC=CITIES.find(c=>c.n===cs.gCity)||CITIES[0];
+    const bC=CITIES.find(c=>c.n===cs.bCity)||CITIES[0];
+    const {planets:gPlanets}=buildChart(+cs.gYear,+cs.gMonth,+cs.gDay,+cs.gHour,+cs.gMinute,0,gC.lat,gC.lng,gC.tz);
+    const {planets:bPlanets}=buildChart(+cs.bYear,+cs.bMonth,+cs.bDay,+cs.bHour,+cs.bMinute,0,bC.lat,bC.lng,bC.tz);
+    const gNak=nakOf(gPlanets.Moon.lon),bNak=nakOf(bPlanets.Moon.lon);
+    cs.result={
+      result:calcCompatibility(gNak.i,gNak.p,bNak.i,bNak.p,gPlanets.Moon.sign,bPlanets.Moon.sign,'',''),
+      gName:cs.gName||'பெண்',bName:cs.bName||'ஆண்',
+      gNak:NT[gNak.i],bNak:NT[bNak.i],
+      gSign:ST[gPlanets.Moon.sign],bSign:ST[bPlanets.Moon.sign],
+    };
+    renderTab();
+  }catch(e){alert('விவரங்களை சரியாக உள்ளிடவும்.');}
+}
+
+function renderCompatResult(cs){
+  const r=cs.result;
+  return `
+    <div style="padding:16px;border-radius:14px;text-align:center;margin-bottom:14px;background:${r.verdictColor}15;border:2px solid ${r.verdictColor}50">
+      <div style="font-size:28px;font-weight:700;color:${r.verdictColor};margin-bottom:4px">${r.totalPoints}/${r.total}</div>
+      <div style="font-size:14px;color:${r.verdictColor};font-weight:700">${r.verdict}</div>
+      <div style="font-size:11px;color:rgba(255,255,255,.5);margin-top:6px">${cs.gName} (${cs.gNak}, ${cs.gSign}) × ${cs.bName} (${cs.bNak}, ${cs.bSign})</div>
+    </div>
+    ${r.results.map((p,i)=>`<div style="padding:10px 12px;margin-bottom:8px;border-radius:10px;background:${p.present?'rgba(34,197,94,.06)':'rgba(239,68,68,.06)'};border:1px solid ${p.present?'rgba(34,197,94,.2)':'rgba(239,68,68,.2)'}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:12px;font-weight:700;color:${p.present?'#4ade80':'#f87171'}">${i+1}. ${p.name}</span>
+        <span style="font-size:10px;padding:2px 8px;border-radius:8px;font-weight:700;background:${p.present?'rgba(34,197,94,.2)':'rgba(239,68,68,.2)'};color:${p.present?'#4ade80':'#f87171'}">${p.present?'உள்ளது ✓':'இல்லை ✗'}</span>
+      </div>
+      <div style="font-size:11px;color:rgba(255,255,255,.6);line-height:1.7">${p.desc}</div>
+    </div>`).join('')}`;
+}
+
+function tabMuhurta(){
+  if(!G.muhurtaState)G.muhurtaState={type:'marriage',day:'',month:'',year:new Date().getFullYear().toString(),result:null};
+  const ms=G.muhurtaState;
+  const typeHtml=Object.entries(MUHURTA_TYPES).map(([k,v])=>`<button style="padding:7px 12px;border-radius:8px;border:none;cursor:pointer;font-size:11px;font-family:'Noto Sans Tamil',sans-serif;background:${ms.type===k?'rgba(251,191,36,.25)':'rgba(255,255,255,.06)'};color:${ms.type===k?'#fbbf24':'rgba(255,255,255,.5)'};border:1px solid ${ms.type===k?'rgba(251,191,36,.5)':'rgba(255,255,255,.1)'}" onclick="G.muhurtaState.type='${k}';renderTab()">${v.ta}</button>`).join('');
+  const resultHtml=ms.result?`
+    <div style="padding:16px;border-radius:12px;margin-top:12px;background:${ms.result.verdictColor}15;border:2px solid ${ms.result.verdictColor}50;text-align:center">
+      <div style="font-size:15px;font-weight:700;color:${ms.result.verdictColor};margin-bottom:10px">${ms.result.verdict}</div>
+      ${ir('நட்சத்திரம்',ms.result.nakshatra,ms.result.isNakGood?'#4ade80':ms.result.isNakBad?'#f87171':'white')}
+      ${ir('வாரம்',ms.result.vara,ms.result.isDayGood?'#4ade80':'#f87171')}
+      ${ir('திதி',`${ms.result.tithiNum}வது`,ms.result.isTithiBad?'#f87171':'#4ade80')}
+      ${ir('ராகுகாலம்',ms.result.rahuKalamBad,'#f87171')}
+      <div style="margin-top:8px;font-size:11px;color:rgba(255,255,255,.5)">மதிப்பெண்: ${ms.result.score}/7</div>
+    </div>`:'' ;
+  return `
+    ${card(`${sh('முஹூர்த்தம் கணக்கிடு','⏰','#a78bfa')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.7">ஒரு குறிப்பிட்ட தேதி குறிப்பிட்ட நிகழ்ச்சிக்கு சாதகமானதா என்று அறியலாம்.</p>`,'style="background:rgba(168,85,247,.05);border:1px solid rgba(168,85,247,.2)"')}
+    <div style="font-size:11px;color:rgba(255,255,255,.45);margin-bottom:8px">நிகழ்ச்சி வகை:</div>
+    <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px">${typeHtml}</div>
+    <label style="font-size:11px;color:rgba(255,255,255,.45);display:block;margin-bottom:5px">தேதி — நாள் / மாதம் / ஆண்டு</label>
+    <div style="display:flex;gap:8px;margin-bottom:12px">
+      <input class="inp" id="m-day" type="number" placeholder="நாள்" value="${ms.day}" oninput="G.muhurtaState.day=this.value" min="1" max="31"/>
+      <input class="inp" id="m-month" type="number" placeholder="மாதம்" value="${ms.month}" oninput="G.muhurtaState.month=this.value" min="1" max="12"/>
+      <input class="inp" id="m-year" type="number" placeholder="ஆண்டு" value="${ms.year}" oninput="G.muhurtaState.year=this.value" min="2024" max="2100"/>
+    </div>
+    <button onclick="runMuhurta()" style="width:100%;padding:13px;border:none;border-radius:12px;background:linear-gradient(135deg,#4c1d95,#7c3aed,#a78bfa);color:white;font-size:14px;font-weight:700;font-family:'Noto Sans Tamil',sans-serif;cursor:pointer;margin-bottom:10px">⏰ முஹூர்த்தம் கணக்கிடு</button>
+    ${resultHtml}`;
+}
+
+function runMuhurta(){
+  const ms=G.muhurtaState;
+  if(!ms.day||!ms.month||!ms.year){alert('தேதி உள்ளிடவும்.');return;}
+  ms.result=calcMuhurta(+ms.year,+ms.month,+ms.day,ms.type);
+  renderTab();
+}
+
+function tabSaved(){
+  const charts=getSavedCharts();
+  const saveBtn=G.result?`<button onclick="saveCurrentChart()" style="width:100%;padding:12px;border:none;border-radius:10px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.4);color:#4ade80;font-size:13px;font-weight:700;font-family:'Noto Sans Tamil',sans-serif;cursor:pointer;margin-bottom:12px">💾 தற்போதைய ஜாதகம் சேமி</button>`:'';
+  return `
+    ${card(`${sh('சேமிக்கப்பட்ட ஜாதகங்கள்','💾','#4ade80')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.7">உங்கள் சாதனையில் (browser) ஜாதகங்கள் சேமிக்கப்படும். அதிகபட்சம் 10 ஜாதகங்கள்.</p>`,'style="background:rgba(34,197,94,.05);border:1px solid rgba(34,197,94,.2)"')}
+    ${saveBtn}
+    ${charts.length===0?`<div style="text-align:center;padding:30px;color:rgba(255,255,255,.35)">
+      <div style="font-size:40px;margin-bottom:10px">📂</div>
+      <div>சேமிக்கப்பட்ட ஜாதகங்கள் இல்லை.<br>முதலில் ஒரு ஜாதகம் கணக்கிட்டு சேமிக்கவும்.</div>
+    </div>`:charts.map(c=>`<div style="padding:14px;border-radius:12px;margin-bottom:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <div>
+          <div style="font-size:14px;font-weight:700;color:#fbbf24">${c.name} (${c.gender||''})</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.45);margin-top:2px">${c.date} · ${c.time} · ${c.city}</div>
+        </div>
+        <div style="font-size:9px;color:rgba(255,255,255,.3)">${c.savedAt}</div>
+      </div>
+      <div style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap">
+        <span style="padding:3px 9px;border-radius:10px;font-size:10px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);color:#fbbf24">லக்னம்: ${c.lagna}</span>
+        <span style="padding:3px 9px;border-radius:10px;font-size:10px;background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.25);color:#a78bfa">சந்திரன்: ${c.moonSign}</span>
+        <span style="padding:3px 9px;border-radius:10px;font-size:10px;background:rgba(251,191,36,.12);border:1px solid rgba(251,191,36,.25);color:#fbbf24">நட்சத்திரம்: ${c.nakshatra}</span>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button onclick="loadChart(${c.id})" style="flex:1;padding:9px;border:none;border-radius:8px;background:rgba(251,191,36,.15);border:1px solid rgba(251,191,36,.35);color:#fbbf24;font-size:12px;font-weight:700;font-family:'Noto Sans Tamil',sans-serif;cursor:pointer">📂 திறக்கவும்</button>
+        <button onclick="deleteChart(${c.id})" style="padding:9px 14px;border:none;border-radius:8px;background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:#f87171;font-size:12px;cursor:pointer">🗑</button>
+      </div>
+    </div>`).join('')}`;
+}
+
+function tabVimshopaka(r){
+  const vb=calcVimshopaka(r.planets,r.lagna.lon);
+  return `
+    ${card(`${sh('விம்சோபக பலம் (Vimshopaka Bala)','🎯','#f97316')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.7">D1 முதல் D30 வரை வர்க்க சக்கரங்களில் கிரக வலிமை கணக்கிடப்படுகிறது. மொத்தம் 20 ரூபா அடிப்படையில் மதிப்பிடப்படுகிறது. இது Shadbala-ஐ விட கிரகத்தின் ஒட்டுமொத்த நோக்கை காட்டுகிறது.</p>`,'style="background:rgba(249,115,22,.05);border:1px solid rgba(249,115,22,.2)"')}
+    ${vb.map(v=>(
+      `<div class="card" style="margin-bottom:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:18px">${PI[v.planet]}</span>
+            <span style="font-size:13px;color:${PC[v.planet]};font-weight:700">${PT[v.planet]}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:12px;color:rgba(255,255,255,.5)">${v.score}/20</span>
+            <span style="font-size:11px;padding:2px 10px;border-radius:10px;font-weight:700;background:${v.pct>=70?PC[v.planet]+'20':v.pct>=50?'rgba(251,191,36,.15)':'rgba(239,68,68,.12)'};color:${v.pct>=70?PC[v.planet]:v.pct>=50?'#fbbf24':'#f87171'}">${v.verdict}</span>
+          </div>
+        </div>
+        <div style="background:rgba(255,255,255,.07);border-radius:6px;height:10px;overflow:hidden">
+          <div style="height:10px;border-radius:6px;width:${v.pct}%;background:linear-gradient(90deg,${PC[v.planet]}88,${PC[v.planet]});transition:width 1.4s ease"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:rgba(255,255,255,.35);margin-top:5px">
+          <span>D1 D2 D3 D7 D9 D10 D12 D16 D30 சேர்ந்த பலம்</span>
+          <span>${v.pct}%</span>
+        </div>
+      </div>`
+    )).join('')}
+    ${card(`${sh('Shadbala vs Vimshopaka ஒப்பீடு','📊')}
+      <p style="font-size:12px;color:rgba(255,255,255,.5);line-height:1.8">
+        <strong style="color:#fbbf24">Shadbala</strong> — ஒரு கிரகம் தற்போதைய நிலையில் எவ்வளவு பலம் கொண்டுள்ளது என்று காட்டுகிறது (6 வகை பலங்கள்).<br><br>
+        <strong style="color:#f97316">Vimshopaka Bala</strong> — அந்த கிரகம் D1 முதல் D30 வரை அனைத்து வர்க்க சக்கரங்களிலும் எவ்வளவு உறுதியாக உள்ளது என்று காட்டுகிறது. இரண்டும் அதிகமாக இருந்தால் கிரகம் மிகவும் பலமானது.
+      </p>`)}`;
+}
+
+// ── Add Save & Print buttons to result screen ──
+const _origShowResult=showResult;
+function showResult(){
+  _origShowResult();
+  // Add save/print buttons to header area
+  setTimeout(()=>{
+    const hdr=document.getElementById('result-header');
+    if(hdr&&!document.getElementById('save-print-btns')){
+      const btnDiv=document.createElement('div');
+      btnDiv.id='save-print-btns';
+      btnDiv.style.cssText='display:flex;gap:6px;margin-top:8px';
+      btnDiv.innerHTML=`
+        <button onclick="saveCurrentChart()" style="flex:1;padding:7px;border:none;border-radius:8px;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.35);color:#4ade80;font-size:11px;font-weight:600;font-family:'Noto Sans Tamil',sans-serif;cursor:pointer">💾 சேமி</button>
+        <button onclick="printReport()" style="flex:1;padding:7px;border:none;border-radius:8px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);color:#60a5fa;font-size:11px;font-weight:600;font-family:'Noto Sans Tamil',sans-serif;cursor:pointer">🖨️ அச்சிடு</button>
+        <button onclick="switchTab('gochara')" style="flex:1;padding:7px;border:none;border-radius:8px;background:rgba(56,189,248,.12);border:1px solid rgba(56,189,248,.35);color:#38bdf8;font-size:11px;font-weight:600;font-family:'Noto Sans Tamil',sans-serif;cursor:pointer">🌍 கோசாரம்</button>`;
+      hdr.appendChild(btnDiv);
+    }
+  },100);
+}
+
+// ── Update install screen with quick access buttons ──
+setTimeout(()=>{
+  const el=document.querySelector('.gold-btn');
+  if(el&&el.parentNode){
+    const savedCount=getSavedCharts().length;
+    if(savedCount>0){
+      const div=document.createElement('div');
+      div.style.cssText='margin-top:10px;padding:12px;border-radius:10px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.2)';
+      div.innerHTML=`<div style="font-size:11px;color:#4ade80;font-weight:700;margin-bottom:6px">📂 ${savedCount} ஜாதகம் சேமிக்கப்பட்டுள்ளது</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        ${getSavedCharts().slice(0,3).map(c=>`<button onclick="loadChart(${c.id})" style="padding:5px 10px;border:none;border-radius:8px;background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.3);color:#4ade80;font-size:11px;cursor:pointer;font-family:'Noto Sans Tamil',sans-serif">${c.name}</button>`).join('')}
+      </div>`;
+      el.parentNode.insertBefore(div,el.nextSibling);
+    }
+  }
+},300);
+
+console.log('✅ ஜோதிடம் v2.0 — Upgrade loaded successfully');
+console.log('New features: Gochara | Varshaphal | Compatibility | Muhurta | Save/Load | Print | Vimshopaka | Improved accuracy');
+
+</script>
+</body>
+</html>
